@@ -1,16 +1,52 @@
-# mentorship_project
+# Mentorship Project
+
+[![Flutter](https://img.shields.io/badge/Flutter-v2.10.0-blue)](https://flutter.dev)
 
 A new Flutter project.
 
+## Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+
+- 📱 **Cross-Platform**: Runs on both iOS and Android.
+- 🎨 **Responsive Design**: Adaptive layouts for different screen sizes.
+- 🛠 **State Management**: Efficient state management using `freezed`.
+- 🔥 **Hot Reload**: Develop faster with Flutter’s Hot Reload.
+
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To get a local copy up and running, follow these simple steps.
 
-A few resources to get you started if this is your first Flutter project:
+### Prerequisites
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter SDK: [Install Flutter](https://flutter.dev/docs/get-started/install)
+- Dart SDK: Comes with Flutter installation.
+- A code editor like VS Code or Android Studio.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/flutter-mentorship-t4/mentorship_project
+   cd mentorship_project
+
+   ```
+
+2. Install dependencies:
+   ```bash
+   flutter pub get
+
+   ```
+3. Run the app:
+   ```bash
+   flutter run
+   ```
