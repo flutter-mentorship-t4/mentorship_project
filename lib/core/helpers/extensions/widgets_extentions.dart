@@ -6,6 +6,9 @@ extension WidgetExtension on Widget? {
     return SizedBox(height: height, width: width, child: this);
   }
 
+  /// Scrollable
+  SingleChildScrollView scrollable() => SingleChildScrollView(child: this);
+
   /// With custom width
   SizedBox width(double width) => SizedBox(width: width, child: this);
 
