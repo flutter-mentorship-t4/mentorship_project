@@ -1,3 +1,7 @@
 {
+    "Authentication": {
+        "name": "Name",
+        "email": "Email"
+    },
     "hello": "Hello"
 }
