@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:mentorship_project/core/helpers/strings/constants.dart';
+import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../helpers/shared_pref_helper.dart';

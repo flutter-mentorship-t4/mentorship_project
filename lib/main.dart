@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentorship_project/core/di/dependency_injection.dart' as di;
 import 'package:mentorship_project/core/helpers/extensions/check_null_extension.dart';
 import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
-import 'package:mentorship_project/core/helpers/strings/constants.dart';
+import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
 import 'package:mentorship_project/core/routing/app_router.dart';
 import 'package:mentorship_project/my_app.dart';
 

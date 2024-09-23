@@ -27,7 +27,11 @@ class MyApp extends StatelessWidget {
               supportedLocales: context.supportedLocales,
               locale: context.locale,
               title: 'Diva',
-              theme: context.read<ThemeCubit>().themeData,
+              theme: context.read<ThemeCubit>().themeData.copyWith(
+                    textTheme: Theme.of(context).textTheme.apply(
+                          fontFamily: 'Roboto',
+                        ),
+                  ),
               debugShowCheckedModeBanner: false,
               initialRoute: Routes.loginScreen,
               onGenerateRoute: appRouter.generateRoute,
