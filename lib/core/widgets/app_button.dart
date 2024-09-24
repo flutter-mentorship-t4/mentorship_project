@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../config/theming/colors.dart';
 
@@ -12,7 +13,7 @@ class AppButton extends StatelessWidget {
     this.vPadding = 14,
     this.hPadding = 20,
     this.borderRadius = 10,
-    this.borderColor = Colors.transparent,
+    this.borderColor = ColorsManager.transparent,
     this.elevation = 0.5,
     this.fontSize = 14,
     required this.onTap,
@@ -54,23 +55,23 @@ class AppButton extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          isIconEnd ? const SizedBox() : icon ?? const SizedBox(),
+          isIconEnd ? const SizedBox.shrink() : icon ?? const SizedBox.shrink(),
           isIconEnd
-              ? const SizedBox()
+              ? const SizedBox.shrink()
               : icon == null
-                  ? const SizedBox()
+                  ? const SizedBox.shrink()
                   : SizedBox(width: iconSpacing),
           Text(
             label,
             style: textStyle ??
-                TextStyle(color: textColor ?? Colors.white, fontSize: fontSize),
+                TextStyle(color: textColor ?? ColorsManager.white, fontSize: fontSize.sp),
           ),
           !isIconEnd
-              ? const SizedBox()
+              ? const SizedBox.shrink()
               : icon == null
-                  ? const SizedBox()
+                  ? const SizedBox.shrink()
                   : SizedBox(width: iconSpacing),
-          !isIconEnd ? const SizedBox() : icon ?? const SizedBox(),
+          !isIconEnd ? const SizedBox.shrink() : icon ?? const SizedBox.shrink(),
         ],
       ),
     );

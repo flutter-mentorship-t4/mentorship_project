@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../config/theming/colors.dart';
+
 abstract class AppBottomSheet {
   static show(
     BuildContext context, {
@@ -20,7 +22,7 @@ abstract class AppBottomSheet {
       isDismissible: isDismissible,
       useSafeArea: true,
       isScrollControlled: isScrollControlled,
-      backgroundColor: backgroundColor ?? Colors.white,
+      backgroundColor: backgroundColor ?? ColorsManager.white,
       builder: (_) {
         return SizedBox(
           width: double.infinity,

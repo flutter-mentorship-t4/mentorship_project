@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../config/theming/colors.dart';
 
 class AppIconButton extends StatelessWidget {
   const AppIconButton({
@@ -7,7 +10,7 @@ class AppIconButton extends StatelessWidget {
     this.width = 0,
     this.vPadding = 15,
     this.hPadding = 15,
-    this.borderColor = Colors.transparent,
+    this.borderColor = ColorsManager.transparent,
     this.elevation = 0.5,
     required this.onTap,
     required this.icon,
@@ -26,11 +29,11 @@ class AppIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: onTap,
-      color: backgroundColor ?? Theme.of(context).primaryColor,
+      color: backgroundColor ?? ColorsManager.primaryColor,
       minWidth: width,
       elevation: elevation,
       highlightElevation: 0,
-      padding: EdgeInsets.symmetric(vertical: vPadding, horizontal: hPadding),
+      padding: EdgeInsets.symmetric(vertical: vPadding.h, horizontal: hPadding.w),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(100),
         side: BorderSide(color: borderColor),
