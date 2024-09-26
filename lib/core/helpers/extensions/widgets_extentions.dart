@@ -25,9 +25,9 @@ extension WidgetExtension on Widget? {
     return Padding(padding: EdgeInsets.only(left: left), child: this);
   }
 
-  /// return padding right
-  Padding paddingRight(double right) {
-    return Padding(padding: EdgeInsets.only(right: right), child: this);
+  /// return padding end
+  Padding paddingEnd(double end) {
+    return Padding(padding: EdgeInsetsDirectional.only(end: end), child: this);
   }
 
   /// return padding bottom
@@ -43,12 +43,12 @@ extension WidgetExtension on Widget? {
   /// return custom padding from each side
   Padding paddingOnly({
     double top = 0.0,
-    double left = 0.0,
+    double start = 0.0,
     double bottom = 0.0,
-    double right = 0.0,
+    double end = 0.0,
   }) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(left, top, right, bottom),
+      padding: EdgeInsetsDirectional.fromSTEB(start, top, end, bottom),
       child: this,
     );
   }

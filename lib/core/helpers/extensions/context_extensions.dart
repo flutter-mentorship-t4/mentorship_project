@@ -4,10 +4,13 @@ Version : 1.2.0
 
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mentorship_project/core/widgets/app_loading_widget_service.dart';
 
 extension ContextExtensions on BuildContext {
+  void showLoading() => AppLoadingWidgetService.showLoading(this);
+  void closeLoading() => AppLoadingWidgetService.hideLoading();
+
   /// The same of [MediaQuery.of(context).size]
   Size get mediaQuerySize => MediaQuery.of(this).size;
 
@@ -31,9 +34,7 @@ extension ContextExtensions on BuildContext {
   /// [reducedBy] is a percentage value of how much of the height you want
   /// if you for example want 46% of the height, then you reduce it by 56%.
   double heightTransformer({double dividedBy = 1, double reducedBy = 0.0}) {
-    return (mediaQuerySize.height -
-            ((mediaQuerySize.height / 100) * reducedBy)) /
-        dividedBy;
+    return (mediaQuerySize.height - ((mediaQuerySize.height / 100) * reducedBy)) / dividedBy;
   }
 
   /// Gives you the power to get a portion of the width.
@@ -46,8 +47,7 @@ extension ContextExtensions on BuildContext {
   /// [reducedBy] is a percentage value of how much of the width you want
   /// if you for example want 46% of the width, then you reduce it by 56%.
   double widthTransformer({double dividedBy = 1, double reducedBy = 0.0}) {
-    return (mediaQuerySize.width - ((mediaQuerySize.width / 100) * reducedBy)) /
-        dividedBy;
+    return (mediaQuerySize.width - ((mediaQuerySize.width / 100) * reducedBy)) / dividedBy;
   }
 
   /// Divide the height proportionally by the given value
