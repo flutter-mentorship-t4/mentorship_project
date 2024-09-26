@@ -28,8 +28,7 @@ void main() async {
 }
 
 checkIfLoggedInUser() async {
-  String? userToken =
-      await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken);
+  String? userToken = await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken);
   if (!userToken.isNullOrEmpty()) {
     isLoggedInUser = true;
   } else {
@@ -42,5 +41,5 @@ checkIfLoggedInUser() async {
 /// USE THIS COMMAND FOR GENERATE (CodegenLoader)
 // flutter pub run easy_localization:generate --source-dir ./assets/translations
 
-/// USE THIS COMMAND FOR GENERATE (LocaleKeys)
-// flutter pub run easy_localization:generate --source-dir ./assets/translations -f keys -o locale_keys.g.dart
+/// USE THIS COMMAND FOR GENERATE (LocalizationKeys)
+// flutter pub run easy_localization:generate --source-dir ./assets/translations -f keys -o localization_keys.g.dart
