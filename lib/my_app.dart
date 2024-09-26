@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
                         ),
                   ),
               debugShowCheckedModeBanner: false,
-              initialRoute: Routes.loginScreen,
+              initialRoute: Routes.homeScreen,
               onGenerateRoute: appRouter.generateRoute,
             );
           },
