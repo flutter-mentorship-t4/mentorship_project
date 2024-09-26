@@ -11,7 +11,7 @@ class AppIconButton extends StatelessWidget {
     this.vPadding = 15,
     this.hPadding = 15,
     this.borderColor = ColorsManager.transparent,
-    this.elevation = 0.5,
+    this.elevation = 0,
     required this.onTap,
     required this.icon,
   });
