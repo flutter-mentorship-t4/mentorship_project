@@ -18,25 +18,35 @@ part 'widgets/_filter_categories_button.dart';
 part 'widgets/_products_grid_view.dart';
 part 'widgets/_search_bar_and_sorting.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int selectedIndex = 0;
+
+  List<Map<String, dynamic>> navigationItems = [
+    {'title': 'Home', 'assetName': AppIcons.home},
+    {'title': 'Categories', 'assetName': AppIcons.categories},
+    {'title': 'Cart', 'assetName': AppIcons.cartPlusOutlined},
+    {'title': 'Wishlist', 'assetName': AppIcons.heartOutlined},
+  ];
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const _CustomAppBar(),
-            const _SearchBarAndSorting(),
-            const _BannerCarouselSlider(),
-            const _FilterCategoriesButton(),
-            const _ProductsGridView(),
-          ],
-        ),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const _CustomAppBar(),
+        const _SearchBarAndSorting(),
+        const _BannerCarouselSlider(),
+        const _FilterCategoriesButton(),
+        const _ProductsGridView(),
+      ],
     );
   }
 }
