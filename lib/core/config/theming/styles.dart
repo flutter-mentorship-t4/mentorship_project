@@ -80,7 +80,7 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.primaryColor,
   );
-  static TextStyle font12LightWhiteRegular = TextStyle(
+  static TextStyle font12LightPrimaryRegular = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.lightPrimary,
@@ -130,7 +130,7 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.primaryColor,
   );
-  static TextStyle font16LightWhiteRegular = TextStyle(
+  static TextStyle font16LightPrimaryRegular = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.lightPrimary,
