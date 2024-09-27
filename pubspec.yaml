@@ -34,6 +34,7 @@ dependencies:
   retrofit_generator: ^8.0.4
   shared_preferences: ^2.2.3
   skeletonizer: ^1.4.2
+  bottom_navy_bar: ^6.1.0
 
 dev_dependencies:
   build_runner: ^2.4.7
