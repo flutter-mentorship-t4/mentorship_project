@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mentorship_project/core/config/theming/styles.dart';
+import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
+import 'package:mentorship_project/core/routing/routes.dart';
 
 class DonotHaveAnAccouts extends StatelessWidget {
   const DonotHaveAnAccouts({super.key});
@@ -8,7 +10,7 @@ class DonotHaveAnAccouts extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // context.pushNamed(Routes.signUp);
+        context.pushNamed(Routes.signUpScreen);
       },
       child: RichText(
         text: TextSpan(

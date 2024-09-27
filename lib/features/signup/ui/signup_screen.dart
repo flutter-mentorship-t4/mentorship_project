@@ -4,11 +4,11 @@ import 'package:mentorship_project/core/config/theming/styles.dart';
 import 'package:mentorship_project/core/helpers/spacing.dart';
 import 'package:mentorship_project/core/widgets/app_button.dart';
 import 'package:mentorship_project/core/widgets/sign_with_social.dart';
-import 'package:mentorship_project/features/login/ui/widget/donot_have_account.dart';
-import 'package:mentorship_project/features/login/ui/widget/email_and_pass_fields.dart';
+import 'package:mentorship_project/features/signup/ui/widgets/already_have_an_account.dart';
+import 'package:mentorship_project/features/signup/ui/widgets/email_and_pass_fields.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,41 +27,20 @@ class LoginScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Welcome back',
+                      'Sign Up',
                       style: TextStyles.font24BlackRegular,
                     ),
                     verticalSpace(15),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 50.w),
-                      child: Image.asset('assets/images/login.png'),
+                      child: Image.asset('assets/images/signup.png'),
                     ),
                     verticalSpace(15),
                     EmailAndPassFields(),
-                    verticalSpace(5),
-                    Align(
-                      alignment: AlignmentDirectional.centerEnd,
-                      child: Text(
-                        'Forget Password ? ',
-                        style: TextStyles.font14PrimaryRegular,
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Checkbox(
-                          shape: CircleBorder(),
-                          value: false,
-                          onChanged: (bool? value) {},
-                        ),
-                        Text(
-                          'Remember me',
-                          style: TextStyles.font14BlackRegular,
-                        ),
-                      ],
-                    ),
-                    verticalSpace(10),
+                                   verticalSpace(20),
+
                     AppButton(
-                      label: 'Sign In',
+                      label: 'Sign Up',
                       textStyle: TextStyles.font18WhiteRegular,
                       onTap: () {},
                       width: double.infinity,
@@ -93,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                     verticalSpace(15),
-                  DonotHaveAnAccouts(),
+                  AlreadyHaveAnAccount(),
                   ],
                 ),
               ),
