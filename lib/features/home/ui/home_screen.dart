@@ -15,6 +15,7 @@ import '../../../core/helpers/strings/app_images.dart';
 part 'widgets/_banner_carousel_slider.dart';
 part 'widgets/_custom_app_bar.dart';
 part 'widgets/_filter_categories_button.dart';
+part 'widgets/_products_grid_view.dart';
 part 'widgets/_search_bar_and_sorting.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,6 +33,7 @@ class HomeScreen extends StatelessWidget {
             const _SearchBarAndSorting(),
             const _BannerCarouselSlider(),
             const _FilterCategoriesButton(),
+            const _ProductsGridView(),
           ],
         ),
       ),
