@@ -33,7 +33,7 @@ class _ProductItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(13),
           child: GridTile(
             header: Row(
               children: [
@@ -43,9 +43,10 @@ class _ProductItem extends StatelessWidget {
                     AppIcons.heartOutlined,
                     width: 20.w,
                   ),
-                  backgroundColor: ColorsManager.greyD9.withOpacity(0.8),
-                  vPadding: 10,
-                  hPadding: 10,
+                  width: 32.w,
+                  backgroundColor: ColorsManager.greyFC,
+                  vPadding: 8.w,
+                  hPadding: 8.h,
                 ).paddingAll(10),
               ],
             ),
@@ -58,9 +59,10 @@ class _ProductItem extends StatelessWidget {
                     AppIcons.cartPlus,
                     width: 20.w,
                   ),
-                  backgroundColor: ColorsManager.greyD9.withOpacity(0.8),
-                  vPadding: 10,
-                  hPadding: 10,
+                  width: 32.w,
+                  backgroundColor: ColorsManager.greyFC,
+                  vPadding: 8.w,
+                  hPadding: 8.h,
                 ).paddingAll(10),
               ],
             ),
@@ -70,9 +72,9 @@ class _ProductItem extends StatelessWidget {
             ),
           ),
         ).expanded(),
-        verticalSpace(5),
-        Text('Product 1', style: TextStyles.font14BlackRegular),
-        Text('\$10.00', style: TextStyles.font12BlackBold),
+        verticalSpace(10),
+        Text('Baby blue blouse', style: TextStyles.font14Grey55Regular),
+        Text('545 \$', style: TextStyles.font14BlackRegular),
       ],
     );
   }
