@@ -37,16 +37,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const _CustomAppBar(),
-        const _SearchBarAndSorting(),
-        const _BannerCarouselSlider(),
-        const _FilterCategoriesButton(),
-        const _ProductsGridView(),
-      ],
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const _CustomAppBar(),
+          const _SearchBarAndSorting(),
+          const _BannerCarouselSlider(),
+          const _FilterCategoriesButton(),
+          const _ProductsGridView(),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.small(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100),
+        ),
+        backgroundColor: ColorsManager.primaryColor,
+        child: Icon(Icons.add, color: Colors.white, size: 20.w),
+        onPressed: () {},
+      ).widthAndHeight(width: 40.w, height: 40.h),
     );
   }
 }
