@@ -14,7 +14,7 @@ class _LoginApiService implements LoginApiService {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'ENTER_BASE_URL_HERE';
+    baseUrl ??= 'https://fakestoreapi.com/';
   }
 
   final Dio _dio;
@@ -24,19 +24,21 @@ class _LoginApiService implements LoginApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<dynamic> getData() async {
+  Future<LoginResponseModel> login(
+      LoginRequestBodyModel loginRequestBodyModel) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<dynamic>(Options(
-      method: 'GET',
+    final _data = <String, dynamic>{};
+    _data.addAll(loginRequestBodyModel.toJson());
+    final _options = _setStreamType<LoginResponseModel>(Options(
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'ENTER_ENDPOINT_HERE',
+          'auth/login',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -45,8 +47,14 @@ class _LoginApiService implements LoginApiService {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch(_options);
-    final _value = _result.data;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late LoginResponseModel _value;
+    try {
+      _value = LoginResponseModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
     return _value;
   }
 

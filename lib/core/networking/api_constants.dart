@@ -1,7 +1,6 @@
 class ApiConstants {
-  static const String apiBaseUrl = "https://api.example.com/";
+  static const String apiBaseUrl = "https://fakestoreapi.com/";
 
-  static const String login = "login";
   static const String signup = "register";
   
 }
