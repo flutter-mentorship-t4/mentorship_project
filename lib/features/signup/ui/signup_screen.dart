@@ -20,7 +20,7 @@ class SignUpScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 24.w,
-                vertical: 24.h,
+                vertical: 20.h,
               ),
               child: Center(
                 child: Column(
@@ -35,7 +35,7 @@ class SignUpScreen extends StatelessWidget {
                       margin: EdgeInsets.symmetric(horizontal: 50.w),
                       child: Image.asset('assets/images/signup.png'),
                     ),
-                    verticalSpace(15),
+                    verticalSpace(8),
                     EmailAndPassFields(),
                                    verticalSpace(20),
 

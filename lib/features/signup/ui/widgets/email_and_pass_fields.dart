@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mentorship_project/core/helpers/app_regex.dart';
 import 'package:mentorship_project/core/helpers/spacing.dart';
 import 'package:mentorship_project/core/widgets/app_text_form_field.dart';
 import 'package:mentorship_project/features/signup/logic/signup_cubit.dart';
+import 'package:mentorship_project/features/signup/ui/widgets/password_validation.dart';
 
 class EmailAndPassFields extends StatefulWidget {
   const EmailAndPassFields({
@@ -15,7 +17,36 @@ class EmailAndPassFields extends StatefulWidget {
 }
 
 class _EmailAndPassFieldsState extends State<EmailAndPassFields> {
-  bool isobscureText = true;
+  bool isPassObscured = true;
+  bool isConfirmPassObscured = true;
+  late TextEditingController passController;
+  bool hasLowerCase = false;
+  bool hasUpperCase = false;
+  bool hasMinLong = false;
+  bool hasSpecChar = false;
+  @override
+  void initState() {
+    super.initState();
+    passController = context.read<SignupCubit>().passwordController;
+    setUpPassAddListener();
+  }
+
+  void setUpPassAddListener() {
+    passController.addListener(() {
+      setState(() {
+        hasLowerCase = AppRegex.hasLowerCase(passController.text);
+        hasUpperCase = AppRegex.hasUpperCase(passController.text);
+        hasMinLong = AppRegex.hasMinLength(passController.text);
+        hasSpecChar = AppRegex.hasSpecialCharacter(passController.text);
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    passController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,48 +56,69 @@ class _EmailAndPassFieldsState extends State<EmailAndPassFields> {
         children: [
           AppTextFormField(
             hintText: 'E-mail',
-            validator: (val) {},
-            controller: context.read<SignupCubit>().userNameController,
+            validator: (val) {
+              if (val == null || val.isEmpty || !AppRegex.isEmailValid(val)) {
+                return 'Please Enter a valid Email';
+              }
+            },
+            controller: context.read<SignupCubit>().emailController,
             contentPadding:
                 EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
           ),
           verticalSpace(20),
           AppTextFormField(
             hintText: 'Password',
-            validator: (val) {},
+            validator: (val) {
+              if (val == null ||
+                  val.isEmpty ||
+                  !AppRegex.isPasswordValid(val)) {
+                return 'Please Enter a valid Password';
+              }
+            },
             controller: context.read<SignupCubit>().passwordController,
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
-                  isobscureText = !isobscureText;
+                  isPassObscured = !isPassObscured;
                 });
               },
               child: Icon(
-                isobscureText ? Icons.visibility_off : Icons.visibility,
+                isPassObscured ? Icons.visibility_off : Icons.visibility,
                 size: 20,
               ),
             ),
-            isObscureText: isobscureText,
+            isObscureText: isPassObscured,
             contentPadding:
                 EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
-          ),          verticalSpace(20),
-
+          ),
+          verticalSpace(10),
+          PasswordValidation(
+            hasLowerCase: hasLowerCase,
+            hasUpperCase: hasUpperCase,
+            hasMinLong: hasMinLong,
+            hasSpecChar: hasSpecChar,
+          ),
+          verticalSpace(20),
           AppTextFormField(
             hintText: 'Confirm Password',
-            validator: (val) {},
+            validator: (val) {
+              if (val == null || val.isEmpty) {
+                return 'Please Enter a valid Password';
+              }
+            },
             controller: context.read<SignupCubit>().ConfirmPasswordController,
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
-                  isobscureText = !isobscureText;
+                  isConfirmPassObscured = !isConfirmPassObscured;
                 });
               },
               child: Icon(
-                isobscureText ? Icons.visibility_off : Icons.visibility,
+                isConfirmPassObscured ? Icons.visibility_off : Icons.visibility,
                 size: 20,
               ),
             ),
-            isObscureText: isobscureText,
+            isObscureText: isConfirmPassObscured,
             contentPadding:
                 EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
           ),
