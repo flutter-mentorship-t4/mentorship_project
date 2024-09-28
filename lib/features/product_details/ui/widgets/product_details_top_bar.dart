@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mentorship_project/core/config/theming/colors.dart';
+import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
+import 'package:mentorship_project/core/widgets/app_bottom_sheet.dart';
 import 'package:mentorship_project/core/widgets/app_icon_button.dart';
 
 class ProductDetailsTopBar extends StatelessWidget {
@@ -13,7 +15,9 @@ class ProductDetailsTopBar extends StatelessWidget {
         child: Row(
           children: [
             AppIconButton(
-              onTap: () {},
+              onTap: () {
+                context.pop();
+              },
               icon: Icon(
                 Icons.arrow_back_ios_sharp,
               ),
@@ -23,7 +27,15 @@ class ProductDetailsTopBar extends StatelessWidget {
             ),
             Spacer(),
             AppIconButton(
-              onTap: () {},
+              onTap: () {
+                AppBottomSheet.show(
+                  context,
+                  content: Container(
+                    height: 300,
+                    child: Center(child: Text('Share')),
+                  ),
+                );
+              },
               icon: Icon(
                 Icons.ios_share_rounded,
               ),

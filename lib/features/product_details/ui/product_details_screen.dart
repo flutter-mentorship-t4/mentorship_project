@@ -1,12 +1,21 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mentorship_project/features/product_details/data/models/dummy_product.dart';
 
-import '../../../generated/localization_keys.g.dart';
 import 'widgets/product_details_top_bar.dart';
-import 'widgets/product_images_carousell.dart';
+import 'widgets/product_images_carousel.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({Key? key}) : super(key: key);
+  ProductDetailsScreen({Key? key}) : super(key: key);
+  final DummyProduct product = DummyProduct.fromJson({
+    "id": 1,
+    "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    "price": 109.95,
+    "description":
+        "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+    "category": "men's clothing",
+    "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    "rating": {"rate": 3.9, "count": 120}
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +24,9 @@ class ProductDetailsScreen extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: [
+              ProductImagesCarousel(product: product),
               ProductDetailsTopBar(),
-              ProductImagesCarousell(),
-              // Text('Product Details Screen'),
-              Text(LocaleKeys.ProductDetailsScreen.tr()), // Using the generated key and .tr() for translation
+              // Text(LocaleKeys.ProductDetailsScreen.tr()), // Using the generated key and .tr() for translation
             ],
           )
         ],
@@ -26,3 +34,23 @@ class ProductDetailsScreen extends StatelessWidget {
     );
   }
 }
+
+// Usage example:
+// void main() {
+//   runApp(MaterialApp(
+//     home: ProductDetailsScreen(
+//       product: Product.fromJson({
+//         "id": 1,
+//         "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+//         "price": 109.95,
+//         "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+//         "category": "men's clothing",
+//         "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+//         "rating": {
+//           "rate": 3.9,
+//           "count": 120
+//         }
+//       }),
+//     ),
+//   ));
+// }
