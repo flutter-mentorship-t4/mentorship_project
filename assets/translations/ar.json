@@ -1,7 +1,8 @@
 {
-    "Authentication": {
-        "name": "الاسم",
-        "email": "البريد الالكتروني"
-    },
-    "hello": "مرحبًا بك"
+	"Authentication": {
+		"name": "الاسم",
+		"email": "البريد الالكتروني"
+	},
+	"hello": "مرحبًا بك",
+	"ProductDetailsScreen": "شاشة تفاصيل المنتج"
 }

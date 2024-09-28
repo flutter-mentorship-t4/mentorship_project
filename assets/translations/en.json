@@ -1,7 +1,8 @@
 {
-    "Authentication": {
-        "name": "Name",
-        "email": "Email"
-    },
-    "hello": "Hello"
+	"Authentication": {
+		"name": "Name",
+		"email": "Email"
+	},
+	"hello": "Hello",
+	"ProductDetailsScreen": "Product Details Screen"
 }

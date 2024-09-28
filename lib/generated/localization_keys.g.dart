@@ -5,5 +5,6 @@ abstract class  LocaleKeys {
   static const Authentication_email = 'Authentication.email';
   static const Authentication = 'Authentication';
   static const hello = 'hello';
+  static const ProductDetailsScreen = 'ProductDetailsScreen';
 
 }

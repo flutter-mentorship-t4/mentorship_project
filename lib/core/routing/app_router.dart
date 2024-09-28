@@ -1,10 +1,10 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../features/login/ui/login_screen.dart';
-import '../../features/login/logic/login_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/core/routing/routes.dart';
+import 'package:mentorship_project/features/product_details/ui/product_details_screen.dart';
 
+import '../../features/login/logic/login_cubit.dart';
+import '../../features/login/ui/login_screen.dart';
 import '../di/dependency_injection.dart';
 
 class AppRouter {
@@ -19,6 +19,10 @@ class AppRouter {
             create: (context) => LoginCubit(getIt()),
             child: const LoginScreen(),
           ),
+        );
+      case Routes.productDetailsScreen:
+        return MaterialPageRoute(
+          builder: (_) => const ProductDetailsScreen(),
         );
 
       default:
