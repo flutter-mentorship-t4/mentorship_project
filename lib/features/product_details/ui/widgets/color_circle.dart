@@ -49,7 +49,7 @@ class ColorCircle extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Text(
-                LocaleKeys.Best.tr(),
+                LocaleKeys.ProductDetailsScreen_Best.tr(),
                 style: TextStyles.font10PrimaryRegular,
               ),
             ),

@@ -37,7 +37,7 @@ class _ProductColorSelectionState extends State<ProductColorSelection> {
           Row(
             children: [
               Text(
-                LocaleKeys.ProductColor.tr(),
+                LocaleKeys.ProductDetailsScreen_ProductColor.tr(),
                 style: TextStyles.font16BlackSemiBold,
               ),
               const SizedBox(width: 8), // Space between the text and color name

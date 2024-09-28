@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mentorship_project/core/helpers/spacing.dart';
 import 'package:mentorship_project/features/product_details/data/models/dummy_product.dart';
 import 'package:mentorship_project/features/product_details/ui/widgets/product_color_selection.dart';
 
 import 'widgets/product_details_top_bar.dart';
 import 'widgets/product_images_carousel.dart';
 import 'widgets/product_name_review_price_desc.dart';
+import 'widgets/product_size_selection.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({Key? key}) : super(key: key);
@@ -31,8 +33,12 @@ class ProductDetailsScreen extends StatelessWidget {
               // Text(LocaleKeys.ProductDetailsScreen.tr()), // Using the generated key and .tr() for translation
             ],
           ),
+          verticalSpace(24),
           ProductNameReviewPriceDesc(product: product),
+          verticalSpace(24),
           ProductColorSelection(),
+          verticalSpace(16),
+          ProductSizeSelection(),
         ],
       ),
     );

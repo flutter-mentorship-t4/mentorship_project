@@ -19,20 +19,26 @@ class CodegenLoader extends AssetLoader{
     "name": "الاسم",
     "email": "البريد الالكتروني"
   },
-  "hello": "مرحبًا بك",
-  "ProductDetailsScreen": "شاشة تفاصيل المنتج",
-  "ProductColor": ":اللون",
-  "Best": "الأفضل"
+  "ProductDetailsScreen": {
+    "ProductDetailsScreen": "شاشة تفاصيل المنتج",
+    "ProductColor": ":اللون",
+    "Best": "الأفضل",
+    "ProductSize": "الحجم"
+  },
+  "hello": "مرحبًا بك"
 };
 static const Map<String,dynamic> en = {
   "Authentication": {
     "name": "Name",
     "email": "Email"
   },
-  "hello": "Hello",
-  "ProductDetailsScreen": "Product Details Screen",
-  "ProductColor": "Color:",
-  "Best": "Best:"
+  "ProductDetailsScreen": {
+    "ProductDetailsScreen": "Product Details Screen",
+    "ProductColor": "Color:",
+    "Best": "Best:",
+    "ProductSize": "Product Size"
+  },
+  "hello": "Hello"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

@@ -3,8 +3,11 @@
 		"name": "الاسم",
 		"email": "البريد الالكتروني"
 	},
-	"hello": "مرحبًا بك",
-	"ProductDetailsScreen": "شاشة تفاصيل المنتج",
-	"ProductColor": ":اللون",
-	"Best": "الأفضل"
+	"ProductDetailsScreen": {
+		"ProductDetailsScreen": "شاشة تفاصيل المنتج",
+		"ProductColor": ":اللون",
+		"Best": "الأفضل",
+		"ProductSize": "الحجم"
+	},
+	"hello": "مرحبًا بك"
 }

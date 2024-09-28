@@ -3,8 +3,11 @@
 		"name": "Name",
 		"email": "Email"
 	},
-	"hello": "Hello",
-	"ProductDetailsScreen": "Product Details Screen",
-	"ProductColor": "Color:",
-	"Best": "Best:"
+	"ProductDetailsScreen": {
+		"ProductDetailsScreen": "Product Details Screen",
+		"ProductColor": "Color:",
+		"Best": "Best:",
+		"ProductSize": "Product Size"
+	},
+	"hello": "Hello"
 }
