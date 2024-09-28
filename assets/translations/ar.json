@@ -4,5 +4,7 @@
 		"email": "البريد الالكتروني"
 	},
 	"hello": "مرحبًا بك",
-	"ProductDetailsScreen": "شاشة تفاصيل المنتج"
+	"ProductDetailsScreen": "شاشة تفاصيل المنتج",
+	"ProductColor": ":اللون",
+	"Best": "الأفضل"
 }

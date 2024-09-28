@@ -6,5 +6,7 @@ abstract class  LocaleKeys {
   static const Authentication = 'Authentication';
   static const hello = 'hello';
   static const ProductDetailsScreen = 'ProductDetailsScreen';
+  static const ProductColor = 'ProductColor';
+  static const Best = 'Best';
 
 }

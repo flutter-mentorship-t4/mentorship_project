@@ -20,7 +20,9 @@ class CodegenLoader extends AssetLoader{
     "email": "البريد الالكتروني"
   },
   "hello": "مرحبًا بك",
-  "ProductDetailsScreen": "شاشة تفاصيل المنتج"
+  "ProductDetailsScreen": "شاشة تفاصيل المنتج",
+  "ProductColor": ":اللون",
+  "Best": "الأفضل"
 };
 static const Map<String,dynamic> en = {
   "Authentication": {
@@ -28,7 +30,9 @@ static const Map<String,dynamic> en = {
     "email": "Email"
   },
   "hello": "Hello",
-  "ProductDetailsScreen": "Product Details Screen"
+  "ProductDetailsScreen": "Product Details Screen",
+  "ProductColor": "Color:",
+  "Best": "Best:"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

@@ -4,5 +4,7 @@
 		"email": "Email"
 	},
 	"hello": "Hello",
-	"ProductDetailsScreen": "Product Details Screen"
+	"ProductDetailsScreen": "Product Details Screen",
+	"ProductColor": "Color:",
+	"Best": "Best:"
 }

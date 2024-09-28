@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
 import 'package:mentorship_project/features/product_details/data/models/dummy_product.dart';
-import 'package:mentorship_project/features/product_details/ui/widgets/product_rating.dart';
+import 'package:mentorship_project/features/product_details/ui/widgets/product_color_selection.dart';
 
 import 'widgets/product_details_top_bar.dart';
 import 'widgets/product_images_carousel.dart';
+import 'widgets/product_name_review_price_desc.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({Key? key}) : super(key: key);
@@ -32,30 +31,14 @@ class ProductDetailsScreen extends StatelessWidget {
               // Text(LocaleKeys.ProductDetailsScreen.tr()), // Using the generated key and .tr() for translation
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      constraints: BoxConstraints(maxWidth: 220.w),
-                      child: Text(
-                        product.title,
-                        style: TextStyles.font16Grey55Regular,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    //review
-                    ProductRating(product: product),
-                  ],
-                ),
-              ],
-            ),
-          )
+          ProductNameReviewPriceDesc(product: product),
+          ProductColorSelection(),
         ],
       ),
     );
   }
 }
+
+
+
+//feat(Product-Details) :rocket: Added ..
