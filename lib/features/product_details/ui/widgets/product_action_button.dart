@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mentorship_project/core/helpers/spacing.dart';
 
 import '../../../../core/config/theming/colors.dart';
 import '../../../../core/widgets/app_button.dart';
@@ -23,13 +24,26 @@ class ProductActionButtons extends StatelessWidget {
             icon: Icon(Icons.favorite_border),
             backgroundColor: ColorsManager.greyEC,
           ),
-          AppButton(
-            label: LocaleKeys.ProductDetailsScreen_BuyNow.tr(),
-            onTap: () {},
-            borderRadius: 24,
-            // hPadding: 30,
-            fontSize: 18,
-            width: 155,
+          Column(
+            children: [
+              AppButton(
+                label: LocaleKeys.ProductDetailsScreen_BuyNow.tr(),
+                onTap: () {},
+                borderRadius: 24,
+                // hPadding: 30,
+                fontSize: 18,
+                width: 155,
+              ),
+              verticalSpace(8),
+              Container(
+                width: 134,
+                height: 5,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.black,
+                ),
+              )
+            ],
           ),
           AppIconButton(
             onTap: () {},
