@@ -8,6 +8,7 @@ abstract class  LocaleKeys {
   static const ProductDetailsScreen_ProductColor = 'ProductDetailsScreen.ProductColor';
   static const ProductDetailsScreen_Best = 'ProductDetailsScreen.Best';
   static const ProductDetailsScreen_ProductSize = 'ProductDetailsScreen.ProductSize';
+  static const ProductDetailsScreen_BuyNow = 'ProductDetailsScreen.BuyNow';
   static const ProductDetailsScreen = 'ProductDetailsScreen';
   static const hello = 'hello';
 

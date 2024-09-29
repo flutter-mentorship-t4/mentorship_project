@@ -23,7 +23,8 @@ class CodegenLoader extends AssetLoader{
     "ProductDetailsScreen": "شاشة تفاصيل المنتج",
     "ProductColor": ":اللون",
     "Best": "الأفضل",
-    "ProductSize": "الحجم"
+    "ProductSize": "الحجم",
+    "BuyNow": "اشتري الان"
   },
   "hello": "مرحبًا بك"
 };
@@ -36,7 +37,8 @@ static const Map<String,dynamic> en = {
     "ProductDetailsScreen": "Product Details Screen",
     "ProductColor": "Color:",
     "Best": "Best:",
-    "ProductSize": "Product Size"
+    "ProductSize": "Product Size",
+    "BuyNow": "Buy now"
   },
   "hello": "Hello"
 };

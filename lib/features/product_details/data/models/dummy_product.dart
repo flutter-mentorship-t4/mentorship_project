@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class DummyProduct {
   final int id;
   final String title;
@@ -32,84 +30,42 @@ class DummyProduct {
   }
 }
 
-class ProductDetailsScreen extends StatelessWidget {
-  final DummyProduct product;
-
-  ProductDetailsScreen({required this.product});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Image.network(
-                product.image,
-                fit: BoxFit.cover,
-                height: 300,
-                width: double.infinity,
-              ),
-              Positioned(
-                top: 40,
-                left: 10,
-                child: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.white),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ),
-              Positioned(
-                top: 40,
-                right: 10,
-                child: IconButton(
-                  icon: Icon(Icons.share, color: Colors.white),
-                  onPressed: () {
-                    // Implement share functionality
-                  },
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        product.title,
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Row(
-                      children: [Icon(Icons.star, color: Colors.yellow), Text('${product.rating['rate']} (${product.rating['count']})')],
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8),
-                Text(
-                  '\$${product.price.toStringAsFixed(2)}',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  product.description,
-                  style: TextStyle(color: Colors.grey),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Category: ${product.category}',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+final List<DummyProduct> dummyProducts = [
+  DummyProduct(
+      id: 1,
+      title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      price: 109.95,
+      description:
+          "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      category: "men's clothing",
+      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      rating: {"rate": 3.9, "count": 120}),
+  DummyProduct(
+      id: 2,
+      title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      price: 109.95,
+      description:
+          "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      category: "men's clothing",
+      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      rating: {"rate": 3.9, "count": 120}),
+  DummyProduct(
+      id: 3,
+      title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      price: 109.95,
+      description:
+          "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      category: "men's clothing",
+      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      rating: {"rate": 3.9, "count": 120}),
+  DummyProduct(
+      id: 4,
+      title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      price: 109.95,
+      description:
+          "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      category: "men's clothing",
+      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      rating: {"rate": 3.9, "count": 120}),
+  // Add more products here
+];
