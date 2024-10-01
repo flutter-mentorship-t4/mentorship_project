@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-class signInWith extends StatelessWidget {
+class SignWithSocial extends StatelessWidget {
   final VoidCallback ontap;
   final String assetsName;
-  const signInWith({
+  const SignWithSocial({
     Key? key,
     required this.assetsName,
     required this.ontap,

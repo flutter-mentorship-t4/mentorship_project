@@ -9,14 +9,14 @@ import 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepo _loginRepo;
   LoginCubit(this._loginRepo) : super(LoginInitialState());
-  TextEditingController userNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   void emitLoginState() async {
     emit(LoginLoadingState());
     try {
       final response = await _loginRepo.login(LoginRequestBodyModel(
-        userName: userNameController.text,
+        userName: emailController.text,
         password: passwordController.text,
       ));
       emit(

@@ -24,9 +24,9 @@ class _EmailAndPassFieldsState extends State<EmailAndPassFields> {
       child: Column(
         children: [
           AppTextFormField(
-            hintText: 'Name',
+            hintText: 'E-mail',
             validator: (val) {},
-            controller: context.read<LoginCubit>().userNameController,
+            controller: context.read<LoginCubit>().emailController,
             contentPadding:
                 EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
           ),
