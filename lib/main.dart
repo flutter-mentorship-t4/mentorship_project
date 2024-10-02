@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentorship_project/core/di/dependency_injection.dart' as di;
@@ -6,12 +7,16 @@ import 'package:mentorship_project/core/helpers/extensions/check_null_extension.
 import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
 import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
 import 'package:mentorship_project/core/routing/app_router.dart';
+import 'package:mentorship_project/firebase_options.dart';
 import 'package:mentorship_project/my_app.dart';
 
 import 'generated/codegen_loader.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await EasyLocalization.ensureInitialized();
   di.setupGetIt();
   await ScreenUtil.ensureScreenSize();
@@ -28,7 +33,8 @@ void main() async {
 }
 
 checkIfLoggedInUser() async {
-  String? userToken = await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken);
+  String? userToken =
+      await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken);
   if (!userToken.isNullOrEmpty()) {
     isLoggedInUser = true;
   } else {

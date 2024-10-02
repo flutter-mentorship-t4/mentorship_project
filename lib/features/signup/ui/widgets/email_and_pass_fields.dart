@@ -18,7 +18,6 @@ class EmailAndPassFields extends StatefulWidget {
 
 class _EmailAndPassFieldsState extends State<EmailAndPassFields> {
   bool isPassObscured = true;
-  bool isConfirmPassObscured = true;
   late TextEditingController passController;
   bool hasLowerCase = false;
   bool hasUpperCase = false;
@@ -54,6 +53,18 @@ class _EmailAndPassFieldsState extends State<EmailAndPassFields> {
       key: context.read<SignupCubit>().formKey,
       child: Column(
         children: [
+          AppTextFormField(
+            hintText: 'Name',
+            validator: (val) {
+              if (val == null || val.isEmpty) {
+                return 'Please Enter Your Name';
+              }
+            },
+            controller: context.read<SignupCubit>().nameController,
+            contentPadding:
+                EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
+          ),
+          verticalSpace(20),
           AppTextFormField(
             hintText: 'E-mail',
             validator: (val) {
@@ -97,30 +108,6 @@ class _EmailAndPassFieldsState extends State<EmailAndPassFields> {
             hasUpperCase: hasUpperCase,
             hasMinLong: hasMinLong,
             hasSpecChar: hasSpecChar,
-          ),
-          verticalSpace(20),
-          AppTextFormField(
-            hintText: 'Confirm Password',
-            validator: (val) {
-              if (val == null || val.isEmpty) {
-                return 'Please Enter a valid Password';
-              }
-            },
-            controller: context.read<SignupCubit>().ConfirmPasswordController,
-            suffixIcon: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isConfirmPassObscured = !isConfirmPassObscured;
-                });
-              },
-              child: Icon(
-                isConfirmPassObscured ? Icons.visibility_off : Icons.visibility,
-                size: 20,
-              ),
-            ),
-            isObscureText: isConfirmPassObscured,
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
           ),
         ],
       ),

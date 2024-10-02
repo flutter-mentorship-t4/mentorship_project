@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentorship_project/core/config/theming/styles.dart';
 import 'package:mentorship_project/core/helpers/spacing.dart';
 import 'package:mentorship_project/core/widgets/app_button.dart';
 import 'package:mentorship_project/core/widgets/sign_with_social.dart';
+import 'package:mentorship_project/features/signup/logic/signup_cubit.dart';
 import 'package:mentorship_project/features/signup/ui/widgets/already_have_an_account.dart';
 import 'package:mentorship_project/features/signup/ui/widgets/email_and_pass_fields.dart';
+import 'package:mentorship_project/features/signup/ui/widgets/signup_bloc_listener.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -37,12 +40,13 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     verticalSpace(8),
                     EmailAndPassFields(),
-                                   verticalSpace(20),
-
+                    verticalSpace(20),
                     AppButton(
                       label: 'Sign Up',
                       textStyle: TextStyles.font18WhiteRegular,
-                      onTap: () {},
+                      onTap: () {
+                        finishingSignUpAndCreateAccount(context);
+                      }, //////////////////////////////now manage it
                       width: double.infinity,
                       borderRadius: 30.r,
                     ),
@@ -72,12 +76,19 @@ class SignUpScreen extends StatelessWidget {
                       ],
                     ),
                     verticalSpace(15),
-                  AlreadyHaveAnAccount(),
+                    AlreadyHaveAnAccount(),
+                    const SignUpBlocListener(),
                   ],
                 ),
               ),
             ),
           )),
     );
+  }
+
+  void finishingSignUpAndCreateAccount(BuildContext context) {
+    if (context.read<SignupCubit>().formKey.currentState!.validate()) {
+      context.read<SignupCubit>().emitSignUpState();
+    }
   }
 }
