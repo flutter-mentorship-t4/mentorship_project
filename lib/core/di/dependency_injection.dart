@@ -1,5 +1,6 @@
 import '../../features/home/data/apis/home_api_service.dart';
-import '../../features/home/data/repos/home_repo.dart';
+import '../../features/home/data/repos/categories_repo.dart';
+import '../../features/home/data/repos/products_repo.dart';
 import '../../features/login/data/apis/login_api_service.dart';
 import '../../features/login/data/repos/login_repo.dart';
 import 'package:dio/dio.dart';
@@ -12,12 +13,13 @@ final getIt = GetIt.instance;
 Future<void> setupGetIt() async {
   // Dio & ApiService
   Dio dio = DioFactory.getDio();
-    
+
   // Login
   getIt.registerLazySingleton<LoginApiService>(() => LoginApiService(dio));
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
-    
+
   // Home
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
-  getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
+  getIt.registerLazySingleton<CategoriesRepo>(() => CategoriesRepo(getIt()));
+  getIt.registerLazySingleton<ProductsRepo>(() => ProductsRepo(getIt()));
 }
