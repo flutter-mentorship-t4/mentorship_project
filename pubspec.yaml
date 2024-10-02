@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   dio: ^5.3.3
   easy_localization: ^3.0.3
+  firebase_auth: ^4.16.0
   firebase_core: ^2.27.0
   flutter:
     sdk: flutter
