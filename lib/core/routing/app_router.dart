@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/core/routing/routes.dart';
 import 'package:mentorship_project/features/product_details/ui/product_details_screen.dart';
+import 'package:mentorship_project/features/signup/logic/signup_cubit.dart';
+import 'package:mentorship_project/features/signup/ui/signup_screen.dart';
 
 import '../../features/login/logic/login_cubit.dart';
 import '../../features/login/ui/login_screen.dart';
 import '../../features/product_details/data/models/dummy_product.dart';
+
 import '../di/dependency_injection.dart';
 
 class AppRouter {
@@ -21,7 +24,8 @@ class AppRouter {
             child: const LoginScreen(),
           ),
         );
-      case Routes.productDetailsScreen:
+
+          case Routes.productDetailsScreen:
         final product = DummyProduct.fromJson({
           "id": 1,
           "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -34,6 +38,13 @@ class AppRouter {
         });
         return MaterialPageRoute(
           builder: (_) => ProductDetailsScreen(product: product),
+          
+      case Routes.signUpScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => SignupCubit(getIt()),
+            child: const SignUpScreen(),
+          ),
         );
 
       default:
