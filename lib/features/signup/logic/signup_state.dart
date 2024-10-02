@@ -1,5 +1,3 @@
-import '../../../core/networking/api_error_model.dart';
-
 sealed class SignupState {}
 
 class SignupInitialState extends SignupState {}
@@ -12,7 +10,6 @@ class SignupSuccessState<T> extends SignupState {
 }
 
 class SignupErrorState extends SignupState {
-  final ApiErrorModel apiErrorModel;
-  SignupErrorState(this.apiErrorModel);
+  final String error;
+  SignupErrorState(this.error);
 }
-
