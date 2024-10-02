@@ -19,6 +19,9 @@ class SignupRepo {
         print('The account already exists for that email.');
       }
       return Left(e);
+    } catch (e) {
+      print('catch $e');
+      return Left(e);
     }
   }
 }

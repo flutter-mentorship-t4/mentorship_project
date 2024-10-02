@@ -8,6 +8,7 @@ import 'package:mentorship_project/core/widgets/sign_with_social.dart';
 import 'package:mentorship_project/features/signup/logic/signup_cubit.dart';
 import 'package:mentorship_project/features/signup/ui/widgets/already_have_an_account.dart';
 import 'package:mentorship_project/features/signup/ui/widgets/email_and_pass_fields.dart';
+import 'package:mentorship_project/features/signup/ui/widgets/signup_bloc_listener.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -76,6 +77,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     verticalSpace(15),
                     AlreadyHaveAnAccount(),
+                    const SignUpBlocListener(),
                   ],
                 ),
               ),

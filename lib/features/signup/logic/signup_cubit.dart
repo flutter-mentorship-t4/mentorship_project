@@ -16,17 +16,18 @@ class SignupCubit extends Cubit<SignupState> {
 
   void emitSignUpState() async {
     emit(SignupLoadingState());
-    try {
-      final data = await _signupRepo.signUp(
-        UserModel(
-          name: nameController.text,
-          email: emailController.text,
-          password: passwordController.text,
-        ),
-      );
-      emit(SignupSuccessState(data));
-    } catch (e) {
-      emit(SignupErrorState('SignUp Error Cubit'));
-    }
+
+    final data = await _signupRepo.signUp(
+      UserModel(
+        name: nameController.text,
+        email: emailController.text,
+        password: passwordController.text,
+      ),
+    );
+    data.fold((error) {
+      emit(SignupErrorState(error));
+    }, (data) {
+      emit(SignupSuccessState());
+    });
   }
 }
