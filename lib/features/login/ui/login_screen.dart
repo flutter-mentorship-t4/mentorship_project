@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentorship_project/core/config/theming/styles.dart';
 import 'package:mentorship_project/core/helpers/spacing.dart';
 import 'package:mentorship_project/core/widgets/app_button.dart';
 import 'package:mentorship_project/core/widgets/sign_with_social.dart';
+import 'package:mentorship_project/features/login/logic/login_cubit.dart';
 import 'package:mentorship_project/features/login/ui/widget/donot_have_account.dart';
 import 'package:mentorship_project/features/login/ui/widget/email_and_pass_fields.dart';
+import 'package:mentorship_project/features/login/ui/widget/login_bloc_listener.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -63,7 +66,9 @@ class LoginScreen extends StatelessWidget {
                     AppButton(
                       label: 'Sign In',
                       textStyle: TextStyles.font18WhiteRegular,
-                      onTap: () {},
+                      onTap: () {
+                        validateAndLogin(context);
+                      },
                       width: double.infinity,
                       borderRadius: 30.r,
                     ),
@@ -93,12 +98,19 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                     verticalSpace(15),
-                  DonotHaveAnAccouts(),
+                    DonotHaveAnAccouts(),
+                    LoginBlocListener(),
                   ],
                 ),
               ),
             ),
           )),
     );
+  }
+
+  void validateAndLogin(BuildContext context) {
+    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+      context.read<LoginCubit>().emitLoginState();
+    }
   }
 }

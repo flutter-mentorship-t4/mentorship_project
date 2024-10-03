@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
 
 import '../../core/general_cubits/theme/theme_cubit.dart';
 import '../../core/general_cubits/theme/theme_state.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
                         ),
                   ),
               debugShowCheckedModeBanner: false,
-              initialRoute: Routes.loginScreen,
+              initialRoute: isLoggedInUser ? Routes.home : Routes.login,
               onGenerateRoute: appRouter.generateRoute,
             );
           },

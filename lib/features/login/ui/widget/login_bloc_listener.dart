@@ -5,48 +5,48 @@ import 'package:mentorship_project/core/config/theming/styles.dart';
 import 'package:mentorship_project/core/helpers/extensions/context_extensions.dart';
 import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
 import 'package:mentorship_project/core/routing/routes.dart';
-import 'package:mentorship_project/features/signup/logic/signup_cubit.dart';
-import 'package:mentorship_project/features/signup/logic/signup_state.dart';
+import 'package:mentorship_project/features/login/logic/login_cubit.dart';
+import 'package:mentorship_project/features/login/logic/login_state.dart';
 
-class SignUpBlocListener extends StatelessWidget {
-  const SignUpBlocListener({super.key});
+class LoginBlocListener extends StatelessWidget {
+  const LoginBlocListener({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SignupCubit, SignupState>(
+    return BlocListener<LoginCubit, LoginState>(
       listenWhen: (previous, current) =>
-          current is SignupLoadingState ||
-          current is SignupSuccessState ||
-          current is SignupErrorState,
+          current is LoginLoadingState ||
+          current is LoginSuccessState ||
+          current is LoginErrorState,
       listener: (context, state) {
-        if (state is SignupLoadingState) {
+        if (state is LoginLoadingState) {
           context.showLoading();
-        } else if (state is SignupSuccessState) {
-          setUpSignUpSeccess(context);
-        } else if (state is SignupErrorState) {
-          setUpSignUpFailure(context, state.error);
+        } else if (state is LoginSuccessState) {
+          setUpLoginSeccess(context);
+        } else if (state is LoginErrorState) {
+          setUpLoginFailure(context, state.error);
         }
       },
       child: SizedBox.shrink(),
     );
   }
 
-  void setUpSignUpSeccess(BuildContext context) {
+  void setUpLoginSeccess(BuildContext context) {
     context.closeLoading();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         icon: const Icon(Icons.done_all_rounded,
             color: ColorsManager.mainGreen, size: 30),
-        content: Text('Signup Successful',
+        content: Text('LogIn Successful',
             textAlign: TextAlign.center, style: TextStyles.font22BlackSemiBold),
         actions: [
-          Text('Congratulations, you have signed up successfully!',
+          Text('Congratulations, you have Logged In successfully!',
               textAlign: TextAlign.center,
               style: TextStyles.font12BlackRegular),
           TextButton(
             onPressed: () {
-              context.pushNamed(Routes.login);
+              context.pushNamed(Routes.signUp); //untill making Home Page
             },
             child: const Text('Continue',
                 style: TextStyle(color: ColorsManager.primaryColor)),
@@ -56,7 +56,7 @@ class SignUpBlocListener extends StatelessWidget {
     );
   }
 
-  void setUpSignUpFailure(BuildContext context, String error) {
+  void setUpLoginFailure(BuildContext context, error) {
     context.closeLoading();
     showDialog(
       context: context,
@@ -67,14 +67,11 @@ class SignUpBlocListener extends StatelessWidget {
         title: Text('error',
             textAlign: TextAlign.center, style: TextStyles.font24BlackSemiBold),
         actions: [
-          Text(error,
-              textAlign: TextAlign.center,
-              style: TextStyles.font12BlackRegular),
           TextButton(
             onPressed: () {
               context.pop();
             },
-            child: Text('Get It', style: TextStyles.font14RedRegular),
+            child:  Text('Get It', style: TextStyles.font14RedRegular),
           )
         ],
       ),
