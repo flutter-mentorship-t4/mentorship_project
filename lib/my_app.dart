@@ -29,13 +29,11 @@ class MyApp extends StatelessWidget {
               locale: context.locale,
               title: 'Diva',
               theme: context.read<ThemeCubit>().themeData.copyWith(
-                    textTheme: Theme.of(context).textTheme.apply(
-                          fontFamily: 'Roboto',
-                        ),
+                    textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Roboto'),
                     scaffoldBackgroundColor: ColorsManager.greyFC,
                   ),
               debugShowCheckedModeBanner: false,
-              initialRoute: Routes.navigationScreen,
+              initialRoute: Routes.loginScreen,
               onGenerateRoute: appRouter.generateRoute,
             );
           },
