@@ -15,6 +15,7 @@ import '../../../core/helpers/strings/app_images.dart';
 part 'widgets/_banner_carousel_slider.dart';
 part 'widgets/_custom_app_bar.dart';
 part 'widgets/_filter_categories_button.dart';
+part 'widgets/_floating_action_button.dart';
 part 'widgets/_products_grid_view.dart';
 part 'widgets/_search_bar_and_sorting.dart';
 
@@ -49,14 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const _ProductsGridView(),
         ],
       ),
-      floatingActionButton: FloatingActionButton.small(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100),
-        ),
-        backgroundColor: ColorsManager.primaryColor,
-        child: Icon(Icons.add, color: Colors.white, size: 20.w),
-        onPressed: () {},
-      ).widthAndHeight(width: 40.w, height: 40.h),
+      floatingActionButton: _FloatingActionButton(),
     );
   }
 }
