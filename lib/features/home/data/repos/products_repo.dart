@@ -11,10 +11,10 @@ class ProductsRepo {
   Future<ApiResult<ProductsResponseModel>> getProducts() async {
     try {
       final response = await _apiService.getProducts();
-      print('success');
+      print('success ----------------------------------');
       return ApiResult.success(response);
     } catch (error) {
-      print('error');
+      print('error ----------------------------------');
       return ApiResult.failure(ApiErrorHandler.handle(error));
     }
   }

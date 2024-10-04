@@ -1,12 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mentorship_project/core/config/theming/colors.dart';
 import 'package:mentorship_project/core/widgets/app_icon_button.dart';
 import 'package:mentorship_project/core/widgets/app_text_form_field.dart';
+import 'package:mentorship_project/features/home/logic/home_cubit.dart';
+import 'package:mentorship_project/features/home/logic/home_state.dart';
 
 import '../../../core/config/theming/styles.dart';
+import '../../../core/di/dependency_injection.dart';
 import '../../../core/helpers/extensions/widgets_extentions.dart';
 import '../../../core/helpers/spacing.dart';
 import '../../../core/helpers/strings/app_icons.dart';
