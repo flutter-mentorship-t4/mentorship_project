@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mentorship_project/core/config/theming/colors.dart';
 
 import '../../core/general_cubits/theme/theme_cubit.dart';
 import '../../core/general_cubits/theme/theme_state.dart';
@@ -31,9 +32,10 @@ class MyApp extends StatelessWidget {
                     textTheme: Theme.of(context).textTheme.apply(
                           fontFamily: 'Roboto',
                         ),
+                    scaffoldBackgroundColor: ColorsManager.greyFC,
                   ),
               debugShowCheckedModeBanner: false,
-              initialRoute: Routes.loginScreen,
+              initialRoute: Routes.navigationScreen,
               onGenerateRoute: appRouter.generateRoute,
             );
           },

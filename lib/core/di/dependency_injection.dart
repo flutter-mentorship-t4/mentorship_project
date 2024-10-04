@@ -1,3 +1,5 @@
+import '../../features/home/data/apis/home_api_service.dart';
+import '../../features/home/data/repos/home_repo.dart';
 import '../../features/login/data/apis/login_api_service.dart';
 import '../../features/login/data/repos/login_repo.dart';
 import 'package:dio/dio.dart';
@@ -14,4 +16,8 @@ Future<void> setupGetIt() async {
   // Login
   getIt.registerLazySingleton<LoginApiService>(() => LoginApiService(dio));
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
+    
+  // Home
+  getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
+  getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
 }

@@ -6,4 +6,5 @@ abstract class AppImages {
   static const String tabletLoginPana = '$path/tablet_login_pana.png';
   static const String twoFactorAuthentication =
       '$path/two_factor_authentication.png';
+  static const String womanAvatar = '$path/woman_avatar.png';
 }
