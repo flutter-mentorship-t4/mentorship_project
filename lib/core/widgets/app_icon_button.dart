@@ -11,7 +11,7 @@ class AppIconButton extends StatelessWidget {
     this.vPadding = 15,
     this.hPadding = 15,
     this.borderColor = ColorsManager.transparent,
-    this.elevation = 0.5,
+    this.elevation = 0,
     required this.onTap,
     required this.icon,
   });
@@ -33,7 +33,8 @@ class AppIconButton extends StatelessWidget {
       minWidth: width,
       elevation: elevation,
       highlightElevation: 0,
-      padding: EdgeInsets.symmetric(vertical: vPadding.h, horizontal: hPadding.w),
+      padding:
+          EdgeInsets.symmetric(vertical: vPadding.h, horizontal: hPadding.w),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(100),
         side: BorderSide(color: borderColor),
