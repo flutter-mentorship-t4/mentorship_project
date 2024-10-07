@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:mentorship_project/features/login/data/apis/log_in_services.dart';
 import 'package:mentorship_project/features/login/data/models/failure.dart';
 import 'package:mentorship_project/features/login/data/models/user_login_model.dart';
@@ -13,10 +12,7 @@ class LoginRepository {
     final credentials = LoginCredentials(email: email, password: password);
 
     final result = await _loginService.signIn(credentials);
-    debugPrint('----------------------${result.toString()}----------------------');
     if (result.success && result.user != null) {
-      // return Right(result.user!);
-      debugPrint('----------------------Login Success ----------------------');
       return Right(unit);
     } else {
       return Left(Failure(result.errorMessage ?? "Login failed"));
