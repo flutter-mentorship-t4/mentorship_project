@@ -39,13 +39,13 @@ class CartScreen extends StatelessWidget {
                         return CartItemWidget(
                           item: item,
                           onQuantityChanged: (newQuantity) {
-                            context.read<CartCubit>().updateQuantity(item.product.id, newQuantity);
+                            // context.read<CartCubit>().updateQuantity(item.product.id, newQuantity);
                           },
                           onSelectionChanged: () {
-                            context.read<CartCubit>().toggleItemSelection(item.product.id);
+                            // context.read<CartCubit>().toggleItemSelection(item.product.id);
                           },
                           onRemove: () {
-                            context.read<CartCubit>().removeFromCart(item.product.id);
+                            // context.read<CartCubit>().removeFromCart(item.product.id);
                           },
                         );
                       },
@@ -68,14 +68,17 @@ class CartScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        // verticalSpace(8),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //   children: [
-                        //     Text('Selected Total', style: TextStyles.font15BlackSemiBold),
-                        //     Text('${state.selectedTotalPrice.toStringAsFixed(2)} L.E', style: TextStyles.font15BlackRegular,),
-                        //   ],
-                        // ),
+                        verticalSpace(8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Selected Total', style: TextStyles.font15BlackSemiBold),
+                            Text(
+                              '${state.selectedTotalPrice.toStringAsFixed(2)} L.E',
+                              style: TextStyles.font15BlackRegular,
+                            ),
+                          ],
+                        ),
                         verticalSpace(16),
                         AppButton(
                           label: 'Checkout',
