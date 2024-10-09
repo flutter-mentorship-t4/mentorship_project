@@ -1,7 +1,14 @@
 {
-    "Authentication": {
-        "name": "Name",
-        "email": "Email"
-    },
-    "hello": "Hello"
+	"Authentication": {
+		"name": "Name",
+		"email": "Email"
+	},
+	"ProductDetailsScreen": {
+		"ProductDetailsScreen": "Product Details Screen",
+		"ProductColor": "Color:",
+		"Best": "Best:",
+		"ProductSize": "Product Size",
+		"BuyNow": "Buy now"
+	},
+	"hello": "Hello"
 }

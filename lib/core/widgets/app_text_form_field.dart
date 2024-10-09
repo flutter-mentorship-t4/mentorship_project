@@ -41,8 +41,7 @@ class AppTextFormField extends StatelessWidget {
       onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
       decoration: InputDecoration(
         isDense: true,
-        contentPadding: contentPadding ??
-            EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+        contentPadding: contentPadding ?? EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
         focusedBorder: focusedBorder ??
             OutlineInputBorder(
               borderSide: const BorderSide(

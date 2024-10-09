@@ -1,3 +1,5 @@
+import 'package:mentorship_project/features/login/data/models/login_request_body_model.dart';
+
 import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/networking/api_result.dart';
 import '../apis/login_api_service.dart';
@@ -8,9 +10,10 @@ class LoginRepo {
 
   LoginRepo(this._apiService);
 
-  Future<ApiResult<LoginResponseModel>> getData() async {
+  Future<ApiResult<LoginResponseModel>> login(
+      LoginRequestBodyModel loginRequestBodyModel) async {
     try {
-      final response = await _apiService.getData();
+      final response = await _apiService.login(loginRequestBodyModel);
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ApiErrorHandler.handle(error));

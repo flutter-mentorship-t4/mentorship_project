@@ -1,7 +1,14 @@
 {
-    "Authentication": {
-        "name": "الاسم",
-        "email": "البريد الالكتروني"
-    },
-    "hello": "مرحبًا بك"
+	"Authentication": {
+		"name": "الاسم",
+		"email": "البريد الالكتروني"
+	},
+	"ProductDetailsScreen": {
+		"ProductDetailsScreen": "شاشة تفاصيل المنتج",
+		"ProductColor": ":اللون",
+		"Best": "الأفضل",
+		"ProductSize": "الحجم",
+		"BuyNow": "اشتري الان"
+	},
+	"hello": "مرحبًا بك"
 }

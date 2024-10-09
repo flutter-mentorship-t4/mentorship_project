@@ -1,3 +1,3 @@
 class LoginApiConstants{
-  static const String loginEP = 'login';
+  static const String login = "auth/login";
 }
