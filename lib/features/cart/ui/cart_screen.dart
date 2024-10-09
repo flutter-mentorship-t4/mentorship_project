@@ -39,13 +39,13 @@ class CartScreen extends StatelessWidget {
                         return CartItemWidget(
                           item: item,
                           onQuantityChanged: (newQuantity) {
-                            // context.read<CartCubit>().updateQuantity(item.product.id, newQuantity);
+                            context.read<CartCubit>().updateQuantity(item.product.id, newQuantity);
                           },
                           onSelectionChanged: () {
-                            // context.read<CartCubit>().toggleItemSelection(item.product.id);
+                            context.read<CartCubit>().toggleItemSelection(item.product.id);
                           },
                           onRemove: () {
-                            // context.read<CartCubit>().removeFromCart(item.product.id);
+                            context.read<CartCubit>().removeFromCart(item.product.id);
                           },
                         );
                       },
