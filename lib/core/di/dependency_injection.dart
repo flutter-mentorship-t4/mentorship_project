@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mentorship_project/features/cart/data/apis/cart_api_service.dart';
+import 'package:mentorship_project/features/cart/data/repos/cart_repo.dart';
 import 'package:mentorship_project/features/signup/data/apis/signup_api_service.dart';
 import 'package:mentorship_project/features/signup/data/repos/signup_repo.dart';
 
@@ -25,4 +27,7 @@ Future<void> setupGetIt() async {
   // Home
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
+  // Cart
+  getIt.registerLazySingleton<CartApiService>(() => CartApiService(dio));
+  getIt.registerLazySingleton<CartRepo>(() => CartRepo(getIt()));
 }
