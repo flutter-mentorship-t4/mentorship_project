@@ -46,7 +46,7 @@ class LoginBlocListener extends StatelessWidget {
               style: TextStyles.font12BlackRegular),
           TextButton(
             onPressed: () {
-              context.pushNamed(Routes.signUp); //untill making Home Page
+              context.pushNamed(Routes.home); //untill making Home Page
             },
             child: const Text('Continue',
                 style: TextStyle(color: ColorsManager.primaryColor)),
