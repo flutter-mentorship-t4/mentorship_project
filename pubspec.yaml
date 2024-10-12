@@ -8,6 +8,11 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
+#Firebase 
+  firebase_auth: ^5.3.1
+  firebase_core: ^3.6.0 
+  cloud_firestore: ^5.4.4
+
   cached_network_image: ^3.3.1
   cloud_firestore: ^4.17.5
 
@@ -17,8 +22,6 @@ dependencies:
   dartz: ^0.10.1
   dio: ^5.3.3
   easy_localization: ^3.0.3
-  firebase_auth: ^4.16.0
-  firebase_core: ^2.27.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
