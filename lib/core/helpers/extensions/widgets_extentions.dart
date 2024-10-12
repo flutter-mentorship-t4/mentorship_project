@@ -21,8 +21,9 @@ extension WidgetExtension on Widget? {
   }
 
   /// return padding left
-  Padding paddingLeft(double left) {
-    return Padding(padding: EdgeInsets.only(left: left), child: this);
+  Padding paddingStart(double start) {
+    return Padding(
+        padding: EdgeInsetsDirectional.only(start: start), child: this);
   }
 
   /// return padding end

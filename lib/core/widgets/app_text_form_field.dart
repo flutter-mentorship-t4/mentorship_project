@@ -12,6 +12,8 @@ class AppTextFormField extends StatelessWidget {
   final String hintText;
   final bool? isObscureText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
+  final BoxConstraints? prefixIconConstraints;
   final Color? backgroundColor;
   final TextEditingController? controller;
   final Function(String?) validator;
@@ -25,6 +27,8 @@ class AppTextFormField extends StatelessWidget {
     required this.hintText,
     this.isObscureText,
     this.suffixIcon,
+    this.prefixIcon,
+    this.prefixIconConstraints,
     this.backgroundColor,
     this.controller,
     required this.validator,
@@ -34,13 +38,14 @@ class AppTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
       decoration: InputDecoration(
         isDense: true,
-        contentPadding: contentPadding ?? EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
+        contentPadding: contentPadding ?? EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
         focusedBorder: focusedBorder ??
             OutlineInputBorder(
               borderSide: const BorderSide(
-                color: ColorsManager.primaryColor,
+                color: ColorsManager.mainRed,
                 width: 2,
               ),
               borderRadius: BorderRadius.circular(30),
@@ -70,6 +75,8 @@ class AppTextFormField extends StatelessWidget {
         hintStyle: hintStyle ?? TextStyles.font18Grey79Regular,
         hintText: hintText,
         suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
+        prefixIconConstraints: prefixIconConstraints,
         fillColor: backgroundColor ?? ColorsManager.transparent,
         filled: true,
       ),
