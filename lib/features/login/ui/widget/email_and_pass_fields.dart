@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mentorship_project/core/helpers/app_regex.dart';
 import 'package:mentorship_project/core/helpers/spacing.dart';
 import 'package:mentorship_project/core/widgets/app_text_form_field.dart';
 import 'package:mentorship_project/features/login/logic/login_cubit.dart';
@@ -25,7 +26,11 @@ class _EmailAndPassFieldsState extends State<EmailAndPassFields> {
         children: [
           AppTextFormField(
             hintText: 'E-mail',
-            validator: (val) {},
+            validator: (val) {
+              if (val == null || val.isEmpty || !AppRegex.isEmailValid(val)) {
+                return 'Please Enter a valid Email';
+              }
+            },
             controller: context.read<LoginCubit>().emailController,
             contentPadding:
                 EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
@@ -33,7 +38,14 @@ class _EmailAndPassFieldsState extends State<EmailAndPassFields> {
           verticalSpace(20),
           AppTextFormField(
             hintText: 'Password',
-            validator: (val) {},
+            validator: (val) {
+              if (val == null ||
+                  val.isEmpty ||
+                  !AppRegex.isPasswordValid(val)) {
+                return 'Please Enter a valid Password';
+              }
+            },
+            controller: context.read<LoginCubit>().passwordController,
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
