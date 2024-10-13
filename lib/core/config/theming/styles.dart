@@ -75,6 +75,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.mainRed,
   );
+  static TextStyle font14RedRegular = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.mainRed,
+  );
   static TextStyle font12PrimaryRegular = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.regular,
