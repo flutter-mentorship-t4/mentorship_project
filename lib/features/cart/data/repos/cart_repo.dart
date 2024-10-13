@@ -9,11 +9,13 @@ import '../models/cart_item_model.dart';
 class CartRepo {
   // final CartApiService _apiService;
 
+  // ignore: unused_field
   final List<CartItemModel> _items = [];
 
   CartRepo();
 
   // Simulate network delay
+  // ignore: unused_element
   Future<void> _delay() => Future.delayed(Duration(milliseconds: 300));
 
   // Additional method to add initial items for testing
@@ -23,15 +25,6 @@ class CartRepo {
   //   clearCart();
   //   saveCartItems(_items);
   //   return _items;
-  // }
-
-  // Future<ApiResult<CartResponseModel>> getData() async {
-  //   try {
-  //     final response = await _apiService.getData();
-  //     return ApiResult.success(response);
-  //   } catch (error) {
-  //     return ApiResult.failure(ApiErrorHandler.handle(error));
-  //   }
   // }
 
   Future<List<CartItemModel>> getCartItems() async {
