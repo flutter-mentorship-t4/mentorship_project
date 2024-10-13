@@ -114,12 +114,17 @@ class CartItemWidget extends StatelessWidget {
                           activeColor: ColorsManager.primaryColor,
                         ),
                       ),
-                      GestureDetector(
+                      InkWell(
                         onTap: () => onRemove(),
-                        child: Text(
-                          'Remove',
-                          style: TextStyles.font12PrimaryRegular.copyWith(
-                            decoration: TextDecoration.underline,
+                        child: Container(
+                          // color: Colors.amber,
+                          height: 30,
+                          width: 30,
+                          child: Center(
+                            child: Text(
+                              '❌',
+                              style: TextStyle(fontSize: 16),
+                            ),
                           ),
                         ),
                       ),

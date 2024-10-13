@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentorship_project/core/helpers/extensions/widgets_extentions.dart';
+import 'package:mentorship_project/features/cart/ui/widgets/remove_confermation_dialog.dart';
 
 import '../../../../core/config/theming/styles.dart';
 import '../../../../core/helpers/spacing.dart';
@@ -51,7 +52,8 @@ class CartScreenBody extends StatelessWidget {
                               context.read<CartCubit>().toggleItemSelection(item.product.id);
                             },
                             onRemove: () {
-                              context.read<CartCubit>().removeFromCart(item.product.id);
+                              showRemoveConfirmationDialog(context, item);
+                              // context.read<CartCubit>().removeFromCart(item.product.id);
                             },
                           );
                         },
