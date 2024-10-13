@@ -12,18 +12,18 @@ class CartCubit extends Cubit<CartState> {
 
   CartCubit(this._cartRepo) : super(CartInitialState());
 
-  //This method is just for initial tests=>poulating the shrared preff storage
+  // This method is just for initial tests=>poulating the shrared preff storage
   // void addInitialDummyProductsForTest() async {
   //   emit(CartLoadingState());
   //   try {
   //     final cartItems = await _cartRepo.addInitialItems();
   //     _updatePrices(cartItems);
   //   } catch (error) {
-  //     emit(CartErrorState(ApiErrorModel(message: error.toString())));
+  //     emit(CartErrorState(FailureObj(errorMessage: error.toString())));
   //   }
   // }
 
-  void emptyCart() async {
+  void removeAllItemsFromCart() async {
     emit(CartLoadingState());
     try {
       await _cartRepo.clearCart();
@@ -37,11 +37,12 @@ class CartCubit extends Cubit<CartState> {
   void loadCart() async {
     emit(CartLoadingState());
     try {
+      // debugPrint('----------------------entering loadCart ----------------------');
       final cartItems = await _cartRepo.getCartItems();
       _updatePrices(cartItems);
     } catch (error) {
-      print('Error loading cart: $error'); // For debugging
-      emit(CartErrorState(FailureObj(errorMessage: 'Failed to load cart items')));
+      // print('Error loading cart: $error'); // For debugging
+      emit(CartErrorState(FailureObj(errorMessage: 'Failed to load cart items: ${error.toString()}')));
     }
   }
 
@@ -107,6 +108,7 @@ class CartCubit extends Cubit<CartState> {
         updatedItems[itemIndex].isSelected = !updatedItems[itemIndex].isSelected;
         _updatePrices(updatedItems);
       }
+      _cartRepo.saveCartItems(updatedItems);
     }
   }
 

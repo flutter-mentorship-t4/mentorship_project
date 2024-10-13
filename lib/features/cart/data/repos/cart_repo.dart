@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
 
 import '../../../../core/helpers/strings/shared_pref_keys.dart';
@@ -36,9 +35,9 @@ class CartRepo {
   // }
 
   Future<List<CartItemModel>> getCartItems() async {
-    final String? cartJson = SharedPrefHelper.getString(SharedPrefKeys.cartKey);
-    debugPrint('-------------cartJsoncartJsoncartJson---------$cartJson ----------------------');
-    if (cartJson != null) {
+    final String? cartJson = await SharedPrefHelper.getString(SharedPrefKeys.cartKey);
+    // debugPrint('-------------cartJsoncartJsoncartJson---------$cartJson ----------------------');
+    if (cartJson != null && cartJson.isNotEmpty) {
       final List<dynamic> decoded = jsonDecode(cartJson);
       return decoded.map((item) => CartItemModel.fromJson(item)).toList();
     }
