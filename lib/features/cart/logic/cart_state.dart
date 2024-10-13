@@ -1,4 +1,5 @@
-import '../../../core/networking/api_error_model.dart';
+import 'package:mentorship_project/features/cart/data/models/failure_obj.dart';
+
 import '../data/models/cart_item_model.dart';
 
 sealed class CartState {}
@@ -20,6 +21,6 @@ class CartLoadedState extends CartState {
 }
 
 class CartErrorState extends CartState {
-  final ApiErrorModel apiErrorModel;
-  CartErrorState(this.apiErrorModel);
+  final FailureObj failureObj;
+  CartErrorState(this.failureObj);
 }

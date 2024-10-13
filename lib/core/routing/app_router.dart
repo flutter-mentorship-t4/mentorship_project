@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/core/routing/routes.dart';
-import 'package:mentorship_project/features/cart/logic/cart_cubit.dart';
 import 'package:mentorship_project/features/cart/ui/cart_screen.dart';
 import 'package:mentorship_project/features/home/ui/home_screen.dart';
 import 'package:mentorship_project/features/navigations/navigation_screen.dart';
@@ -48,12 +47,7 @@ class AppRouter {
           ),
         );
       case Routes.cartScreen:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => CartCubit(getIt())..addInitialDummyProductsForTest(),
-            child: CartScreen(),
-          ),
-        );
+        return MaterialPageRoute(builder: (_) => CartScreen());
 
       case Routes.productDetailsScreen:
         final product = DummyProduct.fromJson({

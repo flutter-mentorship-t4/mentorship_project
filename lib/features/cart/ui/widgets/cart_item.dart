@@ -114,10 +114,13 @@ class CartItemWidget extends StatelessWidget {
                           activeColor: ColorsManager.primaryColor,
                         ),
                       ),
-                      Text(
-                        'Edit',
-                        style: TextStyles.font12PrimaryRegular.copyWith(
-                          decoration: TextDecoration.underline,
+                      GestureDetector(
+                        onTap: () => onRemove(),
+                        child: Text(
+                          'Remove',
+                          style: TextStyles.font12PrimaryRegular.copyWith(
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
                       ),
                     ],

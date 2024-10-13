@@ -8,6 +8,7 @@ import '../../../core/helpers/strings/app_icons.dart';
 import '../../core/config/theming/colors.dart';
 import '../../core/config/theming/styles.dart';
 import '../../core/helpers/spacing.dart';
+import '../cart/ui/cart_screen.dart';
 
 part 'widgets/_navigation_bar_item.dart';
 
@@ -37,7 +38,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           children: [
             const HomeScreen(),
             Text('Categories').center(),
-            Text('Cart').center(),
+            CartScreen(),
             Text('Wishlist').center(),
           ],
         ),

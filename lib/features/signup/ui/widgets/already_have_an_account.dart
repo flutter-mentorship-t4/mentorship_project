@@ -11,7 +11,7 @@ class AlreadyHaveAnAccount extends StatelessWidget {
     return Center(
       child: GestureDetector(
         onTap: () {
-          context.pushNamed(Routes.login);
+          context.pushNamed(Routes.loginScreen);
         },
         child: RichText(
           text: TextSpan(

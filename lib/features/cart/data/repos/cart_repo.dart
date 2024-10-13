@@ -1,37 +1,43 @@
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
+import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
 
-import '../../../../core/networking/api_error_handler.dart';
-import '../../../../core/networking/api_result.dart';
+import '../../../../core/helpers/strings/shared_pref_keys.dart';
 import '../../../product_details/data/models/dummy_product.dart';
-import '../apis/cart_api_service.dart';
 import '../models/cart_item_model.dart';
-import '../models/cart_response_model.dart';
 
 class CartRepo {
-  final CartApiService _apiService;
+  // final CartApiService _apiService;
 
-  // In-memory storage for cart items
   final List<CartItemModel> _items = [];
-  static const String _cartKey = 'cart_items';
+
+  CartRepo();
+
   // Simulate network delay
   Future<void> _delay() => Future.delayed(Duration(milliseconds: 300));
 
-  CartRepo(this._apiService);
+  // Additional method to add initial items for testing
+  // Future<List<CartItemModel>> addInitialItems() async {
+  //   await _delay();
+  //   _items.addAll(dummyProducts.map((product) => CartItemModel(product: product)));
+  //   clearCart();
+  //   saveCartItems(_items);
+  //   return _items;
+  // }
 
-  Future<ApiResult<CartResponseModel>> getData() async {
-    try {
-      final response = await _apiService.getData();
-      return ApiResult.success(response);
-    } catch (error) {
-      return ApiResult.failure(ApiErrorHandler.handle(error));
-    }
-  }
+  // Future<ApiResult<CartResponseModel>> getData() async {
+  //   try {
+  //     final response = await _apiService.getData();
+  //     return ApiResult.success(response);
+  //   } catch (error) {
+  //     return ApiResult.failure(ApiErrorHandler.handle(error));
+  //   }
+  // }
 
   Future<List<CartItemModel>> getCartItems() async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? cartJson = prefs.getString(_cartKey);
+    final String? cartJson = SharedPrefHelper.getString(SharedPrefKeys.cartKey);
+    debugPrint('-------------cartJsoncartJsoncartJson---------$cartJson ----------------------');
     if (cartJson != null) {
       final List<dynamic> decoded = jsonDecode(cartJson);
       return decoded.map((item) => CartItemModel.fromJson(item)).toList();
@@ -40,9 +46,8 @@ class CartRepo {
   }
 
   Future<void> saveCartItems(List<CartItemModel> items) async {
-    final prefs = await SharedPreferences.getInstance();
     final String encoded = jsonEncode(items.map((item) => item.toJson()).toList());
-    await prefs.setString(_cartKey, encoded);
+    await SharedPrefHelper.setData(SharedPrefKeys.cartKey, encoded);
   }
 
   Future<void> addToCart(DummyProduct product) async {
@@ -84,15 +89,5 @@ class CartRepo {
     await saveCartItems(items);
   }
 
-  Future<void> clearCart() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_cartKey);
-  }
-
-  // Additional method to add initial items for testing
-  Future<List<CartItemModel>> addInitialItems(List<DummyProduct> products) async {
-    await _delay();
-    _items.addAll(products.map((product) => CartItemModel(product: product)));
-    return _items;
-  }
+  Future<void> clearCart() async => await SharedPrefHelper.removeData(SharedPrefKeys.cartKey);
 }

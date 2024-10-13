@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/features/cart/data/models/cart_item_model.dart';
 
-import '../../../core/networking/api_error_model.dart';
 import '../../product_details/data/models/dummy_product.dart';
+import '../data/models/failure_obj.dart';
 import '../data/repos/cart_repo.dart';
 import 'cart_state.dart';
 
@@ -11,13 +12,25 @@ class CartCubit extends Cubit<CartState> {
 
   CartCubit(this._cartRepo) : super(CartInitialState());
 
-  void addInitialDummyProductsForTest() async {
+  //This method is just for initial tests=>poulating the shrared preff storage
+  // void addInitialDummyProductsForTest() async {
+  //   emit(CartLoadingState());
+  //   try {
+  //     final cartItems = await _cartRepo.addInitialItems();
+  //     _updatePrices(cartItems);
+  //   } catch (error) {
+  //     emit(CartErrorState(ApiErrorModel(message: error.toString())));
+  //   }
+  // }
+
+  void emptyCart() async {
     emit(CartLoadingState());
     try {
-      final cartItems = await _cartRepo.addInitialItems(dummyProducts);
-      _updatePrices(cartItems);
-    } catch (error) {
-      emit(CartErrorState(ApiErrorModel(message: error.toString())));
+      await _cartRepo.clearCart();
+      _updatePrices([]);
+    } catch (errror) {
+      print('Error clearing the cart storage  $errror'); // For debugging
+      emit(CartErrorState(FailureObj(errorMessage: 'Error clearing the cart storag')));
     }
   }
 
@@ -27,7 +40,8 @@ class CartCubit extends Cubit<CartState> {
       final cartItems = await _cartRepo.getCartItems();
       _updatePrices(cartItems);
     } catch (error) {
-      emit(CartErrorState(ApiErrorModel(message: error.toString())));
+      print('Error loading cart: $error'); // For debugging
+      emit(CartErrorState(FailureObj(errorMessage: 'Failed to load cart items')));
     }
   }
 
@@ -45,7 +59,7 @@ class CartCubit extends Cubit<CartState> {
         }
         _updatePrices(updatedItems);
       } catch (error) {
-        emit(CartErrorState(ApiErrorModel(message: error.toString())));
+        emit(CartErrorState(FailureObj(errorMessage: error.toString())));
       }
     }
   }
@@ -58,7 +72,7 @@ class CartCubit extends Cubit<CartState> {
         final updatedItems = currentState.items.where((item) => item.product.id != productId).toList();
         _updatePrices(updatedItems);
       } catch (error) {
-        emit(CartErrorState(ApiErrorModel(message: error.toString())));
+        emit(CartErrorState(FailureObj(errorMessage: error.toString())));
       }
     }
   }
@@ -79,7 +93,7 @@ class CartCubit extends Cubit<CartState> {
         }
         _updatePrices(updatedItems);
       } catch (error) {
-        emit(CartErrorState(ApiErrorModel(message: error.toString())));
+        emit(CartErrorState(FailureObj(errorMessage: error.toString())));
       }
     }
   }
@@ -96,15 +110,18 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
+  //This method returns the total price of items in the cart
   void _updatePrices(List<CartItemModel> items) {
     final totalPrice = items.fold(0.0, (total, item) => total + (item.product.price * item.quantity));
     final selectedTotalPrice =
         items.where((item) => item.isSelected).fold(0.0, (total, item) => total + (item.product.price * item.quantity));
-
-    emit(CartLoadedState(
-      items: items,
-      totalPrice: totalPrice,
-      selectedTotalPrice: selectedTotalPrice,
-    ));
+    debugPrint('----------------------Updating Total Price to $totalPrice----------------------');
+    emit(
+      CartLoadedState(
+        items: items,
+        totalPrice: totalPrice,
+        selectedTotalPrice: selectedTotalPrice,
+      ),
+    );
   }
 }
