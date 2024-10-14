@@ -7,7 +7,8 @@ import 'package:mentorship_project/features/signup/data/repos/sign_up_repo.dart'
 
 import '../../core/networking/dio_factory.dart';
 import '../../features/home/data/apis/home_api_service.dart';
-import '../../features/home/data/repos/home_repo.dart';
+import '../../features/home/data/repos/categories_repo.dart';
+import '../../features/home/data/repos/products_repo.dart';
 import '../../features/login/data/repos/login_repository.dart';
 
 final getIt = GetIt.instance;
@@ -18,14 +19,16 @@ Future<void> setupGetIt() async {
 
   // Home
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
-  getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
+  getIt.registerLazySingleton<CategoriesRepo>(() => CategoriesRepo(getIt()));
+  getIt.registerLazySingleton<ProductsRepo>(() => ProductsRepo(getIt()));
 
   getIt.registerFactory<SignUpService>(() => SignUpService());
   getIt.registerFactory<SignupRepo>(() => SignupRepo(getIt()));
+
   //login
   getIt.registerFactory<LogInServices>(() => LogInServices());
   getIt.registerFactory<LoginRepository>(() => LoginRepository(getIt()));
+
   // Cart
-  // getIt.registerLazySingleton<CartApiService>(() => CartApiService(dio));
   getIt.registerLazySingleton<CartRepo>(() => CartRepo());
 }

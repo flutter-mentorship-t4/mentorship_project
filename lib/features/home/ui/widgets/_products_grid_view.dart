@@ -5,18 +5,32 @@ class _ProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 24.w),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10.w,
-          mainAxisSpacing: 10.h,
-          childAspectRatio: 2.5 / 4,
-        ),
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return const _ProductItem();
+    return BlocProvider(
+      create: (context) => HomeCubit(getIt(), getIt())..getProducts(),
+      child: BlocBuilder<HomeCubit, HomeState>(
+        buildWhen: (previous, current) => current != previous,
+        builder: (context, state) {
+          if (state is ProductsLoaded) {
+            return Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10.w,
+                  mainAxisSpacing: 10.h,
+                  childAspectRatio: 2.5 / 4,
+                ),
+                itemCount: state.products.length,
+                itemBuilder: (context, index) {
+                  return const _ProductItem();
+                },
+              ),
+            );
+          } else if (state is ProductFailure) {
+            return Text('Error ${state.errorMessage}');
+          } else {
+            return CircularProgressIndicator().center();
+          }
         },
       ),
     );

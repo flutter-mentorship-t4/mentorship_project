@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/features/cart/data/models/cart_item_model.dart';
 
@@ -117,7 +116,7 @@ class CartCubit extends Cubit<CartState> {
     final totalPrice = items.fold(0.0, (total, item) => total + (item.product.price * item.quantity));
     final selectedTotalPrice =
         items.where((item) => item.isSelected).fold(0.0, (total, item) => total + (item.product.price * item.quantity));
-    debugPrint('----------------------Updating Total Price to $totalPrice----------------------');
+    // debugPrint('----------------------Updating Total Price to $totalPrice----------------------');
     emit(
       CartLoadedState(
         items: items,
