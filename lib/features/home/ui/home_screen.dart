@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mentorship_project/core/config/theming/colors.dart';
 import 'package:mentorship_project/core/widgets/app_icon_button.dart';
 import 'package:mentorship_project/core/widgets/app_text_form_field.dart';
+import 'package:mentorship_project/features/cart/logic/cart_cubit.dart';
 import 'package:mentorship_project/features/home/logic/home_cubit.dart';
 import 'package:mentorship_project/features/home/logic/home_state.dart';
 
@@ -43,8 +44,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: getIt<HomeCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeCubit>.value(value: getIt()),
+        BlocProvider<CartCubit>.value(value: getIt()),
+      ],
       child: Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,

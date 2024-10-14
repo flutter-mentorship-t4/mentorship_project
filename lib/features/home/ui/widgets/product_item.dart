@@ -11,41 +11,23 @@ import '../../../../core/config/theming/styles.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/helpers/strings/app_icons.dart';
 import '../../../../core/widgets/app_icon_button.dart';
+import '../../../cart/logic/cart_cubit.dart';
 import '../../data/models/products_model.dart';
-import '../../logic/home_cubit.dart';
 
-class ProductItem extends StatefulWidget {
+class ProductItem extends StatelessWidget {
   final ProductModel productModel;
 
-  const ProductItem({required this.productModel});
-
-  @override
-  State<ProductItem> createState() => ProductItemState();
-}
-
-class ProductItemState extends State<ProductItem> {
-  late bool isInCart;
-
-  @override
-  void initState() {
-    super.initState();
-    final cartCubit = context.read<HomeCubit>();
-    isInCart = cartCubit.isProductInCart(widget.productModel);
-  }
-
-  void _toggleCartStatus() {
-    final cartCubit = context.read<HomeCubit>();
-    cartCubit.toggleAddOrRemoveProductFromCart(widget.productModel);
-    setState(() => isInCart = !isInCart);
-  }
+  ProductItem({required this.productModel});
 
   @override
   Widget build(BuildContext context) {
+    final cartCubit = context.watch<CartCubit>();
+
     return GestureDetector(
       onTap: () {
         context.pushNamed(
           Routes.productDetailsScreen,
-          arguments: widget.productModel,
+          arguments: productModel,
         );
       },
       child: Column(
@@ -74,9 +56,11 @@ class ProductItemState extends State<ProductItem> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   AppIconButton(
-                    onTap: _toggleCartStatus,
+                    onTap: () {
+                      cartCubit.toggleCartItem(productModel);
+                    },
                     icon: SvgPicture.asset(
-                      isInCart ? AppIcons.cartPlus : AppIcons.cartPlusOutlined,
+                      cartCubit.isProductInCart(productModel) ? AppIcons.cartPlus : AppIcons.cartPlusOutlined,
                       width: 20.w,
                     ),
                     width: 32.w,
@@ -87,7 +71,7 @@ class ProductItemState extends State<ProductItem> {
                 ],
               ),
               child: Image.network(
-                widget.productModel.image,
+                productModel.image,
                 fit: BoxFit.cover,
                 height: 204.h,
                 width: 156.w,
@@ -96,12 +80,12 @@ class ProductItemState extends State<ProductItem> {
           ).expanded(),
           verticalSpace(10),
           Text(
-            widget.productModel.title,
+            productModel.title,
             style: TextStyles.font14Grey55Regular,
             overflow: TextOverflow.ellipsis,
           ),
           Text(
-            '${widget.productModel.price} \$',
+            '${productModel.price} \$',
             style: TextStyles.font14BlackRegular,
           ),
         ],
