@@ -2,15 +2,15 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'products_response_model.g.dart';
 
-@JsonSerializable()
-class ProductsResponseModel {
-  final List<ProductModel> products;
+// @JsonSerializable()
+// class ProductsResponseModel {
+//   final List<ProductModel> products;
 
-  ProductsResponseModel({required this.products});
+//   ProductsResponseModel({required this.products});
 
-  factory ProductsResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$ProductsResponseModelFromJson(json);
-}
+//   factory ProductsResponseModel.fromJson(Map<String, dynamic> json) =>
+//       _$ProductsResponseModelFromJson(json);
+// }
 
 @JsonSerializable()
 class ProductModel {
@@ -30,8 +30,7 @@ class ProductModel {
     required this.rating,
   });
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) =>
-      _$ProductModelFromJson(json);
+  factory ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);
 }
 
 @JsonSerializable()

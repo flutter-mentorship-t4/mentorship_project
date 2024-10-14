@@ -8,14 +8,11 @@ class ProductsRepo {
 
   ProductsRepo(this._apiService);
 
-  Future<ApiResult<ProductsResponseModel>> getProducts() async {
+  Future<ApiResult<List<ProductModel>>> getProducts() async {
     try {
       final response = await _apiService.getProducts();
-      print('$response');
-      print('success ----------------------------------');
       return ApiResult.success(response);
     } catch (error) {
-      print('error ----------------------------------');
       return ApiResult.failure(ApiErrorHandler.handle(error));
     }
   }
