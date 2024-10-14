@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mentorship_project/core/helpers/spacing.dart';
-import 'package:mentorship_project/features/product_details/data/models/dummy_product.dart';
+import 'package:mentorship_project/features/home/data/models/products_model.dart';
 import 'package:mentorship_project/features/product_details/ui/widgets/product_color_selection.dart';
 
 import 'widgets/product_action_button.dart';
@@ -12,7 +12,7 @@ import 'widgets/product_size_selection.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({Key? key, required this.product}) : super(key: key);
-  final DummyProduct product;
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {

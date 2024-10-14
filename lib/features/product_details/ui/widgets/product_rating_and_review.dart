@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mentorship_project/features/home/data/models/products_model.dart';
 
 import '../../../../core/config/theming/styles.dart';
-import '../../data/models/dummy_product.dart';
 
 class ProductNameAndReview extends StatelessWidget {
   const ProductNameAndReview({super.key, required this.product});
 
-  final DummyProduct product;
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ProductNameAndReview extends StatelessWidget {
               children: <Widget>[
                 Icon(Icons.star, color: Colors.yellow, size: 24),
                 Text(
-                  '${product.rating["rate"].toString()} (${product.rating["count"]}+)',
+                  '${product.rating.rate.toString()} (${product.rating.count}+)',
                   style: TextStyles.font12Grey55SemiBold,
                 ),
               ],
