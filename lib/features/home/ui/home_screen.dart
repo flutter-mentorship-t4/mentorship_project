@@ -15,6 +15,7 @@ import '../../../core/helpers/extensions/widgets_extentions.dart';
 import '../../../core/helpers/spacing.dart';
 import '../../../core/helpers/strings/app_icons.dart';
 import '../../../core/helpers/strings/app_images.dart';
+import 'widgets/product_item.dart';
 
 part 'widgets/_banner_carousel_slider.dart';
 part 'widgets/_custom_app_bar.dart';
@@ -42,19 +43,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const _CustomAppBar(),
-          const _SearchBarAndSorting(),
-          const _BannerCarouselSlider(),
-          const _FilterCategoriesButton(),
-          const _ProductsGridView(),
-        ],
+    return BlocProvider.value(
+      value: getIt<HomeCubit>(),
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const _CustomAppBar(),
+            const _SearchBarAndSorting(),
+            const _BannerCarouselSlider(),
+            const _FilterCategoriesButton(),
+            const _ProductsGridView(),
+          ],
+        ),
+        floatingActionButton: _FloatingActionButton(),
       ),
-      floatingActionButton: _FloatingActionButton(),
     );
   }
 }

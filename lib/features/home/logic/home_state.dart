@@ -1,4 +1,4 @@
-import 'package:mentorship_project/features/home/data/models/products_response_model.dart';
+import 'package:mentorship_project/features/home/data/models/products_model.dart';
 
 import '../../../core/networking/api_error_model.dart';
 
@@ -17,6 +17,7 @@ class HomeErrorState extends HomeState {
   final ApiErrorModel apiErrorModel;
   HomeErrorState(this.apiErrorModel);
 }
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 final class ProductsLoaded extends HomeState {
