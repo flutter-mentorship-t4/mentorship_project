@@ -1,7 +1,7 @@
 import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/networking/api_result.dart';
 import '../apis/home_api_service.dart';
-import '../models/products_response_model.dart';
+import '../models/products_model.dart';
 
 class ProductsRepo {
   final HomeApiService _apiService;
