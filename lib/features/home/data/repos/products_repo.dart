@@ -1,16 +1,16 @@
 import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/networking/api_result.dart';
 import '../apis/home_api_service.dart';
-import '../models/home_response_model.dart';
+import '../models/products_response_model.dart';
 
-class HomeRepo {
+class ProductsRepo {
   final HomeApiService _apiService;
 
-  HomeRepo(this._apiService);
+  ProductsRepo(this._apiService);
 
-  Future<ApiResult<HomeResponseModel>> getData() async {
+  Future<ApiResult<List<ProductModel>>> getProducts() async {
     try {
-      final response = await _apiService.getData();
+      final response = await _apiService.getProducts();
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ApiErrorHandler.handle(error));

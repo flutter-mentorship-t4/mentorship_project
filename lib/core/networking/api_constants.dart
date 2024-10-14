@@ -2,7 +2,10 @@ class ApiConstants {
   static const String apiBaseUrl = "https://fakestoreapi.com/";
 
   static const String signup = "register";
-  
+
+  static const String products = "products";
+
+  static const String categories = "products/categories";
 }
 
 class ApiErrors {
@@ -21,4 +24,8 @@ class ApiErrors {
   static const String loadingMessage = "loading_message";
   static const String retryAgainMessage = "retry_again_message";
   static const String ok = "Ok";
+  static const String baseUrl = "https://fakestoreapi.com/";
+
+  static const String categories = "products/categories";
+  static const String products = "products";
 }
