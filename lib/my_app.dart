@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
                     scaffoldBackgroundColor: ColorsManager.greyFC,
                   ),
               debugShowCheckedModeBanner: false,
+
               initialRoute: Routes.navigationScreen,
               onGenerateRoute: appRouter.generateRoute,
             );

@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/core/networking/api_result.dart';
-import 'package:mentorship_project/features/home/data/models/categories_response_model.dart';
 import 'package:mentorship_project/features/home/data/models/products_response_model.dart';
 import 'package:mentorship_project/features/home/data/repos/categories_repo.dart';
 import 'package:mentorship_project/features/home/data/repos/products_repo.dart';
@@ -14,20 +13,20 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> getProducts() async {
     emit(HomeLoadingState());
-    ApiResult<ProductsResponseModel> response = await productsRepo.getProducts();
-    if (response is Success<ProductsResponseModel>) {
-      emit(ProductsLoaded(products: response.data.products));
-    } else if (response is Failure<ProductsResponseModel>) {
+    var response = await productsRepo.getProducts();
+    if (response is Success<List<ProductModel>>) {
+      emit(ProductsLoaded(products: response.data));
+    } else if (response is Failure<List<ProductModel>>) {
       emit(ProductFailure(errorMessage: response.apiErrorModel.message ?? ''));
     }
   }
 
   Future<void> getCategories() async {
     emit(HomeLoadingState());
-    ApiResult<CategoriesResponseModel> response = await categoriesRepo.getCategories();
-    if (response is Success<CategoriesResponseModel>) {
-      emit(CategoriesLoaded(categories: response.data.categories));
-    } else if (response is Failure<CategoriesResponseModel>) {
+    ApiResult<List<String>> response = await categoriesRepo.getCategories();
+    if (response is Success<List<String>>) {
+      emit(CategoriesLoaded(categories: response.data));
+    } else if (response is Failure<List<String>>) {
       emit(CategoriesFailure(errorMessage: response.apiErrorModel.message ?? ''));
     }
   }

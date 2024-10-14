@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_api_service.dart';
+part of 'cart_api_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'login_api_service.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
-class _LoginApiService implements LoginApiService {
-  _LoginApiService(
+class _CartApiService implements CartApiService {
+  _CartApiService(
     this._dio, {
     this.baseUrl,
     this.errorLogger,

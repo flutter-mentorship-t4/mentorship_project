@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_response_model.dart';
+part of 'cart_response_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-LoginResponseModel _$LoginResponseModelFromJson(Map<String, dynamic> json) =>
-    LoginResponseModel(
+CartResponseModel _$CartResponseModelFromJson(Map<String, dynamic> json) =>
+    CartResponseModel(
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$LoginResponseModelToJson(LoginResponseModel instance) =>
+Map<String, dynamic> _$CartResponseModelToJson(CartResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
     };

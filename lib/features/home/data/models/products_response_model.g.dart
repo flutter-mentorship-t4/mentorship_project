@@ -6,20 +6,6 @@ part of 'products_response_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProductsResponseModel _$ProductsResponseModelFromJson(
-        Map<String, dynamic> json) =>
-    ProductsResponseModel(
-      products: (json['products'] as List<dynamic>)
-          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-
-Map<String, dynamic> _$ProductsResponseModelToJson(
-        ProductsResponseModel instance) =>
-    <String, dynamic>{
-      'products': instance.products,
-    };
-
 ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       title: json['title'] as String,
       price: (json['price'] as num).toDouble(),

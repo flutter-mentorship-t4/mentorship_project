@@ -14,19 +14,33 @@ class CodegenLoader extends AssetLoader{
     return Future.value(mapLocales[locale.toString()]);
   }
 
-  static const Map<String,dynamic> en = {
-  "Authentication": {
-    "name": "Name",
-    "email": "Email"
-  },
-  "hello": "Hello"
-};
-static const Map<String,dynamic> ar = {
+  static const Map<String,dynamic> ar = {
   "Authentication": {
     "name": "الاسم",
     "email": "البريد الالكتروني"
   },
+  "ProductDetailsScreen": {
+    "ProductDetailsScreen": "شاشة تفاصيل المنتج",
+    "ProductColor": ":اللون",
+    "Best": "الأفضل",
+    "ProductSize": "الحجم",
+    "BuyNow": "اشتري الان"
+  },
   "hello": "مرحبًا بك"
 };
-static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "ar": ar};
+static const Map<String,dynamic> en = {
+  "Authentication": {
+    "name": "Name",
+    "email": "Email"
+  },
+  "ProductDetailsScreen": {
+    "ProductDetailsScreen": "Product Details Screen",
+    "ProductColor": "Color:",
+    "Best": "Best:",
+    "ProductSize": "Product Size",
+    "BuyNow": "Buy now"
+  },
+  "hello": "Hello"
+};
+static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
