@@ -10,7 +10,7 @@ class DonotHaveAnAccouts extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushNamed(Routes.signUp);
+        context.pushNamed(Routes.signUpScreen);
       },
       child: RichText(
         text: TextSpan(

@@ -14,10 +14,7 @@ class SignUpBlocListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignupCubit, SignupState>(
-      listenWhen: (previous, current) =>
-          current is SignupLoadingState ||
-          current is SignupSuccessState ||
-          current is SignupErrorState,
+      listenWhen: (previous, current) => current is SignupLoadingState || current is SignupSuccessState || current is SignupErrorState,
       listener: (context, state) {
         if (state is SignupLoadingState) {
           context.showLoading();
@@ -36,20 +33,15 @@ class SignUpBlocListener extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        icon: const Icon(Icons.done_all_rounded,
-            color: ColorsManager.mainGreen, size: 30),
-        content: Text('Signup Successful',
-            textAlign: TextAlign.center, style: TextStyles.font22BlackSemiBold),
+        icon: const Icon(Icons.done_all_rounded, color: ColorsManager.mainGreen, size: 30),
+        content: Text('Signup Successful', textAlign: TextAlign.center, style: TextStyles.font22BlackSemiBold),
         actions: [
-          Text('Congratulations, you have signed up successfully!',
-              textAlign: TextAlign.center,
-              style: TextStyles.font12BlackRegular),
+          Text('Congratulations, you have signed up successfully!', textAlign: TextAlign.center, style: TextStyles.font12BlackRegular),
           TextButton(
             onPressed: () {
-              context.pushNamed(Routes.login);
+              context.pushNamed(Routes.loginScreen);
             },
-            child: const Text('Continue',
-                style: TextStyle(color: ColorsManager.primaryColor)),
+            child: const Text('Continue', style: TextStyle(color: ColorsManager.primaryColor)),
           )
         ],
       ),
@@ -62,14 +54,10 @@ class SignUpBlocListener extends StatelessWidget {
       context: context,
       builder: (context) => AlertDialog(
         icon: const Icon(Icons.error, color: Colors.red, size: 30),
-        content: Text(error,
-            textAlign: TextAlign.center, style: TextStyles.font14BlackRegular),
-        title: Text('error',
-            textAlign: TextAlign.center, style: TextStyles.font24BlackSemiBold),
+        content: Text(error, textAlign: TextAlign.center, style: TextStyles.font14BlackRegular),
+        title: Text('error', textAlign: TextAlign.center, style: TextStyles.font24BlackSemiBold),
         actions: [
-          Text(error,
-              textAlign: TextAlign.center,
-              style: TextStyles.font12BlackRegular),
+          Text(error, textAlign: TextAlign.center, style: TextStyles.font12BlackRegular),
           TextButton(
             onPressed: () {
               context.pop();

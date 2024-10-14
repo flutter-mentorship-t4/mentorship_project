@@ -225,4 +225,6 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: ColorsManager.primaryColor,
   );
+
+  static var font14WhiteRegular;
 }
