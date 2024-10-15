@@ -101,12 +101,20 @@ class LoginScreen extends StatelessWidget {
                           children: [
                             SignWithSocial(
                               assetsName: 'assets/icons/google.svg',
-                              ontap: () {},
+                              ontap: () async {
+                                await context
+                                    .read<LoginCubit>()
+                                    .signInWithGoogle();
+                              },
                             ),
                             horizontalSpace(20),
                             SignWithSocial(
                               assetsName: 'assets/icons/facebook.svg',
-                              ontap: () {},
+                              ontap: () async {
+                                  await context
+                                      .read<LoginCubit>()
+                                      .signInWithFacebook();
+                              },
                             ),
                             horizontalSpace(20),
                             SignWithSocial(

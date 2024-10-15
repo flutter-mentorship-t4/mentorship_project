@@ -63,6 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '758980347184',
     projectId: 'mentorshipproject-ead0b',
     storageBucket: 'mentorshipproject-ead0b.appspot.com',
+    iosClientId: '758980347184-v9f314p7o6p2ut24t31tnt5qj7dpk7b4.apps.googleusercontent.com',
     iosBundleId: 'com.example.mentorshipProject',
   );
+
 }

@@ -4,7 +4,7 @@ import 'package:mentorship_project/features/login/data/models/user_login_model.d
 import '../models/login_result.dart';
 
 class LogInServices {
-  Future<LoginResult> signIn(LoginCredentials credentials) async {
+  Future<LoginResults> signIn(LoginCredentials credentials) async {
     try {
       final userCredential =
           await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -13,17 +13,17 @@ class LogInServices {
       );
 
       if (userCredential.user != null) {
-        return LoginResult(success: true, user: userCredential.user);
+        return LoginResults(success: true, user: userCredential.user);
       } else {
-        return LoginResult(
+        return LoginResults(
             success: false, errorMessage: "Login failed. Please try again.");
       }
     } on FirebaseAuthException catch (e) {
-      return LoginResult(
+      return LoginResults(
           success: false,
           errorMessage: e.message ?? "An error occurred during sign in.");
     } catch (e) {
-      return LoginResult(success: false, errorMessage: e.toString());
+      return LoginResults(success: false, errorMessage: e.toString());
     }
   }
 }
