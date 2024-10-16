@@ -22,7 +22,8 @@ class CartCubit extends Cubit<CartState> {
   //   }
   // }
 
-  void loadCart() async {
+  // Loads cart items and updates state with calculated prices
+  Future<void> loadCart() async {
     emit(CartLoadingState());
     try {
       // debugPrint('----------------------entering loadCart ----------------------');
@@ -34,19 +35,26 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  void toggleCartItem(ProductModel product) async {
-    final currentState = state;
-    if (currentState is CartLoadedState) {
-      // Check if the product is already in the cart
-      final isInCart = currentState.items.any((item) => item.product.id == product.id);
+  // void toggleCartItem(ProductModel product) async {
+  //   final currentState = state;
+  //   if (currentState is CartLoadedState) {
+  //     // Check if the product is already in the cart
+  //     final isInCart = currentState.items.any((item) => item.product.id == product.id);
 
-      if (isInCart) {
-        // If the product is in the cart, remove it
-        removeFromCart(product.id);
-      } else {
-        // If the product is not in the cart, add it
-        addToCart(product);
-      }
+  //     if (isInCart) {
+  //       removeFromCart(product.id);
+  //     } else {
+  //       addToCart(product);
+  //     }
+  //   }
+  // }
+
+  void toggleCartItem(ProductModel product) async {
+    try {
+      await _cartRepo.toggleCartItem(product);
+      await loadCart();
+    } catch (error) {
+      emit(CartErrorState(FailureObj(errorMessage: error.toString())));
     }
   }
 
@@ -54,101 +62,60 @@ class CartCubit extends Cubit<CartState> {
     emit(CartLoadingState());
     try {
       await _cartRepo.clearCart();
-      _updatePrices([]);
-    } catch (errror) {
-      print('Error clearing the cart storage  $errror'); // For debugging
-      emit(CartErrorState(FailureObj(errorMessage: 'Error clearing the cart storag')));
+      emit(CartLoadedState(items: [], totalPrice: 0, selectedTotalPrice: 0));
+    } catch (error) {
+      emit(CartErrorState(FailureObj(errorMessage: 'Error clearing the cart storage')));
     }
   }
 
   void addToCart(ProductModel product) async {
-    final currentState = state;
-    if (currentState is CartLoadedState) {
-      try {
-        await _cartRepo.addToCart(product);
-        final updatedItems = List<CartItemModel>.from(currentState.items);
-        final existingItemIndex = updatedItems.indexWhere((item) => item.product.title == product.title);
-        if (existingItemIndex != -1) {
-          updatedItems[existingItemIndex].quantity++;
-        } else {
-          updatedItems.add(CartItemModel(product: product));
-        }
-        _updatePrices(updatedItems);
-      } catch (error) {
-        emit(CartErrorState(FailureObj(errorMessage: error.toString())));
-      }
+    try {
+      await _cartRepo.addToCart(product);
+      await loadCart();
+    } catch (error) {
+      emit(CartErrorState(FailureObj(errorMessage: error.toString())));
     }
   }
 
   void removeFromCart(int productId) async {
-    final currentState = state;
-    if (currentState is CartLoadedState) {
-      try {
-        await _cartRepo.removeFromCart(productId);
-        final updatedItems = currentState.items.where((item) => item.product.id != productId).toList();
-        _updatePrices(updatedItems);
-      } catch (error) {
-        emit(CartErrorState(FailureObj(errorMessage: error.toString())));
-      }
+    try {
+      await _cartRepo.removeFromCart(productId);
+      await loadCart();
+    } catch (error) {
+      emit(CartErrorState(FailureObj(errorMessage: error.toString())));
     }
   }
 
   void updateQuantity(int productId, int newQuantity) async {
-    final currentState = state;
-    if (currentState is CartLoadedState) {
-      try {
-        await _cartRepo.updateQuantity(productId, newQuantity);
-        final updatedItems = List<CartItemModel>.from(currentState.items);
-        final itemIndex = updatedItems.indexWhere((item) => item.product.id == productId);
-        if (itemIndex != -1) {
-          if (newQuantity > 0) {
-            updatedItems[itemIndex].quantity = newQuantity;
-          } else {
-            updatedItems.removeAt(itemIndex);
-          }
-        }
-        _updatePrices(updatedItems);
-      } catch (error) {
-        emit(CartErrorState(FailureObj(errorMessage: error.toString())));
-      }
+    try {
+      await _cartRepo.updateQuantity(productId, newQuantity);
+      await loadCart();
+    } catch (error) {
+      emit(CartErrorState(FailureObj(errorMessage: error.toString())));
     }
   }
 
-  void toggleItemSelection(int productId) {
-    final currentState = state;
-    if (currentState is CartLoadedState) {
-      final updatedItems = List<CartItemModel>.from(currentState.items);
-      final itemIndex = updatedItems.indexWhere((item) => item.product.id == productId);
-      if (itemIndex != -1) {
-        updatedItems[itemIndex].isSelected = !updatedItems[itemIndex].isSelected;
-        _updatePrices(updatedItems);
-      }
-      _cartRepo.saveCartItems(updatedItems);
+  void toggleItemSelection(int productId) async {
+    try {
+      await _cartRepo.toggleItemSelection(productId);
+      await loadCart();
+    } catch (error) {
+      emit(CartErrorState(FailureObj(errorMessage: error.toString())));
     }
   }
 
-  //This method returns the total price of items in the cart
-  void _updatePrices(List<CartItemModel> items) {
-    final totalPrice = items.fold(0.0, (total, item) => total + (item.product.price * item.quantity));
-    final selectedTotalPrice =
-        items.where((item) => item.isSelected).fold(0.0, (total, item) => total + (item.product.price * item.quantity));
-    // debugPrint('----------------------Updating Total Price to $totalPrice----------------------');
-    emit(
-      CartLoadedState(
-        items: items,
-        totalPrice: totalPrice,
-        selectedTotalPrice: selectedTotalPrice,
-      ),
-    );
+  // Updates state with new cart items and calculated prices
+  Future<void> _updatePrices(List<CartItemModel> items) async {
+    final (totalPrice, selectedTotalPrice) = await _cartRepo.calculatePrices();
+    emit(CartLoadedState(
+      items: items,
+      totalPrice: totalPrice,
+      selectedTotalPrice: selectedTotalPrice,
+    ));
   }
 
+  // Synchronous method to check if a product is in the cart
   bool isProductInCart(ProductModel product) {
-    final currentState = state;
-
-    if (currentState is CartLoadedState) {
-      return currentState.items.any((item) => item.product.id == product.id);
-    }
-
-    return false;
+    return _cartRepo.isProductInCart(product.id);
   }
 }

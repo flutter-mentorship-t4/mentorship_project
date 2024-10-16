@@ -7,16 +7,19 @@ import '../../../../core/helpers/strings/shared_pref_keys.dart';
 import '../models/cart_item_model.dart';
 
 class CartRepo {
-  // final CartApiService _apiService;
-
   // ignore: unused_field
-  final List<CartItemModel> _items = [];
+  List<CartItemModel> _cachedItems = [];
 
-  CartRepo();
+  CartRepo() {
+    _initCache();
+  }
+  // Initialize cache on creation
+  void _initCache() async {
+    _cachedItems = await getCartItems();
+  }
 
   // Simulate network delay
-  // ignore: unused_element
-  Future<void> _delay() => Future.delayed(Duration(milliseconds: 300));
+  // Future<void> _delay() => Future.delayed(Duration(milliseconds: 300));
 
   // Additional method to add initial items for testing
   // Future<List<CartItemModel>> addInitialItems() async {
@@ -28,58 +31,96 @@ class CartRepo {
   // }
 
   Future<List<CartItemModel>> getCartItems() async {
+    if (_cachedItems.isNotEmpty) {
+      return _cachedItems;
+    }
+
     final String? cartJson = await SharedPrefHelper.getString(SharedPrefKeys.cartKey);
-    // debugPrint('-------------cartJsoncartJsoncartJson---------$cartJson ----------------------');
     if (cartJson != null && cartJson.isNotEmpty) {
       final List<dynamic> decoded = jsonDecode(cartJson);
-      return decoded.map((item) => CartItemModel.fromJson(item)).toList();
+      _cachedItems = decoded.map((item) => CartItemModel.fromJson(item)).toList();
+
+      return _cachedItems;
     }
     return [];
   }
 
   Future<void> saveCartItems(List<CartItemModel> items) async {
+    _cachedItems = items;
+
     final String encoded = jsonEncode(items.map((item) => item.toJson()).toList());
     await SharedPrefHelper.setData(SharedPrefKeys.cartKey, encoded);
   }
 
   Future<void> addToCart(ProductModel product) async {
-    final items = await getCartItems();
-    final existingItemIndex = items.indexWhere((item) => item.product.id == product.id);
+    final existingItemIndex = _cachedItems.indexWhere((item) => item.product.id == product.id);
+
     if (existingItemIndex != -1) {
-      items[existingItemIndex].quantity++;
+      _cachedItems[existingItemIndex].quantity++;
     } else {
-      items.add(CartItemModel(product: product));
+      _cachedItems.add(CartItemModel(product: product));
     }
-    await saveCartItems(items);
+    await saveCartItems(_cachedItems);
   }
 
   Future<void> removeFromCart(int productId) async {
-    final items = await getCartItems();
-    items.removeWhere((item) => item.product.id == productId);
-    await saveCartItems(items);
+    _cachedItems.removeWhere((item) => item.product.id == productId);
+    await saveCartItems(_cachedItems);
   }
 
   Future<void> updateQuantity(int productId, int newQuantity) async {
-    final items = await getCartItems();
-    final itemIndex = items.indexWhere((item) => item.product.id == productId);
+    final itemIndex = _cachedItems.indexWhere((item) => item.product.id == productId);
     if (itemIndex != -1) {
       if (newQuantity > 0) {
-        items[itemIndex].quantity = newQuantity;
+        _cachedItems[itemIndex].quantity = newQuantity;
       } else {
-        items.removeAt(itemIndex);
+        _cachedItems.removeAt(itemIndex);
       }
     }
-    await saveCartItems(items);
+    await saveCartItems(_cachedItems);
   }
 
   Future<void> toggleItemSelection(int productId) async {
-    final items = await getCartItems();
-    final itemIndex = items.indexWhere((item) => item.product.id == productId);
+    final itemIndex = _cachedItems.indexWhere((item) => item.product.id == productId);
     if (itemIndex != -1) {
-      items[itemIndex].isSelected = !items[itemIndex].isSelected;
+      _cachedItems[itemIndex].isSelected = !_cachedItems[itemIndex].isSelected;
     }
-    await saveCartItems(items);
+    await saveCartItems(_cachedItems);
   }
 
-  Future<void> clearCart() async => await SharedPrefHelper.removeData(SharedPrefKeys.cartKey);
+  Future<void> clearCart() async {
+    _cachedItems.clear();
+    await SharedPrefHelper.removeData(SharedPrefKeys.cartKey);
+  }
+
+  bool isProductInCart(int productId) {
+    return _cachedItems.any((item) => item.product.id == productId);
+  }
+
+  Future<void> toggleCartItem(ProductModel product) async {
+    final isInCart = await isProductInCart(product.id);
+    if (isInCart) {
+      await removeFromCart(product.id);
+    } else {
+      await addToCart(product);
+    }
+  }
+
+  // // Calculates total price and selected items total price
+  // // Returns a tuple: (totalPrice, selectedTotalPrice)
+  // Future<(double, double)> calculatePrices(List<CartItemModel> items) async {
+  //   final totalPrice = items.fold(0.0, (total, item) => total + (item.product.price * item.quantity));
+  //   final selectedTotalPrice =
+  //       items.where((item) => item.isSelected).fold(0.0, (total, item) => total + (item.product.price * item.quantity));
+  //   return (totalPrice, selectedTotalPrice);
+  // }
+
+  // Calculates total price and selected items total price
+  // Returns a tuple: (totalPrice, selectedTotalPrice)
+  (double, double) calculatePrices() {
+    final totalPrice = _cachedItems.fold(0.0, (total, item) => total + (item.product.price * item.quantity));
+    final selectedTotalPrice =
+        _cachedItems.where((item) => item.isSelected).fold(0.0, (total, item) => total + (item.product.price * item.quantity));
+    return (totalPrice, selectedTotalPrice);
+  }
 }

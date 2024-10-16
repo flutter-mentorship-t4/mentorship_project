@@ -23,6 +23,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
   getIt.registerLazySingleton<CategoriesRepo>(() => CategoriesRepo(getIt()));
   getIt.registerLazySingleton<ProductsRepo>(() => ProductsRepo(getIt()));
+  getIt.registerLazySingleton<CartRepo>(() => CartRepo());
 
   getIt.registerFactory<SignUpService>(() => SignUpService());
   getIt.registerFactory<SignupRepo>(() => SignupRepo(getIt()));
@@ -31,13 +32,10 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<LogInServices>(() => LogInServices());
   getIt.registerFactory<LoginRepository>(() => LoginRepository(getIt()));
 
-  // Cart
-  getIt.registerLazySingleton<CartRepo>(() => CartRepo());
-
-  getIt.registerLazySingleton<CartCubit>(() => CartCubit(getIt())..loadCart());
   getIt.registerLazySingleton<HomeCubit>(
     () => HomeCubit(getIt(), getIt(), getIt())
       ..getProducts()
       ..getCategories(),
   );
+  getIt.registerLazySingleton<CartCubit>(() => CartCubit(getIt())..loadCart());
 }

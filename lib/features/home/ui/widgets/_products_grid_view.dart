@@ -6,7 +6,7 @@ class _ProductsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: getIt<HomeCubit>(),
+      value: getIt<CartCubit>(),
       // create: (context) => HomeCubit(getIt(), getIt(), getIt())..getProducts(),
       child: BlocBuilder<HomeCubit, HomeState>(
         buildWhen: (previous, current) => current != previous,
