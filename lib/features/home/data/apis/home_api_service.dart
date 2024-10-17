@@ -10,9 +10,9 @@ part 'home_api_service.g.dart';
 abstract class HomeApiService {
   factory HomeApiService(Dio dio) = _HomeApiService;
 
-  // HTTP REQUESTS
-  @GET(ApiConstants.categories)
-  Future<List<String>> getCategories();
+  // // HTTP REQUESTS
+  // @GET(ApiConstants.categories)
+  // Future<List<String>> getCategories();
 
   @GET(ApiConstants.products)
   Future<List<ProductModel>> getProducts();

@@ -33,13 +33,13 @@ final class ProductFailure extends HomeState {
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-class CategoriesLoaded extends HomeState {
-  final List<String> categories;
+// class CategoriesLoaded extends HomeState {
+//   final List<String> categories;
 
-  CategoriesLoaded({required this.categories});
-}
+//   CategoriesLoaded({required this.categories});
+// }
 
-class CategoriesFailure extends HomeState {
-  final String errorMessage;
-  CategoriesFailure({required this.errorMessage});
-}
+// class CategoriesFailure extends HomeState {
+//   final String errorMessage;
+//   CategoriesFailure({required this.errorMessage});
+// }

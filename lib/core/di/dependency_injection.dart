@@ -8,8 +8,8 @@ import 'package:mentorship_project/features/signup/data/apis/sign_up_services.da
 import 'package:mentorship_project/features/signup/data/repos/sign_up_repo.dart';
 
 import '../../core/networking/dio_factory.dart';
+import '../../features/categories/data/repos/categories_repo.dart';
 import '../../features/home/data/apis/home_api_service.dart';
-import '../../features/home/data/repos/categories_repo.dart';
 import '../../features/home/data/repos/products_repo.dart';
 import '../../features/login/data/repos/login_repository.dart';
 
@@ -32,10 +32,6 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<LogInServices>(() => LogInServices());
   getIt.registerFactory<LoginRepository>(() => LoginRepository(getIt()));
 
-  getIt.registerLazySingleton<HomeCubit>(
-    () => HomeCubit(getIt(), getIt(), getIt())
-      ..getProducts()
-      ..getCategories(),
-  );
+  getIt.registerLazySingleton<HomeCubit>(() => HomeCubit(getIt(), getIt())..getProducts());
   getIt.registerLazySingleton<CartCubit>(() => CartCubit(getIt())..loadCart());
 }

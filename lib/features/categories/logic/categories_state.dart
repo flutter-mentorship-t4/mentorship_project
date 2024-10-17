@@ -1,18 +1,29 @@
-import '../../../core/networking/api_error_model.dart';
+import '../../home/data/models/products_model.dart';
+import '../data/models/cateogory_model.dart';
 
 sealed class CategoriesState {}
 
 class CategoriesInitialState extends CategoriesState {}
 
-class CategoriesLoadingState extends CategoriesState {}
-
-class CategoriesSuccessState<T> extends CategoriesState {
-  final T data;
-  CategoriesSuccessState(this.data);
+class CategoriesLoaded extends CategoriesState {
+  final List<CategoryModel> categories;
+  CategoriesLoaded({required this.categories});
 }
 
-class CategoriesErrorState extends CategoriesState {
-  final ApiErrorModel apiErrorModel;
-  CategoriesErrorState(this.apiErrorModel);
+class CategorySelected extends CategoriesState {
+  final List<CategoryModel> categories;
+  final String selectedCategory;
+  CategorySelected({required this.categories, required this.selectedCategory});
 }
 
+class ProductsLoadingState extends CategoriesState {}
+
+class ProductsLoaded extends CategoriesState {
+  final List<ProductModel> products;
+  ProductsLoaded({required this.products});
+}
+
+class ProductsErrorState extends CategoriesState {
+  final String errorMessage;
+  ProductsErrorState(this.errorMessage);
+}

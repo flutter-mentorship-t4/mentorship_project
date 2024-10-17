@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const _ProductsGridView(),
           ],
         ),
-        floatingActionButton: _FloatingActionButton(),
+        // floatingActionButton: _FloatingActionButton(),
       ),
     );
   }
