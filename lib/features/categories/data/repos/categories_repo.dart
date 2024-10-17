@@ -13,10 +13,10 @@ class CategoriesRepo {
 
   // Static list of categories with their corresponding image URLs
   static final List<CategoryModel> categories = [
-    CategoryModel(name: "electronics", imagePath: AppIcons.catElectronics),
-    CategoryModel(name: "jewelery", imagePath: AppIcons.catJewelry),
-    CategoryModel(name: "men's clothing", imagePath: AppIcons.catMenClothes),
-    CategoryModel(name: "women's clothing", imagePath: AppIcons.catWomenClothes),
+    CategoryModel(name: "electronics", svgPath: AppIcons.catElectronics, []),
+    CategoryModel(name: "jewelery", svgPath: AppIcons.catJewelry, []),
+    CategoryModel(name: "men's clothing", svgPath: AppIcons.catMenClothes, []),
+    CategoryModel(name: "women's clothing", svgPath: AppIcons.catWomenClothes, []),
   ];
 
   // Future<ApiResult<List<String>>> getCategories() async {
@@ -28,13 +28,16 @@ class CategoriesRepo {
   //   }
   // }
   // Method to get the static list of categories
-  List<CategoryModel> getCategories() {
-    return categories;
+  Future<ApiResult<List<CategoryModel>>> getCategories() async {
+    // Simulating an API call delay
+    await Future.delayed(Duration(milliseconds: 500));
+    return ApiResult.success(categories);
   }
 
   Future<ApiResult<List<ProductModel>>> getProductsByCategory(String category) async {
     try {
       final response = await _apiService.getProductsByCategory(category);
+
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ApiErrorHandler.handle(error));

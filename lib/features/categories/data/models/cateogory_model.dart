@@ -1,6 +1,9 @@
+import 'package:mentorship_project/features/home/data/models/products_model.dart';
+
 class CategoryModel {
   final String name;
-  final String imagePath;
+  final String svgPath;
+  final List<ProductModel> categoryProducts;
 
-  CategoryModel({required this.name, required this.imagePath});
+  CategoryModel(this.categoryProducts, {required this.name, required this.svgPath});
 }

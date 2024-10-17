@@ -8,7 +8,9 @@ import 'package:mentorship_project/features/signup/data/apis/sign_up_services.da
 import 'package:mentorship_project/features/signup/data/repos/sign_up_repo.dart';
 
 import '../../core/networking/dio_factory.dart';
+import '../../features/categories/data/apis/categories_api_service.dart';
 import '../../features/categories/data/repos/categories_repo.dart';
+import '../../features/categories/logic/categories_cubit.dart';
 import '../../features/home/data/apis/home_api_service.dart';
 import '../../features/home/data/repos/products_repo.dart';
 import '../../features/login/data/repos/login_repository.dart';
@@ -19,11 +21,14 @@ Future<void> setupGetIt() async {
   // Dio & ApiService
   Dio dio = DioFactory.getDio();
 
-  // Home
+  // getIt.registerLazySingleton<CategoriesRepo>(() => CategoriesRepo(getIt()));
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
-  getIt.registerLazySingleton<CategoriesRepo>(() => CategoriesRepo(getIt()));
   getIt.registerLazySingleton<ProductsRepo>(() => ProductsRepo(getIt()));
+
   getIt.registerLazySingleton<CartRepo>(() => CartRepo());
+
+  getIt.registerLazySingleton<CategoriesApiService>(() => CategoriesApiService(dio));
+  getIt.registerLazySingleton<CategoriesRepo>(() => CategoriesRepo(getIt()));
 
   getIt.registerFactory<SignUpService>(() => SignUpService());
   getIt.registerFactory<SignupRepo>(() => SignupRepo(getIt()));
@@ -34,4 +39,5 @@ Future<void> setupGetIt() async {
 
   getIt.registerLazySingleton<HomeCubit>(() => HomeCubit(getIt(), getIt())..getProducts());
   getIt.registerLazySingleton<CartCubit>(() => CartCubit(getIt())..loadCart());
+  getIt.registerLazySingleton<CategoriesCubit>(() => CategoriesCubit(getIt()));
 }
