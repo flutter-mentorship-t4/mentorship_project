@@ -5,8 +5,9 @@ class _ProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit(getIt(), getIt())..getProducts(),
+    return BlocProvider.value(
+      value: getIt<HomeCubit>(),
+      // create: (context) => HomeCubit(getIt(), getIt(), getIt())..getProducts(),
       child: BlocBuilder<HomeCubit, HomeState>(
         buildWhen: (previous, current) => current != previous,
         builder: (context, state) {
@@ -22,7 +23,9 @@ class _ProductsGridView extends StatelessWidget {
                 ),
                 itemCount: state.products.length,
                 itemBuilder: (context, index) {
-                  return const _ProductItem();
+                  return ProductItem(
+                    productModel: state.products[index],
+                  );
                 },
               ),
             );
@@ -33,63 +36,6 @@ class _ProductsGridView extends StatelessWidget {
           }
         },
       ),
-    );
-  }
-}
-
-class _ProductItem extends StatelessWidget {
-  const _ProductItem();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(13),
-          child: GridTile(
-            header: Row(
-              children: [
-                AppIconButton(
-                  onTap: () {},
-                  icon: SvgPicture.asset(
-                    AppIcons.heartOutlined,
-                    width: 20.w,
-                  ),
-                  width: 32.w,
-                  backgroundColor: ColorsManager.greyFC,
-                  vPadding: 8.w,
-                  hPadding: 8.h,
-                ).paddingAll(10),
-              ],
-            ),
-            footer: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                AppIconButton(
-                  onTap: () {},
-                  icon: SvgPicture.asset(
-                    AppIcons.cartPlus,
-                    width: 20.w,
-                  ),
-                  width: 32.w,
-                  backgroundColor: ColorsManager.greyFC,
-                  vPadding: 8.w,
-                  hPadding: 8.h,
-                ).paddingAll(10),
-              ],
-            ),
-            child: Image.asset(
-              'assets/images/signature.png',
-              fit: BoxFit.cover,
-            ),
-          ),
-        ).expanded(),
-        verticalSpace(10),
-        Text('Baby blue blouse', style: TextStyles.font14Grey55Regular),
-        Text('545 \$', style: TextStyles.font14BlackRegular),
-      ],
     );
   }
 }

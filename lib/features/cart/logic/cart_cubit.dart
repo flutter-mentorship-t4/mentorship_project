@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/features/cart/data/models/cart_item_model.dart';
+import 'package:mentorship_project/features/home/data/models/products_model.dart';
 
-import '../../product_details/data/models/dummy_product.dart';
 import '../data/models/failure_obj.dart';
 import '../data/repos/cart_repo.dart';
 import 'cart_state.dart';
@@ -22,17 +22,6 @@ class CartCubit extends Cubit<CartState> {
   //   }
   // }
 
-  void removeAllItemsFromCart() async {
-    emit(CartLoadingState());
-    try {
-      await _cartRepo.clearCart();
-      _updatePrices([]);
-    } catch (errror) {
-      print('Error clearing the cart storage  $errror'); // For debugging
-      emit(CartErrorState(FailureObj(errorMessage: 'Error clearing the cart storag')));
-    }
-  }
-
   void loadCart() async {
     emit(CartLoadingState());
     try {
@@ -45,13 +34,40 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  void addToCart(DummyProduct product) async {
+  void toggleCartItem(ProductModel product) async {
+    final currentState = state;
+    if (currentState is CartLoadedState) {
+      // Check if the product is already in the cart
+      final isInCart = currentState.items.any((item) => item.product.id == product.id);
+
+      if (isInCart) {
+        // If the product is in the cart, remove it
+        removeFromCart(product.id);
+      } else {
+        // If the product is not in the cart, add it
+        addToCart(product);
+      }
+    }
+  }
+
+  void removeAllItemsFromCart() async {
+    emit(CartLoadingState());
+    try {
+      await _cartRepo.clearCart();
+      _updatePrices([]);
+    } catch (errror) {
+      print('Error clearing the cart storage  $errror'); // For debugging
+      emit(CartErrorState(FailureObj(errorMessage: 'Error clearing the cart storag')));
+    }
+  }
+
+  void addToCart(ProductModel product) async {
     final currentState = state;
     if (currentState is CartLoadedState) {
       try {
         await _cartRepo.addToCart(product);
         final updatedItems = List<CartItemModel>.from(currentState.items);
-        final existingItemIndex = updatedItems.indexWhere((item) => item.product.id == product.id);
+        final existingItemIndex = updatedItems.indexWhere((item) => item.product.title == product.title);
         if (existingItemIndex != -1) {
           updatedItems[existingItemIndex].quantity++;
         } else {
@@ -124,5 +140,15 @@ class CartCubit extends Cubit<CartState> {
         selectedTotalPrice: selectedTotalPrice,
       ),
     );
+  }
+
+  bool isProductInCart(ProductModel product) {
+    final currentState = state;
+
+    if (currentState is CartLoadedState) {
+      return currentState.items.any((item) => item.product.id == product.id);
+    }
+
+    return false;
   }
 }

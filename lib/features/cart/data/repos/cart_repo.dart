@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
+import 'package:mentorship_project/features/home/data/models/products_model.dart';
 
 import '../../../../core/helpers/strings/shared_pref_keys.dart';
-import '../../../product_details/data/models/dummy_product.dart';
 import '../models/cart_item_model.dart';
 
 class CartRepo {
@@ -42,7 +42,7 @@ class CartRepo {
     await SharedPrefHelper.setData(SharedPrefKeys.cartKey, encoded);
   }
 
-  Future<void> addToCart(DummyProduct product) async {
+  Future<void> addToCart(ProductModel product) async {
     final items = await getCartItems();
     final existingItemIndex = items.indexWhere((item) => item.product.id == product.id);
     if (existingItemIndex != -1) {

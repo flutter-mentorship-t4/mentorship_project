@@ -1,7 +1,7 @@
-import '../../../product_details/data/models/dummy_product.dart';
+import '../../../home/data/models/products_model.dart';
 
 class CartItemModel {
-  final DummyProduct product;
+  final ProductModel product;
   int quantity;
   bool isSelected;
 
@@ -11,32 +11,16 @@ class CartItemModel {
     this.isSelected = true,
   });
 
-  // Add these methods for JSON serialization
+  // Correct JSON serialization
   Map<String, dynamic> toJson() => {
-        'product': {
-          'id': product.id,
-          'title': product.title,
-          'price': product.price,
-          'description': product.description,
-          'category': product.category,
-          'image': product.image,
-          'rating': product.rating,
-        },
+        'product': product.toJson(), // Use product's own toJson method
         'quantity': quantity,
         'isSelected': isSelected,
       };
 
   factory CartItemModel.fromJson(Map<String, dynamic> json) => CartItemModel(
-        product: DummyProduct(
-          id: json['product']['id'],
-          title: json['product']['title'],
-          price: json['product']['price'],
-          description: json['product']['description'],
-          category: json['product']['category'],
-          image: json['product']['image'],
-          rating: json['product']['rating'],
-        ),
-        quantity: json['quantity'],
-        isSelected: json['isSelected'],
+        product: ProductModel.fromJson(json['product'] as Map<String, dynamic>), // Deserialize product properly
+        quantity: json['quantity'] as int,
+        isSelected: json['isSelected'] as bool,
       );
 }

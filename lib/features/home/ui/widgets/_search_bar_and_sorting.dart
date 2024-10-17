@@ -26,7 +26,9 @@ class _SearchBarAndSorting extends StatelessWidget {
         ).expanded(),
         horizontalSpace(14),
         AppIconButton(
-          onTap: () {},
+          onTap: () {
+            context.read<HomeCubit>().clearCart();
+          },
           backgroundColor: ColorsManager.lightPrimary,
           icon: SvgPicture.asset(AppIcons.filter),
         ),
