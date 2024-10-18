@@ -9,6 +9,7 @@ import '../../core/config/theming/colors.dart';
 import '../../core/config/theming/styles.dart';
 import '../../core/helpers/spacing.dart';
 import '../cart/ui/cart_screen.dart';
+import '../categories/ui/categories_screen.dart';
 
 part 'widgets/_navigation_bar_item.dart';
 
@@ -37,7 +38,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           index: selectedIndex,
           children: [
             const HomeScreen(),
-            Text('Categories').center(),
+            CategoriesScreen(),
             CartScreen(),
             Text('Wishlist').center(),
           ],
@@ -57,9 +58,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               assetName: value['assetName'],
               isSelected: selectedIndex == index,
               onTap: () {
-                setState(() {
-                  selectedIndex = index;
-                });
+                setState(() => selectedIndex = index);
               },
             );
           }).toList(),

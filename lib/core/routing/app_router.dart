@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/core/routing/routes.dart';
 import 'package:mentorship_project/features/cart/ui/cart_screen.dart';
+import 'package:mentorship_project/features/categories/ui/categories_screen.dart';
 import 'package:mentorship_project/features/home/data/models/products_model.dart';
 import 'package:mentorship_project/features/home/ui/home_screen.dart';
 import 'package:mentorship_project/features/navigations/navigation_screen.dart';
@@ -44,7 +45,7 @@ class AppRouter {
       case Routes.homeScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => HomeCubit(getIt(), getIt(), getIt()),
+            create: (context) => HomeCubit(getIt(), getIt()),
             child: const HomeScreen(),
           ),
         );
@@ -57,6 +58,8 @@ class AppRouter {
           builder: (_) => ProductDetailsScreen(product: settings.arguments as ProductModel),
         );
 
+      case Routes.categoriesScreen:
+        return MaterialPageRoute(builder: (_) => CategoriesScreen());
       default:
         return null;
     }

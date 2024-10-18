@@ -44,11 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<HomeCubit>.value(value: getIt()),
-        BlocProvider<CartCubit>.value(value: getIt()),
-      ],
+    return BlocProvider.value(
+      value: getIt<HomeCubit>(),
       child: Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -61,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const _ProductsGridView(),
           ],
         ),
-        floatingActionButton: _FloatingActionButton(),
+        // floatingActionButton: _FloatingActionButton(),
       ),
     );
   }
