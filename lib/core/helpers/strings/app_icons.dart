@@ -35,4 +35,5 @@ abstract class AppIcons {
   static const String catJewelry = '$path/cat_jewelry.svg';
   static const String catMenClothes = '$path/cat_men_clothes.svg';
   static const String catWomenClothes = '$path/cat_women_clothes.svg';
+  static const String defaultCategoryIcon = '$path/voucher_outline.svg';
 }
