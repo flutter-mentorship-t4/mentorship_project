@@ -11,6 +11,7 @@ class SignupRepo {
   Future<Either> signUp(UserModel user) async {
     try {
       await signUpService.signUp(user);
+
       return Right('Sign Up Success');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
