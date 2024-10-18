@@ -39,7 +39,7 @@ class LoginBlocListener extends StatelessWidget {
           Text('Congratulations, you have Logged In successfully!', textAlign: TextAlign.center, style: TextStyles.font12BlackRegular),
           TextButton(
             onPressed: () {
-              context.pushNamed(Routes.homeScreen); //untill making Home Page
+              context.pushNamed(Routes.navigationScreen); //untill making Home Page
             },
             child: const Text('Continue', style: TextStyle(color: ColorsManager.primaryColor)),
           )

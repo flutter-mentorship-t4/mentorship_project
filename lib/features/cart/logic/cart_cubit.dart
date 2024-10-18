@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/features/cart/data/models/cart_item_model.dart';
 import 'package:mentorship_project/features/home/data/models/products_model.dart';
@@ -25,12 +26,14 @@ class CartCubit extends Cubit<CartState> {
   void loadCart() async {
     emit(CartLoadingState());
     try {
-      // debugPrint('----------------------entering loadCart ----------------------');
+      debugPrint(
+          '----------------------entering loadCart ----------------------');
       final cartItems = await _cartRepo.getCartItems();
       _updatePrices(cartItems);
     } catch (error) {
       // print('Error loading cart: $error'); // For debugging
-      emit(CartErrorState(FailureObj(errorMessage: 'Failed to load cart items: ${error.toString()}')));
+      emit(CartErrorState(FailureObj(
+          errorMessage: 'Failed to load cart items: ${error.toString()}')));
     }
   }
 
@@ -38,13 +41,17 @@ class CartCubit extends Cubit<CartState> {
     final currentState = state;
     if (currentState is CartLoadedState) {
       // Check if the product is already in the cart
-      final isInCart = currentState.items.any((item) => item.product.id == product.id);
+
+      final isInCart =
+          currentState.items.any((item) => item.product.id == product.id);
 
       if (isInCart) {
         // If the product is in the cart, remove it
+
         removeFromCart(product.id);
       } else {
         // If the product is not in the cart, add it
+
         addToCart(product);
       }
     }
@@ -57,7 +64,8 @@ class CartCubit extends Cubit<CartState> {
       _updatePrices([]);
     } catch (errror) {
       print('Error clearing the cart storage  $errror'); // For debugging
-      emit(CartErrorState(FailureObj(errorMessage: 'Error clearing the cart storag')));
+      emit(CartErrorState(
+          FailureObj(errorMessage: 'Error clearing the cart storag')));
     }
   }
 
@@ -67,7 +75,8 @@ class CartCubit extends Cubit<CartState> {
       try {
         await _cartRepo.addToCart(product);
         final updatedItems = List<CartItemModel>.from(currentState.items);
-        final existingItemIndex = updatedItems.indexWhere((item) => item.product.title == product.title);
+        final existingItemIndex = updatedItems
+            .indexWhere((item) => item.product.title == product.title);
         if (existingItemIndex != -1) {
           updatedItems[existingItemIndex].quantity++;
         } else {
@@ -85,7 +94,9 @@ class CartCubit extends Cubit<CartState> {
     if (currentState is CartLoadedState) {
       try {
         await _cartRepo.removeFromCart(productId);
-        final updatedItems = currentState.items.where((item) => item.product.id != productId).toList();
+        final updatedItems = currentState.items
+            .where((item) => item.product.id != productId)
+            .toList();
         _updatePrices(updatedItems);
       } catch (error) {
         emit(CartErrorState(FailureObj(errorMessage: error.toString())));
@@ -99,7 +110,8 @@ class CartCubit extends Cubit<CartState> {
       try {
         await _cartRepo.updateQuantity(productId, newQuantity);
         final updatedItems = List<CartItemModel>.from(currentState.items);
-        final itemIndex = updatedItems.indexWhere((item) => item.product.id == productId);
+        final itemIndex =
+            updatedItems.indexWhere((item) => item.product.id == productId);
         if (itemIndex != -1) {
           if (newQuantity > 0) {
             updatedItems[itemIndex].quantity = newQuantity;
@@ -118,9 +130,11 @@ class CartCubit extends Cubit<CartState> {
     final currentState = state;
     if (currentState is CartLoadedState) {
       final updatedItems = List<CartItemModel>.from(currentState.items);
-      final itemIndex = updatedItems.indexWhere((item) => item.product.id == productId);
+      final itemIndex =
+          updatedItems.indexWhere((item) => item.product.id == productId);
       if (itemIndex != -1) {
-        updatedItems[itemIndex].isSelected = !updatedItems[itemIndex].isSelected;
+        updatedItems[itemIndex].isSelected =
+            !updatedItems[itemIndex].isSelected;
         _updatePrices(updatedItems);
       }
       _cartRepo.saveCartItems(updatedItems);
@@ -129,9 +143,10 @@ class CartCubit extends Cubit<CartState> {
 
   //This method returns the total price of items in the cart
   void _updatePrices(List<CartItemModel> items) {
-    final totalPrice = items.fold(0.0, (total, item) => total + (item.product.price * item.quantity));
-    final selectedTotalPrice =
-        items.where((item) => item.isSelected).fold(0.0, (total, item) => total + (item.product.price * item.quantity));
+    final totalPrice = items.fold(
+        0.0, (total, item) => total + (item.product.price * item.quantity));
+    final selectedTotalPrice = items.where((item) => item.isSelected).fold(
+        0.0, (total, item) => total + (item.product.price * item.quantity));
     // debugPrint('----------------------Updating Total Price to $totalPrice----------------------');
     emit(
       CartLoadedState(

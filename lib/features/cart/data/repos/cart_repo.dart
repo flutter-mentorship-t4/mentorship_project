@@ -28,7 +28,8 @@ class CartRepo {
   // }
 
   Future<List<CartItemModel>> getCartItems() async {
-    final String? cartJson = await SharedPrefHelper.getString(SharedPrefKeys.cartKey);
+    final String? cartJson =
+        await SharedPrefHelper.getString(SharedPrefKeys.cartKey);
     // debugPrint('-------------cartJsoncartJsoncartJson---------$cartJson ----------------------');
     if (cartJson != null && cartJson.isNotEmpty) {
       final List<dynamic> decoded = jsonDecode(cartJson);
@@ -38,13 +39,15 @@ class CartRepo {
   }
 
   Future<void> saveCartItems(List<CartItemModel> items) async {
-    final String encoded = jsonEncode(items.map((item) => item.toJson()).toList());
+    final String encoded =
+        jsonEncode(items.map((item) => item.toJson()).toList());
     await SharedPrefHelper.setData(SharedPrefKeys.cartKey, encoded);
   }
 
   Future<void> addToCart(ProductModel product) async {
     final items = await getCartItems();
-    final existingItemIndex = items.indexWhere((item) => item.product.id == product.id);
+    final existingItemIndex =
+        items.indexWhere((item) => item.product.id == product.id);
     if (existingItemIndex != -1) {
       items[existingItemIndex].quantity++;
     } else {
@@ -81,5 +84,6 @@ class CartRepo {
     await saveCartItems(items);
   }
 
-  Future<void> clearCart() async => await SharedPrefHelper.removeData(SharedPrefKeys.cartKey);
+  Future<void> clearCart() async =>
+      await SharedPrefHelper.removeData(SharedPrefKeys.cartKey);
 }

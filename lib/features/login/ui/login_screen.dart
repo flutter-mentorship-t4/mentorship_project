@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentorship_project/core/config/theming/styles.dart';
-import 'package:mentorship_project/core/helpers/extensions/context_extensions.dart';
 import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
 import 'package:mentorship_project/core/helpers/spacing.dart';
 import 'package:mentorship_project/core/routing/routes.dart';
@@ -137,10 +136,10 @@ class LoginScreen extends StatelessWidget {
   }
 
   void validateAndLogin(BuildContext context) {
-    context.showLoading();
+    // context.showLoading();
     if (context.read<LoginCubit>().formKey.currentState!.validate()) {
       context.read<LoginCubit>().authenticateUser();
-      context.closeLoading();
+      // context.closeLoading();
     }
   }
 }

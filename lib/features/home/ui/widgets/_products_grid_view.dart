@@ -5,6 +5,9 @@ class _ProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartCubit = context.watch<CartCubit>();
+    final wishlistCubit = context.watch<WishlistCubit>();
+
     return BlocProvider.value(
       value: getIt<HomeCubit>(),
       // create: (context) => HomeCubit(getIt(), getIt(), getIt())..getProducts(),
@@ -23,8 +26,29 @@ class _ProductsGridView extends StatelessWidget {
                 ),
                 itemCount: state.products.length,
                 itemBuilder: (context, index) {
-                  return ProductItem(
-                    productModel: state.products[index],
+                  final prod = state.products[index];
+                  return GestureDetector(
+                    onTap: () {
+                      context.pushNamed(
+                        Routes.productDetailsScreen,
+                        arguments: prod,
+                      );
+                    },
+                    child: ProductItem(
+                      productModel: prod,
+                      CartIcon: cartCubit.isProductInCart(prod)
+                          ? AppIcons.cartPlus
+                          : AppIcons.cartPlusOutlined,
+                      onTapCartIcon: () {
+                        cartCubit.toggleCartItem(prod);
+                      },
+                      favIcon: wishlistCubit.isProductInWishlist(prod)
+                          ? AppIcons.heart
+                          : AppIcons.heartOutlined,
+                      onTapFavIcon: () {
+                        wishlistCubit.toggleWishlistItem(prod);
+                      },
+                    ),
                   );
                 },
               ),
