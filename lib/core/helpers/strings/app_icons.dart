@@ -8,7 +8,9 @@ abstract class AppIcons {
   static const String cash = '$path/cash.svg';
   static const String categories = '$path/categories.svg';
   static const String filter = '$path/filter.svg';
+  static const String heart = '$path/heart.svg';
   static const String heartOutlined = '$path/heart_outlined.svg';
+  static const String wishlist = '$path/wishlist.svg';
   static const String home = '$path/home.svg';
   static const String informationOutline = '$path/information_outline.svg';
   static const String location = '$path/location.svg';

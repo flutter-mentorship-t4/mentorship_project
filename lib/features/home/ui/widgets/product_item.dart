@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
 import 'package:mentorship_project/core/helpers/extensions/widgets_extentions.dart';
 import 'package:mentorship_project/core/routing/routes.dart';
+import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
 
 import '../../../../core/config/theming/colors.dart';
 import '../../../../core/config/theming/styles.dart';
@@ -14,14 +15,15 @@ import '../../../../core/widgets/app_icon_button.dart';
 import '../../../cart/logic/cart_cubit.dart';
 import '../../data/models/products_model.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItems extends StatelessWidget {
   final ProductModel productModel;
 
-  ProductItem({required this.productModel});
+  ProductItems({required this.productModel});
 
   @override
   Widget build(BuildContext context) {
     final cartCubit = context.watch<CartCubit>();
+    final wishlistCubit = context.watch<WishlistCubit>();
 
     return GestureDetector(
       onTap: () {
@@ -40,9 +42,14 @@ class ProductItem extends StatelessWidget {
               header: Row(
                 children: [
                   AppIconButton(
-                    onTap: () {},
+                    onTap: () {
+                     wishlistCubit.toggleWishlistItem(productModel);
+                    },
                     icon: SvgPicture.asset(
-                      AppIcons.heartOutlined,
+                     wishlistCubit.isProductInWishlist(productModel)
+                          ? AppIcons.heart
+                          : AppIcons.heartOutlined,
+                      // AppIcons.heart,
                       width: 20.w,
                     ),
                     width: 32.w,
@@ -60,7 +67,9 @@ class ProductItem extends StatelessWidget {
                       cartCubit.toggleCartItem(productModel);
                     },
                     icon: SvgPicture.asset(
-                      cartCubit.isProductInCart(productModel) ? AppIcons.cartPlus : AppIcons.cartPlusOutlined,
+                      cartCubit.isProductInCart(productModel)
+                          ? AppIcons.cartPlus
+                          : AppIcons.cartPlusOutlined,
                       width: 20.w,
                     ),
                     width: 32.w,

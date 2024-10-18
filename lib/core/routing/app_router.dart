@@ -9,6 +9,7 @@ import 'package:mentorship_project/features/navigations/navigation_screen.dart';
 import 'package:mentorship_project/features/product_details/ui/product_details_screen.dart';
 import 'package:mentorship_project/features/signup/logic/signup_cubit.dart';
 import 'package:mentorship_project/features/signup/ui/signup_screen.dart';
+import 'package:mentorship_project/features/wishlist/ui/wishlist_screen.dart';
 
 import '../../features/home/logic/home_cubit.dart';
 import '../../features/login/logic/login_cubit.dart';
@@ -45,11 +46,13 @@ class AppRouter {
       case Routes.homeScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => HomeCubit(getIt(), getIt()),
+            create: (context) => HomeCubit(getIt(), getIt(), getIt()),
             child: const HomeScreen(),
           ),
         );
 
+      case Routes.wishlistScreen:
+        return MaterialPageRoute(builder: (_) => WishListScreen());
       case Routes.cartScreen:
         return MaterialPageRoute(builder: (_) => CartScreen());
 

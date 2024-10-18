@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mentorship_project/core/config/theming/colors.dart';
+import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
 import 'package:mentorship_project/core/helpers/extensions/widgets_extentions.dart';
+import 'package:mentorship_project/core/routing/routes.dart';
 import 'package:mentorship_project/features/cart/ui/widgets/remove_confermation_dialog.dart';
 
 import '../../../../core/config/theming/styles.dart';
@@ -19,12 +22,14 @@ class CartScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: ColorsManager.white,
+
         title: Text('Cart', style: TextStyles.font22BlackSemiBold),
         centerTitle: true,
-        // leading: IconButton(
-        //   icon: Icon(Icons.arrow_back_ios_new),
-        //   onPressed: () => context.pop(),
-        // ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new),
+          onPressed: () => context.pushNamed(Routes.navigationScreen),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -46,10 +51,14 @@ class CartScreenBody extends StatelessWidget {
                           return CartItemWidget(
                             item: item,
                             onQuantityChanged: (newQuantity) {
-                              context.read<CartCubit>().updateQuantity(item.product.id, newQuantity);
+                              context
+                                  .read<CartCubit>()
+                                  .updateQuantity(item.product.id, newQuantity);
                             },
                             onSelectionChanged: () {
-                              context.read<CartCubit>().toggleItemSelection(item.product.id);
+                              context
+                                  .read<CartCubit>()
+                                  .toggleItemSelection(item.product.id);
                             },
                             onRemove: () {
                               showRemoveConfirmationDialog(context, item);
@@ -80,7 +89,8 @@ class CartScreenBody extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Selected Total', style: TextStyles.font15BlackSemiBold),
+                              Text('Selected Total',
+                                  style: TextStyles.font15BlackSemiBold),
                               Text(
                                 '${state.selectedTotalPrice.toStringAsFixed(2)} L.E',
                                 style: TextStyles.font15BlackRegular,
@@ -104,8 +114,10 @@ class CartScreenBody extends StatelessWidget {
                 );
               }
             } else if (state is CartErrorState) {
-              debugPrint('----------------------${state.failureObj.errorMessage} ----------------------');
-              return Center(child: Text('Error: ${state.failureObj.errorMessage}'));
+              debugPrint(
+                  '----------------------${state.failureObj.errorMessage} ----------------------');
+              return Center(
+                  child: Text('Error: ${state.failureObj.errorMessage}'));
             } else {
               return CartIsEmpty();
             }

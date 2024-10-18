@@ -1,7 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/core/networking/api_result.dart';
 import 'package:mentorship_project/features/home/data/models/products_model.dart';
 import 'package:mentorship_project/features/home/data/repos/products_repo.dart';
+import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
 
 import '../../cart/data/repos/cart_repo.dart';
 import 'home_state.dart';
@@ -10,8 +12,9 @@ class HomeCubit extends Cubit<HomeState> {
   final ProductsRepo _productsRepo;
   // final CategoriesRepo _categoriesRepo;
   final CartRepo _cartRepo;
+  final WishlistCubit wishlistCubit;
 
-  HomeCubit(this._productsRepo, this._cartRepo) : super(HomeInitialState());
+  HomeCubit(this._productsRepo, this._cartRepo, this.wishlistCubit) : super(HomeInitialState());
 
   Future<void> getProducts() async {
     emit(HomeLoadingState());
