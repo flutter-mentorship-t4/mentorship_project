@@ -24,7 +24,14 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     emit(CategoriesLoadingState());
     final result = await _categoriesRepo.getCategories();
     if (result is Success<List<CategoryModel>>) {
-      emit(CategoriesLoaded(categories: result.data));
+      // emit(CategoriesLoaded(categories: result.data));
+      final categories = result.data;
+      if (categories.isNotEmpty) {
+        // Automatically select the first category
+        await selectCategory(categories.first.name);
+      } else {
+        emit(CategoriesLoaded(categories: categories));
+      }
     } else if (result is Failure<List<CategoryModel>>) {
       emit(CategoriesErrorState(result.apiErrorModel.message ?? ''));
     }

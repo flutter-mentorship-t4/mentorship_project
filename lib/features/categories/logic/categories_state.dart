@@ -23,17 +23,6 @@ class CategorySelected extends CategoriesState {
   CategorySelected({required this.categories, required this.selectedCategory});
 }
 
-// class ProductsLoadingState extends CategoriesState {}
-
-// class ProductsLoaded extends CategoriesState {
-//   final List<ProductModel> products;
-//   ProductsLoaded({required this.products});
-// }
-
-// class ProductsErrorState extends CategoriesState {
-//   final String errorMessage;
-//   ProductsErrorState(this.errorMessage);
-// }
 class ProductsLoadingState extends CategoriesState {
   final List<CategoryModel> categories;
   final String selectedCategory;

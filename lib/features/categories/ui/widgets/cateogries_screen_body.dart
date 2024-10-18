@@ -13,8 +13,8 @@ import '../../../home/data/models/products_model.dart';
 import '../../../home/ui/widgets/product_item.dart';
 import '../../data/models/cateogory_model.dart';
 
-class CateogriesScreenBody extends StatelessWidget {
-  const CateogriesScreenBody({Key? key}) : super(key: key);
+class CategoriesScreenBody extends StatelessWidget {
+  const CategoriesScreenBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +27,18 @@ class CateogriesScreenBody extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: BlocBuilder<CategoriesCubit, CategoriesState>(
           builder: (context, state) {
-            if (state is CategoriesInitialState || state is CategoriesLoadingState) {
+            if (state is CategoriesInitialState) {
+              // Trigger loading of categories when the screen is first built
+              context.read<CategoriesCubit>().getCategories();
+              return Center(child: CircularProgressIndicator());
+            } else if (state is CategoriesLoadingState) {
               return Center(child: CircularProgressIndicator());
             } else if (state is CategoriesErrorState) {
               return Center(child: Text(state.errorMessage));
-            } else if (state is CategoriesLoaded ||
-                state is CategorySelected ||
-                state is ProductsLoadingState ||
-                state is ProductsLoaded ||
-                state is ProductsErrorState) {
+            } else {
               List<CategoryModel> categories = [];
               String? selectedCategory;
+              List<ProductModel>? products;
 
               if (state is CategoriesLoaded) {
                 categories = state.categories;
@@ -50,6 +51,7 @@ class CateogriesScreenBody extends StatelessWidget {
               } else if (state is ProductsLoaded) {
                 categories = state.categories;
                 selectedCategory = state.selectedCategory;
+                products = state.products;
               } else if (state is ProductsErrorState) {
                 categories = state.categories;
                 selectedCategory = state.selectedCategory;
@@ -58,13 +60,16 @@ class CateogriesScreenBody extends StatelessWidget {
               return Column(
                 children: [
                   SizedBox(height: 20),
-                  CategoryList(categories: categories, selectedCategory: selectedCategory),
+                  CategoryList(
+                    categories: categories,
+                    selectedCategory: selectedCategory,
+                  ),
                   SizedBox(height: 20),
-                  if (selectedCategory != null) _buildProductSection(context),
+                  Expanded(
+                    child: _buildProductSection(context, state, products),
+                  ),
                 ],
               );
-            } else {
-              return Center(child: Text('Unexpected state'));
             }
           },
         ),
@@ -72,37 +77,62 @@ class CateogriesScreenBody extends StatelessWidget {
     );
   }
 
-  Widget _buildProductSection(BuildContext context) {
+  Widget _buildProductSection(BuildContext context, CategoriesState state, List<ProductModel>? products) {
+    if (state is ProductsLoadingState) {
+      return Center(child: CircularProgressIndicator());
+    } else if (state is ProductsErrorState) {
+      return Center(child: Text(state.errorMessage));
+    } else if (products != null) {
+      return ProductsGrid(products: products);
+    } else {
+      return Center(child: Text('Select a category to view products'));
+    }
+  }
+
+  // Widget _buildProductSection(BuildContext context) {
+  //   return Expanded(
+  //     child: BlocBuilder<CategoriesCubit, CategoriesState>(
+  //       builder: (context, state) {
+  //         if (state is ProductsLoadingState) {
+  //           return Center(child: CircularProgressIndicator());
+  //         } else if (state is ProductsErrorState) {
+  //           return Center(child: Text(state.errorMessage));
+  //         } else if (state is ProductsLoaded) {
+  //           return ProductsGrid(products: state.products);
+  //         } else {
+  //           return SizedBox.shrink();
+  //         }
+  //       },
+  //     ),
+  //   );
+  // }
+}
+
+class ProductsGrid extends StatelessWidget {
+  final List<ProductModel> products;
+  const ProductsGrid({
+    super.key,
+    required this.products,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return BlocProvider.value(
       value: getIt<CartCubit>(),
-      child: Expanded(
-        child: BlocBuilder<CategoriesCubit, CategoriesState>(
-          builder: (context, state) {
-            if (state is ProductsLoadingState) {
-              return Center(child: CircularProgressIndicator());
-            } else if (state is ProductsErrorState) {
-              return Center(child: Text(state.errorMessage));
-            } else if (state is ProductsLoaded) {
-              return GridView.builder(
-                // padding: EdgeInsets.symmetric(horizontal: 24.w),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10.w,
-                  mainAxisSpacing: 10.h,
-                  childAspectRatio: 2.5 / 4,
-                ),
-                itemCount: state.products.length,
-                itemBuilder: (context, index) {
-                  return ProductItem(
-                    productModel: state.products[index],
-                  );
-                },
-              );
-            } else {
-              return SizedBox.shrink();
-            }
-          },
+      child: GridView.builder(
+        // padding: EdgeInsets.symmetric(horizontal: 24.w),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10.w,
+          mainAxisSpacing: 10.h,
+          childAspectRatio: 2.5 / 4,
         ),
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          return ProductItem(
+            productModel: products[index],
+          );
+        },
       ),
     );
   }
@@ -174,59 +204,59 @@ class CategoryList extends StatelessWidget {
   }
 }
 
-class ProductGrid extends StatelessWidget {
-  final List<ProductModel> products;
+// class ProductGrid extends StatelessWidget {
+//   final List<ProductModel> products;
 
-  const ProductGrid({
-    Key? key,
-    required this.products,
-  }) : super(key: key);
+//   const ProductGrid({
+//     Key? key,
+//     required this.products,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 0.75,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-      ),
-      itemCount: products.length,
-      itemBuilder: (context, index) {
-        final product = products[index];
-        return Card(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Image.network(
-                  product.image,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      '\$${product.price.toStringAsFixed(2)}',
-                      style: TextStyle(color: Colors.green),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return GridView.builder(
+//       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//         crossAxisCount: 2,
+//         childAspectRatio: 0.75,
+//         crossAxisSpacing: 10,
+//         mainAxisSpacing: 10,
+//       ),
+//       itemCount: products.length,
+//       itemBuilder: (context, index) {
+//         final product = products[index];
+//         return Card(
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Expanded(
+//                 child: Image.network(
+//                   product.image,
+//                   fit: BoxFit.cover,
+//                 ),
+//               ),
+//               Padding(
+//                 padding: EdgeInsets.all(8),
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text(
+//                       product.title,
+//                       maxLines: 2,
+//                       overflow: TextOverflow.ellipsis,
+//                       style: TextStyle(fontWeight: FontWeight.bold),
+//                     ),
+//                     SizedBox(height: 4),
+//                     Text(
+//                       '\$${product.price.toStringAsFixed(2)}',
+//                       style: TextStyle(color: Colors.green),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ],
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }

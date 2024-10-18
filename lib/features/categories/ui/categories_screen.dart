@@ -12,7 +12,7 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: getIt<CategoriesCubit>()..getCategories(),
-      child: const CateogriesScreenBody(),
+      child: const CategoriesScreenBody(),
     );
   }
 }
