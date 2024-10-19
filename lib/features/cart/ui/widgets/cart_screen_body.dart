@@ -96,7 +96,7 @@ class CartScreenBody extends StatelessWidget {
                             label: 'Checkout',
                             textStyle: TextStyles.font20WhiteSemiBold,
                             onTap: () {
-                              // Go to checkout screen
+                              context.pushNamed(Routes.checkoutScreen);
                             },
                             borderRadius: 24,
                             width: 328.w,

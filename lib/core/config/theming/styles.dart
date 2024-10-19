@@ -50,6 +50,12 @@ class TextStyles {
     fontWeight: FontWeightHelper.bold,
     color: ColorsManager.primaryColor,
   );
+  static TextStyle font18blackBold = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: ColorsManager.black,
+  );
+ 
   static TextStyle font13BlackRegular = TextStyle(
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.regular,
