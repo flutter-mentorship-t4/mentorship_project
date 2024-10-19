@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mentorship_project/core/routing/routes.dart';
-import 'package:mentorship_project/features/cart/ui/cart_screen.dart';
-import 'package:mentorship_project/features/categories/ui/categories_screen.dart';
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
-import 'package:mentorship_project/features/home/ui/home_screen.dart';
-import 'package:mentorship_project/features/navigations/navigation_screen.dart';
-import 'package:mentorship_project/features/product_details/ui/product_details_screen.dart';
-import 'package:mentorship_project/features/signup/logic/signup_cubit.dart';
-import 'package:mentorship_project/features/signup/ui/signup_screen.dart';
-import 'package:mentorship_project/features/wishlist/ui/wishlist_screen.dart';
 
+import '../../features/cart/ui/cart_screen.dart';
+import '../../features/categories/ui/categories_screen.dart';
+import '../../features/home/data/models/products_model.dart';
 import '../../features/home/logic/home_cubit.dart';
+import '../../features/home/ui/home_screen.dart';
 import '../../features/login/logic/login_cubit.dart';
 import '../../features/login/ui/login_screen.dart';
+import '../../features/navigations/navigation_screen.dart';
 import '../../features/product_details/data/models/dummy_product.dart';
+import '../../features/product_details/ui/product_details_screen.dart';
+import '../../features/signup/logic/signup_cubit.dart';
+import '../../features/signup/ui/signup_screen.dart';
+import '../../features/wishlist/ui/wishlist_screen.dart';
 import '../di/dependency_injection.dart';
+import 'routes.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {

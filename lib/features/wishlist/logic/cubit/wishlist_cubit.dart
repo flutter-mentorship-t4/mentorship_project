@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
-import 'package:mentorship_project/features/wishlist/data/repo/wishlist_repo.dart';
-import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_state.dart';
+
+import '../../../home/data/models/products_model.dart';
+import '../../data/repo/wishlist_repo.dart';
+import 'wishlist_state.dart';
 
 class WishlistCubit extends Cubit<WishlistState> {
   final WishlistRepo _wishlistRepo;

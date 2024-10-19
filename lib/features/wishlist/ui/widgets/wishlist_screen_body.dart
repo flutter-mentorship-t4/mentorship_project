@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
-import 'package:mentorship_project/core/helpers/extensions/widgets_extentions.dart';
-import 'package:mentorship_project/core/routing/routes.dart';
 
 import '../../../../core/config/theming/colors.dart';
 import '../../../../core/config/theming/styles.dart';
+import '../../../../core/helpers/extensions/navigations_extensions.dart';
+import '../../../../core/helpers/extensions/widgets_extentions.dart';
+import '../../../../core/routing/routes.dart';
 import '../../logic/cubit/wishlist_cubit.dart';
 import '../../logic/cubit/wishlist_state.dart';
 import 'empty_wishlist.dart';

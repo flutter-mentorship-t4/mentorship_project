@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
 
 import '../../../../core/config/theming/styles.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../home/data/models/products_model.dart';
 import 'product_rating_and_review.dart';
 
 class ProductNameReviewPriceDesc extends StatelessWidget {

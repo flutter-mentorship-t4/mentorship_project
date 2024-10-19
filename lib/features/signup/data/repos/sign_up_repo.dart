@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mentorship_project/features/signup/data/apis/sign_up_services.dart';
-import 'package:mentorship_project/features/signup/data/models/user_model.dart';
+
+import '../apis/sign_up_services.dart';
+import '../models/user_model.dart';
 
 class SignupRepo {
   final SignUpService signUpService;

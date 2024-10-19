@@ -1,6 +1,5 @@
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
-
 import '../../../core/networking/api_error_model.dart';
+import '../data/models/products_model.dart';
 
 sealed class HomeState {}
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
-import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
-import 'package:mentorship_project/core/routing/routes.dart';
+
+import '../../../../core/config/theming/styles.dart';
+import '../../../../core/helpers/extensions/navigations_extensions.dart';
+import '../../../../core/routing/routes.dart';
 
 class AlreadyHaveAnAccount extends StatelessWidget {
   const AlreadyHaveAnAccount({super.key});

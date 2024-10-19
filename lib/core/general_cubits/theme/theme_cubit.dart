@@ -1,7 +1,8 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
-import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../helpers/shared_pref_helper.dart';
+import '../../helpers/strings/shared_pref_keys.dart';
 import 'theme_state.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
@@ -10,8 +11,7 @@ class ThemeCubit extends Cubit<ThemeState> {
   }
 
   Future<void> _loadThemeFromPreferences() async {
-    final isDarkTheme =
-        await SharedPrefHelper.getBool(SharedPrefKeys.themeKey) ?? false;
+    final isDarkTheme = await SharedPrefHelper.getBool(SharedPrefKeys.themeKey) ?? false;
     emit(isDarkTheme ? const ThemeState.dark() : const ThemeState.light());
   }
 

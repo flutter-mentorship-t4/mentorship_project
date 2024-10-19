@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/config/theming/colors.dart';
-import 'package:mentorship_project/core/helpers/strings/app_images.dart';
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
+
+import '../../../../core/config/theming/colors.dart';
+import '../../../../core/helpers/strings/app_images.dart';
+import '../../../home/data/models/products_model.dart';
 
 class ProductImagesCarousel extends StatefulWidget {
   final ProductModel product;

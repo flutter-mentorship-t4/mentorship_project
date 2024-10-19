@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
-import 'package:mentorship_project/core/helpers/spacing.dart';
-import 'package:mentorship_project/core/widgets/app_button.dart';
-import 'package:mentorship_project/core/widgets/sign_with_social.dart';
-import 'package:mentorship_project/features/signup/logic/signup_cubit.dart';
-import 'package:mentorship_project/features/signup/ui/widgets/already_have_an_account.dart';
-import 'package:mentorship_project/features/signup/ui/widgets/email_and_pass_fields.dart';
-import 'package:mentorship_project/features/signup/ui/widgets/signup_bloc_listener.dart';
+
+import '../../../core/config/theming/styles.dart';
+import '../../../core/helpers/spacing.dart';
+import '../../../core/widgets/app_button.dart';
+import '../../../core/widgets/sign_with_social.dart';
+import '../logic/signup_cubit.dart';
+import 'widgets/already_have_an_account.dart';
+import 'widgets/email_and_pass_fields.dart';
+import 'widgets/signup_bloc_listener.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});

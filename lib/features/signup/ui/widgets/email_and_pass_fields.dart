@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/helpers/app_regex.dart';
-import 'package:mentorship_project/core/helpers/spacing.dart';
-import 'package:mentorship_project/core/widgets/app_text_form_field.dart';
-import 'package:mentorship_project/features/signup/logic/signup_cubit.dart';
-import 'package:mentorship_project/features/signup/ui/widgets/password_validation.dart';
+
+import '../../../../core/helpers/app_regex.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/widgets/app_text_form_field.dart';
+import '../../logic/signup_cubit.dart';
+import 'password_validation.dart';
 
 class EmailAndPassFields extends StatefulWidget {
   const EmailAndPassFields({
@@ -61,8 +62,7 @@ class _EmailAndPassFieldsState extends State<EmailAndPassFields> {
               }
             },
             controller: context.read<SignupCubit>().nameController,
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
+            contentPadding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
           ),
           verticalSpace(20),
           AppTextFormField(
@@ -73,16 +73,13 @@ class _EmailAndPassFieldsState extends State<EmailAndPassFields> {
               }
             },
             controller: context.read<SignupCubit>().emailController,
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
+            contentPadding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
           ),
           verticalSpace(20),
           AppTextFormField(
             hintText: 'Password',
             validator: (val) {
-              if (val == null ||
-                  val.isEmpty ||
-                  !AppRegex.isPasswordValid(val)) {
+              if (val == null || val.isEmpty || !AppRegex.isPasswordValid(val)) {
                 return 'Please Enter a valid Password';
               }
             },
@@ -99,8 +96,7 @@ class _EmailAndPassFieldsState extends State<EmailAndPassFields> {
               ),
             ),
             isObscureText: isPassObscured,
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
+            contentPadding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
           ),
           verticalSpace(10),
           PasswordValidation(

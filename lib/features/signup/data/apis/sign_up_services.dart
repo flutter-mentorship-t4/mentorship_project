@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mentorship_project/features/signup/data/models/user_model.dart';
+
+import '../models/user_model.dart';
 
 class SignUpService {
   Future<void> signUp(UserModel userData) async {

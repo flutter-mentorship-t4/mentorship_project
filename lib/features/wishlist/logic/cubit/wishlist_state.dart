@@ -1,4 +1,4 @@
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
+import '../../../home/data/models/products_model.dart';
 
 sealed class WishlistState {}
 

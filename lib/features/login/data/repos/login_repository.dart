@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:mentorship_project/features/login/data/apis/log_in_services.dart';
-import 'package:mentorship_project/features/login/data/models/failure.dart';
-import 'package:mentorship_project/features/login/data/models/user_login_model.dart';
+
+import '../apis/log_in_services.dart';
+import '../models/failure.dart';
+import '../models/user_login_model.dart';
 
 class LoginRepository {
   final LogInServices _loginService;

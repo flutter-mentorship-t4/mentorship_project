@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
-import 'package:mentorship_project/core/helpers/spacing.dart';
 
+import '../../../../core/config/theming/styles.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../generated/localization_keys.g.dart';
 import 'color_circle.dart';
 

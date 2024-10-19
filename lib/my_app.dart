@@ -2,12 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/config/theming/colors.dart';
-import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
 
 import '../../core/general_cubits/theme/theme_cubit.dart';
 import '../../core/general_cubits/theme/theme_state.dart';
 import '../../core/routing/app_router.dart';
+import 'core/config/theming/colors.dart';
+import 'core/helpers/strings/shared_pref_keys.dart';
 import 'core/routing/routes.dart';
 
 class MyApp extends StatelessWidget {
@@ -36,8 +36,7 @@ class MyApp extends StatelessWidget {
                     scaffoldBackgroundColor: ColorsManager.greyFC,
                   ),
               debugShowCheckedModeBanner: false,
-
-              initialRoute:isLoggedInUser? Routes.navigationScreen:Routes.loginScreen,
+              initialRoute: isLoggedInUser ? Routes.navigationScreen : Routes.loginScreen,
               onGenerateRoute: appRouter.generateRoute,
             );
           },

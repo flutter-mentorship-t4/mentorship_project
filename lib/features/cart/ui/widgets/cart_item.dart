@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/config/theming/colors.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
-import 'package:mentorship_project/core/helpers/spacing.dart';
-import 'package:mentorship_project/core/widgets/app_icon_button.dart';
 
+import '../../../../core/config/theming/colors.dart';
+import '../../../../core/config/theming/styles.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/widgets/app_icon_button.dart';
 import '../../data/models/cart_item_model.dart';
 
 class CartItemWidget extends StatelessWidget {

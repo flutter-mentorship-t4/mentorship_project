@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mentorship_project/core/helpers/extensions/context_extensions.dart';
 
+import '../../../../core/helpers/extensions/context_extensions.dart';
 import '../../data/models/dummy_product.dart';
 import 'product_card.dart';
 

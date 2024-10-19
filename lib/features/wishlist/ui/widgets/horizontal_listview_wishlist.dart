@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/helpers/spacing.dart';
-import 'package:mentorship_project/core/widgets/category_button_item.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/widgets/category_button_item.dart';
 
 class HorizontalListViewWishList extends StatelessWidget {
   const HorizontalListViewWishList({

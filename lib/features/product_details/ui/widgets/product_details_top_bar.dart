@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mentorship_project/core/config/theming/colors.dart';
-import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
-import 'package:mentorship_project/core/widgets/app_bottom_sheet.dart';
-import 'package:mentorship_project/core/widgets/app_icon_button.dart';
+
+import '../../../../core/config/theming/colors.dart';
+import '../../../../core/helpers/extensions/navigations_extensions.dart';
+import '../../../../core/widgets/app_bottom_sheet.dart';
+import '../../../../core/widgets/app_icon_button.dart';
 
 class ProductDetailsTopBar extends StatelessWidget {
   const ProductDetailsTopBar({Key? key}) : super(key: key);

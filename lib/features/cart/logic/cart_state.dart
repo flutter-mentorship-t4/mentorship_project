@@ -1,6 +1,5 @@
-import 'package:mentorship_project/features/cart/data/models/failure_obj.dart';
-
 import '../data/models/cart_item_model.dart';
+import '../data/models/failure_obj.dart';
 
 sealed class CartState {}
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mentorship_project/core/config/theming/colors.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
-import 'package:mentorship_project/core/helpers/strings/app_icons.dart';
+
+import '../config/theming/colors.dart';
+import '../config/theming/styles.dart';
+import '../helpers/strings/app_icons.dart';
 
 class CategoryButtonItem extends StatelessWidget {
   final String title;
@@ -23,9 +24,7 @@ class CategoryButtonItem extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
         decoration: BoxDecoration(
-          color: isSelected
-              ? ColorsManager.primaryColor
-              : ColorsManager.lightPrimary,
+          color: isSelected ? ColorsManager.primaryColor : ColorsManager.lightPrimary,
           borderRadius: BorderRadius.circular(13.r),
         ),
         child: Row(
@@ -33,9 +32,7 @@ class CategoryButtonItem extends StatelessWidget {
           children: [
             Text(
               title,
-              style: isSelected
-                  ? TextStyles.font16LightPrimaryRegular
-                  : TextStyles.font12PrimaryRegular,
+              style: isSelected ? TextStyles.font16LightPrimaryRegular : TextStyles.font12PrimaryRegular,
             ),
             isSelected
                 ? SizedBox(

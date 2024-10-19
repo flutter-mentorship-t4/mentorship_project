@@ -1,5 +1,4 @@
-import 'package:mentorship_project/core/helpers/strings/app_icons.dart';
-
+import '../../../../core/helpers/strings/app_icons.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/networking/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';

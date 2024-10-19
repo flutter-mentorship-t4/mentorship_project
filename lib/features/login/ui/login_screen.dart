@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
-import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
-import 'package:mentorship_project/core/helpers/spacing.dart';
-import 'package:mentorship_project/core/routing/routes.dart';
-import 'package:mentorship_project/core/widgets/app_button.dart';
-import 'package:mentorship_project/core/widgets/sign_with_social.dart';
-import 'package:mentorship_project/features/login/logic/login_cubit.dart';
-import 'package:mentorship_project/features/login/logic/login_state.dart';
-import 'package:mentorship_project/features/login/ui/widget/donot_have_account.dart';
-import 'package:mentorship_project/features/login/ui/widget/email_and_pass_fields.dart';
-import 'package:mentorship_project/features/login/ui/widget/login_bloc_listener.dart';
+
+import '../../../core/config/theming/styles.dart';
+import '../../../core/helpers/extensions/navigations_extensions.dart';
+import '../../../core/helpers/spacing.dart';
+import '../../../core/routing/routes.dart';
+import '../../../core/widgets/app_button.dart';
+import '../../../core/widgets/sign_with_social.dart';
+import '../logic/login_cubit.dart';
+import '../logic/login_state.dart';
+import 'widget/donot_have_account.dart';
+import 'widget/email_and_pass_fields.dart';
+import 'widget/login_bloc_listener.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -101,18 +102,14 @@ class LoginScreen extends StatelessWidget {
                             SignWithSocial(
                               assetsName: 'assets/icons/google.svg',
                               ontap: () async {
-                                await context
-                                    .read<LoginCubit>()
-                                    .signInWithGoogle();
+                                await context.read<LoginCubit>().signInWithGoogle();
                               },
                             ),
                             horizontalSpace(20),
                             SignWithSocial(
                               assetsName: 'assets/icons/facebook.svg',
                               ontap: () async {
-                                  await context
-                                      .read<LoginCubit>()
-                                      .signInWithFacebook();
+                                await context.read<LoginCubit>().signInWithFacebook();
                               },
                             ),
                             horizontalSpace(20),

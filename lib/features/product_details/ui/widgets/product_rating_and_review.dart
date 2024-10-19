@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
 
 import '../../../../core/config/theming/styles.dart';
+import '../../../home/data/models/products_model.dart';
 
 class ProductNameAndReview extends StatelessWidget {
   const ProductNameAndReview({super.key, required this.product});

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mentorship_project/features/cart/data/models/cart_item_model.dart';
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
 
+import '../../home/data/models/products_model.dart';
+import '../data/models/cart_item_model.dart';
 import '../data/models/failure_obj.dart';
 import '../data/repos/cart_repo.dart';
 import 'cart_state.dart';

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mentorship_project/core/helpers/spacing.dart';
-import 'package:mentorship_project/features/cart/logic/cart_cubit.dart';
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
-import 'package:mentorship_project/features/product_details/ui/widgets/product_color_selection.dart';
 
 import '../../../core/di/dependency_injection.dart';
+import '../../../core/helpers/spacing.dart';
+import '../../cart/logic/cart_cubit.dart';
+import '../../home/data/models/products_model.dart';
 import 'widgets/product_action_button.dart';
+import 'widgets/product_color_selection.dart';
 import 'widgets/product_details_top_bar.dart';
 import 'widgets/product_grid_view.dart';
 import 'widgets/product_images_carousel.dart';

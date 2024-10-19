@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/config/theming/colors.dart';
-import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
-import 'package:mentorship_project/core/helpers/extensions/widgets_extentions.dart';
-import 'package:mentorship_project/core/routing/routes.dart';
-import 'package:mentorship_project/features/cart/ui/widgets/remove_confermation_dialog.dart';
 
+import '../../../../core/config/theming/colors.dart';
 import '../../../../core/config/theming/styles.dart';
+import '../../../../core/helpers/extensions/navigations_extensions.dart';
+import '../../../../core/helpers/extensions/widgets_extentions.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../logic/cart_cubit.dart';
 import '../../logic/cart_state.dart';
 import 'cart_is_empty.dart';
 import 'cart_item.dart';
+import 'remove_confermation_dialog.dart';
 
 class CartScreenBody extends StatelessWidget {
   const CartScreenBody({Key? key}) : super(key: key);

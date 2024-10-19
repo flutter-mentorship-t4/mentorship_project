@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
-
+import '../../../../core/helpers/shared_pref_helper.dart';
 import '../../../../core/helpers/strings/shared_pref_keys.dart';
+import '../../../home/data/models/products_model.dart';
 import '../models/cart_item_model.dart';
 
 class CartRepo {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
-import 'package:mentorship_project/core/helpers/spacing.dart';
 
 import '../../../../core/config/theming/colors.dart';
+import '../../../../core/config/theming/styles.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../data/models/cateogory_model.dart';
 
 class CategoryList extends StatefulWidget {

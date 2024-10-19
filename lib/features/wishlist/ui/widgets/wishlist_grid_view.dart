@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/features/cart/logic/cart_cubit.dart';
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
-import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
 
 import '../../../../core/di/dependency_injection.dart';
-import '../../../home/ui/widgets/product_item.dart';
+import '../../../../core/widgets/product_item.dart';
+import '../../../cart/logic/cart_cubit.dart';
+import '../../../home/data/models/products_model.dart';
+import '../../logic/cubit/wishlist_cubit.dart';
 
 // class WishlistGridView extends StatelessWidget {
 //   const WishlistGridView({Key? key, required this.items}) : super(key: key);
@@ -67,7 +67,7 @@ class WishlistGridView extends StatelessWidget {
         ),
         itemCount: products.length,
         itemBuilder: (context, index) {
-          return ProductItems(
+          return ProductItem(
             productModel: products[index],
           );
         },

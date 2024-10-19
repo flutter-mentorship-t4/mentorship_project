@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
-import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
-import 'package:mentorship_project/features/home/data/models/products_model.dart';
+import '../../../../core/helpers/shared_pref_helper.dart';
+import '../../../../core/helpers/strings/shared_pref_keys.dart';
+import '../../../home/data/models/products_model.dart';
 
 class WishlistRepo {
   // Future<List<WishlistItemModel>> getAllWishlistItems() async {

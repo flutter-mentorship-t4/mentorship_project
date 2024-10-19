@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mentorship_project/core/helpers/strings/app_images.dart';
 
+import '../../../../core/helpers/strings/app_images.dart';
 import '../../data/models/dummy_product.dart';
 
 class ProductCard extends StatelessWidget {
