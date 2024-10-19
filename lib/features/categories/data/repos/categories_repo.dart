@@ -42,6 +42,7 @@ class CategoriesRepo {
   Future<ApiResult<List<ProductModel>>> getProductsByCategory(String category) async {
     try {
       final response = await _apiService.getProductsByCategory(category);
+      await Future.delayed(const Duration(milliseconds: 800));
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ApiErrorHandler.handle(error));

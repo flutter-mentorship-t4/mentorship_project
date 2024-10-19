@@ -12,9 +12,21 @@ class _CustomAppBar extends StatelessWidget {
           width: 32.w,
         ),
         horizontalSpace(8),
-        Text(
-          'Welcome, Husam',
-          style: TextStyles.font14BlackRegular,
+        BlocProvider(
+          create: (context) => UserCubit(),
+          child: BlocBuilder<UserCubit, Map<String, String?>>(
+            builder: (context, state) {
+              if (state[SharedPrefKeys.userName] == null &&
+                  state[SharedPrefKeys.userEmail] == null) {
+                context.read<UserCubit>().loadUserData();
+                return Center(child: CircularProgressIndicator());
+              }
+              return Text(
+                'Welcome, ${state[SharedPrefKeys.userName]}',
+                style: TextStyles.font14BlackRegular,
+              );
+            },
+          ),
         ),
         const Spacer(),
         SvgPicture.asset(

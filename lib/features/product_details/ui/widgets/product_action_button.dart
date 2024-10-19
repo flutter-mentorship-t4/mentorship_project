@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
 
 import '../../../../core/config/theming/colors.dart';
 import '../../../../core/helpers/spacing.dart';
@@ -22,6 +23,8 @@ class ProductActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartCubit = context.watch<CartCubit>();
     final isInCart = cartCubit.isProductInCart(productModel);
+    final wishlistCubit = context.watch<WishlistCubit>();
+    final isInWishlist = wishlistCubit.isProductInWishlist(productModel);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.5),
@@ -29,8 +32,12 @@ class ProductActionButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           AppIconButton(
-            onTap: () {},
-            icon: Icon(Icons.favorite_border),
+            onTap: () {
+              wishlistCubit.toggleWishlist(productModel);
+            },
+            icon: Icon(
+              isInWishlist ? Icons.favorite : Icons.favorite_border,
+            ),
             backgroundColor: ColorsManager.greyEC,
           ),
           Column(

@@ -47,7 +47,7 @@ class SignUpScreen extends StatelessWidget {
                       textStyle: TextStyles.font18WhiteRegular,
                       onTap: () {
                         finishingSignUpAndCreateAccount(context);
-                      }, //////////////////////////////now manage it
+                      },
                       width: double.infinity,
                       borderRadius: 30.r,
                     ),

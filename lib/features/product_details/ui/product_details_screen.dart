@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
 
 import '../../../core/di/dependency_injection.dart';
 import '../../../core/helpers/spacing.dart';
@@ -19,8 +20,15 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: getIt<CartCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(
+          value: getIt<CartCubit>(),
+        ),
+        BlocProvider.value(
+          value: getIt<WishlistCubit>(),
+        ),
+      ],
       child: Scaffold(
         body: Stack(
           children: [
@@ -70,9 +78,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 24),
                     controller: scrollController,
                     children: [
-                      ProductActionButtons(
-                        productModel: product,
-                      ),
+                      ProductActionButtons(productModel: product),
                       ProductGridView(),
                     ],
                   ),

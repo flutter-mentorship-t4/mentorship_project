@@ -11,8 +11,9 @@ class _FloatingActionButton extends StatelessWidget {
       ),
       backgroundColor: ColorsManager.primaryColor,
       child: Icon(Icons.add, color: Colors.white, size: 20.w),
-      onPressed: ()async {
+      onPressed: () async {
         await FirebaseAuth.instance.signOut();
+        await SharedPrefHelper.clearAllData();
         context.pushNamed(Routes.loginScreen);
       },
     ).widthAndHeight(width: 40.w, height: 40.h);
