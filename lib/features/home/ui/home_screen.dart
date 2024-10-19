@@ -10,10 +10,10 @@ import 'package:mentorship_project/core/routing/routes.dart';
 import 'package:mentorship_project/core/widgets/app_icon_button.dart';
 import 'package:mentorship_project/core/widgets/app_text_form_field.dart';
 import 'package:mentorship_project/core/widgets/category_button_item.dart';
-import 'package:mentorship_project/core/widgets/product_item.dart';
 import 'package:mentorship_project/features/cart/logic/cart_cubit.dart';
 import 'package:mentorship_project/features/home/logic/home_cubit.dart';
 import 'package:mentorship_project/features/home/logic/home_state.dart';
+import 'package:mentorship_project/features/home/ui/widgets/product_item.dart';
 import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
 
 import '../../../core/config/theming/styles.dart';
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
       providers: [
         BlocProvider<HomeCubit>.value(value: getIt()),
         // BlocProvider<CartCubit>.value(value: getIt()),
-        BlocProvider<WishlistCubit>.value(value: getIt()),
+        // BlocProvider<WishlistCubit>.value(value: getIt()),
       ],
       child: SafeArea(
         child: Scaffold(

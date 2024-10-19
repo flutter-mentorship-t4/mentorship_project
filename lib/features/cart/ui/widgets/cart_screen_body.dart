@@ -23,7 +23,6 @@ class CartScreenBody extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorsManager.white,
-
         title: Text('Cart', style: TextStyles.font22BlackSemiBold),
         centerTitle: true,
         leading: IconButton(
@@ -51,14 +50,10 @@ class CartScreenBody extends StatelessWidget {
                           return CartItemWidget(
                             item: item,
                             onQuantityChanged: (newQuantity) {
-                              context
-                                  .read<CartCubit>()
-                                  .updateQuantity(item.product.id, newQuantity);
+                              context.read<CartCubit>().updateQuantity(item.product.id, newQuantity);
                             },
                             onSelectionChanged: () {
-                              context
-                                  .read<CartCubit>()
-                                  .toggleItemSelection(item.product.id);
+                              context.read<CartCubit>().toggleItemSelection(item.product.id);
                             },
                             onRemove: () {
                               showRemoveConfirmationDialog(context, item);
@@ -89,8 +84,7 @@ class CartScreenBody extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Selected Total',
-                                  style: TextStyles.font15BlackSemiBold),
+                              Text('Selected Total', style: TextStyles.font15BlackSemiBold),
                               Text(
                                 '${state.selectedTotalPrice.toStringAsFixed(2)} L.E',
                                 style: TextStyles.font15BlackRegular,
@@ -114,10 +108,8 @@ class CartScreenBody extends StatelessWidget {
                 );
               }
             } else if (state is CartErrorState) {
-              debugPrint(
-                  '----------------------${state.failureObj.errorMessage} ----------------------');
-              return Center(
-                  child: Text('Error: ${state.failureObj.errorMessage}'));
+              debugPrint('----------------------${state.failureObj.errorMessage} ----------------------');
+              return Center(child: Text('Error: ${state.failureObj.errorMessage}'));
             } else {
               return CartIsEmpty();
             }

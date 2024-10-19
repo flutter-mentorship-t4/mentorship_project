@@ -41,10 +41,11 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<LoginRepository>(() => LoginRepository(getIt()));
 //wishlist
   getIt.registerLazySingleton<WishlistRepo>(() => WishlistRepo());
-  getIt.registerLazySingleton<WishlistCubit>(() => WishlistCubit(getIt())..emitWishlist());
 
   getIt.registerLazySingleton<HomeCubit>(() => HomeCubit(getIt(), getIt(), getIt())..getProducts());
   getIt.registerLazySingleton<CartCubit>(() => CartCubit(getIt())..loadCart());
+  getIt.registerLazySingleton<WishlistCubit>(() => WishlistCubit(getIt())..loadWishlist());
+
   getIt.registerLazySingleton<CategoriesCubit>(() => CategoriesCubit(getIt()));
   getIt.registerLazySingleton<ProductsCubit>(() => ProductsCubit(getIt()));
 }

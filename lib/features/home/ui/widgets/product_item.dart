@@ -43,12 +43,10 @@ class ProductItems extends StatelessWidget {
                 children: [
                   AppIconButton(
                     onTap: () {
-                     wishlistCubit.toggleWishlistItem(productModel);
+                      wishlistCubit.toggleWishlist(productModel);
                     },
                     icon: SvgPicture.asset(
-                     wishlistCubit.isProductInWishlist(productModel)
-                          ? AppIcons.heart
-                          : AppIcons.heartOutlined,
+                      wishlistCubit.isProductInWishlist(productModel) ? AppIcons.heart : AppIcons.heartOutlined,
                       // AppIcons.heart,
                       width: 20.w,
                     ),
@@ -67,9 +65,7 @@ class ProductItems extends StatelessWidget {
                       cartCubit.toggleCartItem(productModel);
                     },
                     icon: SvgPicture.asset(
-                      cartCubit.isProductInCart(productModel)
-                          ? AppIcons.cartPlus
-                          : AppIcons.cartPlusOutlined,
+                      cartCubit.isProductInCart(productModel) ? AppIcons.cartPlus : AppIcons.cartPlusOutlined,
                       width: 20.w,
                     ),
                     width: 32.w,

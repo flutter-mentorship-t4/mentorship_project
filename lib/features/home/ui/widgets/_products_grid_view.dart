@@ -5,12 +5,18 @@ class _ProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartCubit = context.watch<CartCubit>();
-    final wishlistCubit = context.watch<WishlistCubit>();
+    // final cartCubit = context.watch<CartCubit>();
+    // final wishlistCubit = context.watch<WishlistCubit>();
 
-    return BlocProvider.value(
-      value: getIt<CartCubit>(),
-      // create: (context) => HomeCubit(getIt(), getIt(), getIt())..getProducts(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(
+          value: getIt<CartCubit>(),
+        ),
+        BlocProvider.value(
+          value: getIt<WishlistCubit>(),
+        ),
+      ],
       child: BlocBuilder<HomeCubit, HomeState>(
         buildWhen: (previous, current) => current != previous,
         builder: (context, state) {
@@ -34,27 +40,29 @@ class _ProductsGridView extends StatelessWidget {
                         arguments: prod,
                       );
                     },
-                    child: ProductItem(
-                      productModel: prod,
-                      CartIcon: cartCubit.isProductInCart(prod)
-                          ? AppIcons.cartPlus
-                          : AppIcons.cartPlusOutlined,
-                      onTapCartIcon: () {
-                        cartCubit.toggleCartItem(prod);
-                      },
-                      favIcon: wishlistCubit.isProductInWishlist(prod)
-                          ? AppIcons.heart
-                          : AppIcons.heartOutlined,
-                      onTapFavIcon: () {
-                        wishlistCubit.toggleWishlistItem(prod);
-                      },
-                    ),
+                    child: ProductItems(productModel: prod),
+
+                    // ProductItem(
+                    //   productModel: prod,
+                    //   CartIcon: cartCubit.isProductInCart(prod)
+                    //       ? AppIcons.cartPlus
+                    //       : AppIcons.cartPlusOutlined,
+                    //   onTapCartIcon: () {
+                    //     cartCubit.toggleCartItem(prod);
+                    //   },
+                    //   favIcon: wishlistCubit.isProductInWishlist(prod)
+                    //       ? AppIcons.heart
+                    //       : AppIcons.heartOutlined,
+                    //   onTapFavIcon: () {
+                    //     wishlistCubit.toggleWishlistItem(prod);
+                    //   },
+                    // ),
                   );
                 },
               ),
             );
           } else if (state is ProductFailure) {
-            return Text('Error ${state.errorMessage}');
+            return Text('Error //${state.errorMessage}');
           } else {
             return CircularProgressIndicator().center();
           }

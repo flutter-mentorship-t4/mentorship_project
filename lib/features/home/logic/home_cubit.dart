@@ -3,18 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/core/networking/api_result.dart';
 import 'package:mentorship_project/features/home/data/models/products_model.dart';
 import 'package:mentorship_project/features/home/data/repos/products_repo.dart';
-import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
+import 'package:mentorship_project/features/wishlist/data/repo/wishlist_repo.dart';
 
 import '../../cart/data/repos/cart_repo.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final ProductsRepo _productsRepo;
-  // final CategoriesRepo _categoriesRepo;
   final CartRepo _cartRepo;
-  final WishlistCubit wishlistCubit;
+  final WishlistRepo _wishlistRepo;
 
-  HomeCubit(this._productsRepo, this._cartRepo, this.wishlistCubit) : super(HomeInitialState());
+  HomeCubit(this._productsRepo, this._cartRepo, this._wishlistRepo) : super(HomeInitialState());
 
   Future<void> getProducts() async {
     emit(HomeLoadingState());
@@ -26,22 +25,22 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  // Future<void> getCategories() async {
-  //   emit(HomeLoadingState());
-  //   ApiResult<List<String>> response = await _categoriesRepo.getCategories();
-  //   if (response is Success<List<String>>) {
-  //     emit(CategoriesLoaded(categories: response.data));
-  //   } else if (response is Failure<List<String>>) {
-  //     emit(CategoriesFailure(errorMessage: response.apiErrorModel.message ?? ''));
-  //   }
-  // }
-
   void toggleAddOrRemoveProductFromCart(ProductModel product) {
     _cartRepo.toggleCartItem(product);
   }
 
   Future<bool> isProductInCart(ProductModel product) async {
     return await _cartRepo.isProductInCart(product.id);
+  }
+
+  // Toggle a product's presence in the wishlist
+  void toggleAddOrRemoveProductFromWishlist(ProductModel product) {
+    _wishlistRepo.toggleWishlistItem(product);
+  }
+
+  // Synchronous method to check if a product is in the wishlist
+  bool isProductInWishlist(ProductModel product) {
+    return _wishlistRepo.isProductInWishlist(product.id);
   }
 
   void clearCart() {

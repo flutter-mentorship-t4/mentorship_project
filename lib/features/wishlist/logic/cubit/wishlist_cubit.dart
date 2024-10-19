@@ -5,73 +5,45 @@ import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_state.
 
 class WishlistCubit extends Cubit<WishlistState> {
   final WishlistRepo _wishlistRepo;
-  WishlistCubit(
-    this._wishlistRepo,
-  ) : super(WishlistInitialState());
+  // WishlistCubit(this._wishlistRepo) : super(WishlistInitialState());
+  WishlistCubit(this._wishlistRepo) : super(WishlistInitialState()) {
+    loadWishlist();
+  }
+
   List filterCat = ["All", "Jackets", "Pants", "Accessories", "Hijab"];
   int selectedFilterIndex = 0;
 
-  void emitWishlist() async {
-    emit(WishlistLoadingState());
+  // Load wishlist items and emit the state
+  Future<void> loadWishlist() async {
+    emit(WishlistLoading());
     try {
-      final items = await _wishlistRepo.getAllWishlistItems();
-      emit(WishlistLoadedState(items: items));
+      final wishlistItems = await _wishlistRepo.getWishlistItems();
+      emit(WishlistLoaded(items: wishlistItems));
+    } catch (e) {
+      emit(WishlistError(errorMessage: e.toString()));
+    }
+  }
+
+  void toggleWishlist(ProductModel product) async {
+    try {
+      await _wishlistRepo.toggleWishlistItem(product);
+      loadWishlist();
     } catch (error) {
-      emit(WishlistErrorState(
-          errorMessage: 'Failed to load Wish List items: ${error.toString()}'));
+      emit(WishlistError(errorMessage: 'Failed to update wishlist: ${error.toString()}'));
     }
   }
 
-  void toggleWishlistItem(ProductModel product) async {
-    final currentState = state;
-    if (currentState is WishlistLoadedState) {
-      final isInWishlist =
-          currentState.items.any((item) => item.product.id == product.id);
-
-      if (isInWishlist) {
-        removeFromWishlist(product);
-      } else {
-        addToWishlist(product);
-      }
-    }
-  }
-
-  void addToWishlist(ProductModel product) async {
-    final currentState = state;
-    if (currentState is WishlistLoadedState) {
-      try {
-        if (!isProductInWishlist(product)) {
-          await _wishlistRepo.addToWishlist(product);
-          emit(WishlistLoadedState(
-              items: await _wishlistRepo.getAllWishlistItems()));
-        }
-      } catch (error) {
-        emit(WishlistErrorState(errorMessage: error.toString()));
-      }
-    }
-  }
-
-  void removeFromWishlist(ProductModel product) async {
-    final currentState = state;
-    if (currentState is WishlistLoadedState) {
-      try {
-        if (isProductInWishlist(product)) {
-          await _wishlistRepo.removeFromWishlist(product.id);
-          emit(WishlistLoadedState(
-              items: await _wishlistRepo.getAllWishlistItems()));
-        }
-      } catch (error) {
-        emit(WishlistErrorState(errorMessage: error.toString()));
-      }
-    }
-  }
+  // void clearWishlist() async {
+  //   emit(WishlistLoading());
+  //   try {
+  //     await _wishlistRepo.clearWishlist();
+  //     emit(WishlistLoaded([]));
+  //   } catch (error) {
+  //     emit(WishlistError('Failed to clear wishlist: ${error.toString()}'));
+  //   }
+  // }
 
   bool isProductInWishlist(ProductModel product) {
-    final currentState = state;
-
-    if (currentState is WishlistLoadedState) {
-      return currentState.items.any((item) => item.product.id == product.id);
-    }
-    return false;
+    return _wishlistRepo.isProductInWishlist(product.id);
   }
 }

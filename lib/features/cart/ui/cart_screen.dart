@@ -8,12 +8,9 @@ import '../logic/cart_cubit.dart';
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return
-     BlocProvider.value(
+    return BlocProvider.value(
       value: getIt<CartCubit>()..loadCart(),
-      // create: (context) => CartCubit(getIt())..loadCart(),
-      child:
-       CartScreenBody(),
+      child: CartScreenBody(),
     );
   }
 }

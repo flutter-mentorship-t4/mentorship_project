@@ -18,18 +18,6 @@ class CartRepo {
     _cachedItems = await getCartItems();
   }
 
-  // Simulate network delay
-  // Future<void> _delay() => Future.delayed(Duration(milliseconds: 300));
-
-  // Additional method to add initial items for testing
-  // Future<List<CartItemModel>> addInitialItems() async {
-  //   await _delay();
-  //   _items.addAll(dummyProducts.map((product) => CartItemModel(product: product)));
-  //   clearCart();
-  //   saveCartItems(_items);
-  //   return _items;
-  // }
-
   Future<List<CartItemModel>> getCartItems() async {
     if (_cachedItems.isNotEmpty) {
       return _cachedItems;
@@ -105,15 +93,6 @@ class CartRepo {
       await addToCart(product);
     }
   }
-
-  // // Calculates total price and selected items total price
-  // // Returns a tuple: (totalPrice, selectedTotalPrice)
-  // Future<(double, double)> calculatePrices(List<CartItemModel> items) async {
-  //   final totalPrice = items.fold(0.0, (total, item) => total + (item.product.price * item.quantity));
-  //   final selectedTotalPrice =
-  //       items.where((item) => item.isSelected).fold(0.0, (total, item) => total + (item.product.price * item.quantity));
-  //   return (totalPrice, selectedTotalPrice);
-  // }
 
   // Calculates total price and selected items total price
   // Returns a tuple: (totalPrice, selectedTotalPrice)

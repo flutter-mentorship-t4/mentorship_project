@@ -11,17 +11,6 @@ class CartCubit extends Cubit<CartState> {
 
   CartCubit(this._cartRepo) : super(CartInitialState());
 
-  // This method is just for initial tests=>poulating the shrared preff storage
-  // void addInitialDummyProductsForTest() async {
-  //   emit(CartLoadingState());
-  //   try {
-  //     final cartItems = await _cartRepo.addInitialItems();
-  //     _updatePrices(cartItems);
-  //   } catch (error) {
-  //     emit(CartErrorState(FailureObj(errorMessage: error.toString())));
-  //   }
-  // }
-
   // Loads cart items and updates state with calculated prices
   Future<void> loadCart() async {
     emit(CartLoadingState());
@@ -34,20 +23,6 @@ class CartCubit extends Cubit<CartState> {
       emit(CartErrorState(FailureObj(errorMessage: 'Failed to load cart items: ${error.toString()}')));
     }
   }
-
-  // void toggleCartItem(ProductModel product) async {
-  //   final currentState = state;
-  //   if (currentState is CartLoadedState) {
-  //     // Check if the product is already in the cart
-  //     final isInCart = currentState.items.any((item) => item.product.id == product.id);
-
-  //     if (isInCart) {
-  //       removeFromCart(product.id);
-  //     } else {
-  //       addToCart(product);
-  //     }
-  //   }
-  // }
 
   void toggleCartItem(ProductModel product) async {
     try {

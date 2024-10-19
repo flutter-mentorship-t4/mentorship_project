@@ -1,18 +1,18 @@
-import 'package:mentorship_project/features/wishlist/data/model/wishlist_item_model.dart';
+import 'package:mentorship_project/features/home/data/models/products_model.dart';
 
 sealed class WishlistState {}
 
 class WishlistInitialState extends WishlistState {}
 
-class WishlistLoadingState extends WishlistState {}
+class WishlistLoading extends WishlistState {}
 
-class WishlistLoadedState extends WishlistState {
-  final List<WishlistItemModel> items;
+class WishlistLoaded extends WishlistState {
+  final List<ProductModel> items;
 
-  WishlistLoadedState({required this.items});
+  WishlistLoaded({required this.items});
 }
 
-class WishlistErrorState extends WishlistState {
+class WishlistError extends WishlistState {
   final String errorMessage;
-  WishlistErrorState({required this.errorMessage});
+  WishlistError({required this.errorMessage});
 }

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mentorship_project/core/di/dependency_injection.dart';
 import 'package:mentorship_project/features/home/ui/home_screen.dart';
-import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
 import 'package:mentorship_project/features/wishlist/ui/wishlist_screen.dart';
 
 import '../../../core/helpers/extensions/widgets_extentions.dart';
@@ -44,10 +41,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
             const HomeScreen(),
             CategoriesScreen(),
             CartScreen(),
-            BlocProvider(
-              create: (context) => WishlistCubit(getIt())..emitWishlist(),
-              child: const WishListScreen(),
-            ),
+            WishListScreen(),
+            // BlocProvider(
+            //   create: (context) => WishlistCubit(getIt())..loadWishlist(),
+            //   child: const WishListScreen(),
+            // ),
           ],
         ),
       ),
