@@ -8,6 +8,7 @@ import 'package:mentorship_project/core/helpers/extensions/string_extension.dart
 import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
 import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
 import 'package:mentorship_project/features/home/logic/user_cubit.dart';
+import 'package:mentorship_project/features/search/logic/search_cubit/search_cubit.dart';
 
 import '../../../core/config/theming/colors.dart';
 import '../../../core/config/theming/styles.dart';
@@ -19,7 +20,6 @@ import '../../../core/helpers/strings/app_icons.dart';
 import '../../../core/helpers/strings/app_images.dart';
 import '../../../core/routing/routes.dart';
 import '../../../core/widgets/app_icon_button.dart';
-import '../../../core/widgets/app_text_form_field.dart';
 import '../../../core/widgets/category_button_item.dart';
 import '../logic/home_cubit.dart';
 import 'widgets/products_grid_view.dart';
