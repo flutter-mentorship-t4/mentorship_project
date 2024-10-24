@@ -25,7 +25,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new),
-          onPressed: () => context.pushNamed(Routes.navigationScreen),
+          onPressed: () => context.pushReplacementNamed(Routes.navigationScreen),
         ),
       ),
       body: Padding(
@@ -36,10 +36,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CheckoutTypeButton(
-                    isSelected: true, label: 'Delivery', onTap: () {}),
-                CheckoutTypeButton(
-                    isSelected: false, label: 'Pick-up', onTap: () {})
+                CheckoutTypeButton(isSelected: true, label: 'Delivery', onTap: () {}),
+                CheckoutTypeButton(isSelected: false, label: 'Pick-up', onTap: () {})
               ],
             ),
             verticalSpace(16),
@@ -97,20 +95,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             ListTile(
               leading: Icon(Icons.credit_card),
               title: Text("**** **** **** 1234"),
-              trailing:
-                  Radio(value: true, groupValue: true, onChanged: (value) {}),
+              trailing: Radio(value: true, groupValue: true, onChanged: (value) {}),
             ),
             ListTile(
               leading: Icon(Icons.account_balance_wallet),
               title: Text("Apple Pay"),
-              trailing:
-                  Radio(value: false, groupValue: true, onChanged: (value) {}),
+              trailing: Radio(value: false, groupValue: true, onChanged: (value) {}),
             ),
             ListTile(
               leading: Icon(Icons.money),
               title: Text("Cash"),
-              trailing:
-                  Radio(value: false, groupValue: true, onChanged: (value) {}),
+              trailing: Radio(value: false, groupValue: true, onChanged: (value) {}),
             ),
             TextButton(
               onPressed: () {},

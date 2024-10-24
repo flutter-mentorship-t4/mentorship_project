@@ -27,7 +27,7 @@ class CartScreenBody extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new),
-          onPressed: () => context.pushNamed(Routes.navigationScreen),
+          onPressed: () => context.pushReplacementNamed(Routes.navigationScreen),
         ),
       ),
       body: Padding(
