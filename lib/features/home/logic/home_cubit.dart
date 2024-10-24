@@ -19,9 +19,28 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeLoadingState());
     var response = await _productsRepo.getProducts();
     if (response is Success<List<ProductModel>>) {
-      emit(ProductsLoaded(products: response.data));
+      emit(ProductsLoaded(
+        allProducts: response.data,
+        filteredProducts: response.data, // Initially show all products
+        selectedCategory: "All",
+      ));
     } else if (response is Failure<List<ProductModel>>) {
       emit(ProductFailure(errorMessage: response.apiErrorModel.message ?? ''));
+    }
+  }
+
+  void filterProducts(String? category) {
+    if (state is ProductsLoaded) {
+      final currentState = state as ProductsLoaded;
+      final filtered = category == null || category == "All"
+          ? currentState.allProducts // Show all products
+          : currentState.allProducts.where((product) => product.category.toLowerCase() == category.toLowerCase()).toList();
+
+      emit(ProductsLoaded(
+        allProducts: currentState.allProducts,
+        filteredProducts: filtered,
+        selectedCategory: category ?? "All",
+      ));
     }
   }
 

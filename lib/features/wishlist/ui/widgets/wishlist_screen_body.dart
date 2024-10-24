@@ -47,7 +47,7 @@ class WishlistScreenBody extends StatelessWidget {
                     return Expanded(child: WishlistGridView(products: state.items));
                   }
                 } else if (state is WishlistError) {
-                  debugPrint('----------------------${state.errorMessage} ----------------------');
+                  // debugPrint('----------------------${state.errorMessage} ----------------------');
                   return Center(child: Text('Error: ${state.errorMessage}'));
                 } else {
                   return EmptyWishList();

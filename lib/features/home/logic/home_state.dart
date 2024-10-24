@@ -19,10 +19,16 @@ class HomeErrorState extends HomeState {
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-final class ProductsLoaded extends HomeState {
-  final List<ProductModel> products;
+class ProductsLoaded extends HomeState {
+  final List<ProductModel> allProducts;
+  final List<ProductModel> filteredProducts;
+  final String selectedCategory;
 
-  ProductsLoaded({required this.products});
+  ProductsLoaded({
+    required this.allProducts,
+    required this.filteredProducts,
+    required this.selectedCategory,
+  });
 }
 
 final class ProductFailure extends HomeState {

@@ -6,12 +6,11 @@ import 'wishlist_state.dart';
 
 class WishlistCubit extends Cubit<WishlistState> {
   final WishlistRepo _wishlistRepo;
-  // WishlistCubit(this._wishlistRepo) : super(WishlistInitialState());
   WishlistCubit(this._wishlistRepo) : super(WishlistInitialState()) {
     loadWishlist();
   }
 
-  List filterCat = ["All", "Jackets", "Pants", "Accessories", "Hijab"];
+  List filterCat = ["All", "electronics", "jewelery", "men's clothing", "women's clothing"];
   int selectedFilterIndex = 0;
 
   // Load wishlist items and emit the state
@@ -33,16 +32,6 @@ class WishlistCubit extends Cubit<WishlistState> {
       emit(WishlistError(errorMessage: 'Failed to update wishlist: ${error.toString()}'));
     }
   }
-
-  // void clearWishlist() async {
-  //   emit(WishlistLoading());
-  //   try {
-  //     await _wishlistRepo.clearWishlist();
-  //     emit(WishlistLoaded([]));
-  //   } catch (error) {
-  //     emit(WishlistError('Failed to clear wishlist: ${error.toString()}'));
-  //   }
-  // }
 
   bool isProductInWishlist(ProductModel product) {
     return _wishlistRepo.isProductInWishlist(product.id);
