@@ -33,9 +33,11 @@ class _CustomAppBar extends StatelessWidget {
           AppIcons.notificationOutline,
         ).onTap(() {}),
         horizontalSpace(16),
-        SvgPicture.asset(
-          AppIcons.search,
-        ).onTap(() {}),
+        Icon(Icons.logout).onTap(() async {
+          await FirebaseAuth.instance.signOut();
+          await SharedPrefHelper.clearAllData();
+          context.pushNamed(Routes.loginScreen);
+        })
       ],
     ).paddingOnly(
       top: 14.h,
