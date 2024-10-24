@@ -16,7 +16,7 @@ class ProductsGridView extends StatelessWidget {
         buildWhen: (previous, current) => current != previous,
         builder: (context, state) {
           if (state is ProductsLoaded) {
-            return ProductsGrid(products: state.products);
+            return ProductsGrid(products: state.filteredProducts);
           } else if (state is ProductFailure) {
             return Text('Error //${state.errorMessage}');
           } else {

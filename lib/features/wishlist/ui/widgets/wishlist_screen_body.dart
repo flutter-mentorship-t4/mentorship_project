@@ -25,7 +25,7 @@ class WishlistScreenBody extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new),
-          onPressed: () => context.pushNamed(Routes.navigationScreen),
+          onPressed: () => context.pushReplacementNamed(Routes.navigationScreen),
         ),
       ),
       body: Padding(
@@ -41,13 +41,14 @@ class WishlistScreenBody extends StatelessWidget {
                 if (state is WishlistLoading) {
                   return Center(child: CircularProgressIndicator().center());
                 } else if (state is WishlistLoaded) {
-                  if (state.items.isEmpty) {
+                  if (state.filteredItems.isEmpty) {
                     return EmptyWishList();
                   } else {
-                    return Expanded(child: WishlistGridView(products: state.items));
+                    return Expanded(
+                      child: WishlistGridView(products: state.filteredItems),
+                    );
                   }
                 } else if (state is WishlistError) {
-                  debugPrint('----------------------${state.errorMessage} ----------------------');
                   return Center(child: Text('Error: ${state.errorMessage}'));
                 } else {
                   return EmptyWishList();

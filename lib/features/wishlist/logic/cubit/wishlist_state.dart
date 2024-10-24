@@ -7,9 +7,15 @@ class WishlistInitialState extends WishlistState {}
 class WishlistLoading extends WishlistState {}
 
 class WishlistLoaded extends WishlistState {
-  final List<ProductModel> items;
+  final List<ProductModel> allItems;
+  final List<ProductModel> filteredItems;
+  final String selectedCategory;
 
-  WishlistLoaded({required this.items});
+  WishlistLoaded({
+    required this.allItems,
+    required this.filteredItems,
+    required this.selectedCategory,
+  });
 }
 
 class WishlistError extends WishlistState {
