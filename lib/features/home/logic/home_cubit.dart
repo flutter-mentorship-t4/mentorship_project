@@ -1,8 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
+import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
 import 'package:mentorship_project/core/networking/api_result.dart';
 import 'package:mentorship_project/features/home/data/models/products_model.dart';
 import 'package:mentorship_project/features/home/data/repos/products_repo.dart';
+import 'package:mentorship_project/features/signup/data/models/user_model.dart';
 import 'package:mentorship_project/features/wishlist/data/repo/wishlist_repo.dart';
 
 import '../../cart/data/repos/cart_repo.dart';
@@ -13,9 +18,11 @@ class HomeCubit extends Cubit<HomeState> {
   final CartRepo _cartRepo;
   final WishlistRepo _wishlistRepo;
 
-  HomeCubit(this._productsRepo, this._cartRepo, this._wishlistRepo) : super(HomeInitialState());
+  HomeCubit(this._productsRepo, this._cartRepo, this._wishlistRepo)
+      : super(HomeInitialState());
 
   Future<void> getProducts() async {
+    getUserData();
     emit(HomeLoadingState());
     var response = await _productsRepo.getProducts();
     if (response is Success<List<ProductModel>>) {
@@ -46,5 +53,29 @@ class HomeCubit extends Cubit<HomeState> {
   void clearCart() {
     print("Removed all items from cart ");
     _cartRepo.clearCart();
+  }
+
+  Future<void> signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      await SharedPrefHelper.clearAllData();
+      print('User signed out successfully');
+    } catch (e) {
+      print('Error during sign-out: $e');
+    }
+  }
+
+  Future<void> getUserData() async {
+    emit(UserLoadingState());
+    try {
+      String? uid = await SharedPrefHelper.getString(SharedPrefKeys.userUid);
+      DocumentSnapshot userDoc =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      final userData =
+          UserModel.fromJson(userDoc.data() as Map<String, dynamic>);
+      emit(UserSuccessState(userData));
+    } catch (e) {
+      emit(UserErrorState(e.toString()));
+    }
   }
 }

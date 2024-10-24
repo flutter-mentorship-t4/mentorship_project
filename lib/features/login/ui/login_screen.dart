@@ -96,29 +96,35 @@ class LoginScreen extends StatelessWidget {
                           style: TextStyles.font18Grey79Regular,
                         ),
                         verticalSpace(20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SignWithSocial(
-                              assetsName: 'assets/icons/google.svg',
-                              ontap: () async {
-                                await context.read<LoginCubit>().signInWithGoogle();
-                              },
-                            ),
-                            horizontalSpace(20),
-                            SignWithSocial(
-                              assetsName: 'assets/icons/facebook.svg',
-                              ontap: () async {
-                                await context.read<LoginCubit>().signInWithFacebook();
-                              },
-                            ),
-                            horizontalSpace(20),
-                            SignWithSocial(
-                              assetsName: 'assets/icons/apple.svg',
-                              ontap: () {},
-                            ),
-                          ],
+                        SignWithSocial(
+                          assetsName: 'assets/icons/google.svg',
+                          ontap: () async {
+                            await context.read<LoginCubit>().signInWithGoogle();
+                          },
                         ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: [
+                        //     SignWithSocial(
+                        //       assetsName: 'assets/icons/google.svg',
+                        //       ontap: () async {
+                        //         await context
+                        //             .read<LoginCubit>()
+                        //             .signInWithGoogle();
+                        //       },
+                        //     ),
+                        //     horizontalSpace(20),
+                        //     SignWithSocial(
+                        //       assetsName: 'assets/icons/facebook.svg',
+                        //       ontap: () async {},
+                        //     ),
+                        //     horizontalSpace(20),
+                        //     SignWithSocial(
+                        //       assetsName: 'assets/icons/apple.svg',
+                        //       ontap: () {},
+                        //     ),
+                        //   ],
+                        // ),
                         verticalSpace(15),
                         DonotHaveAnAccouts(),
                         LoginBlocListener(),
@@ -133,10 +139,8 @@ class LoginScreen extends StatelessWidget {
   }
 
   void validateAndLogin(BuildContext context) {
-    // context.showLoading();
     if (context.read<LoginCubit>().formKey.currentState!.validate()) {
       context.read<LoginCubit>().authenticateUser();
-      // context.closeLoading();
     }
   }
 }

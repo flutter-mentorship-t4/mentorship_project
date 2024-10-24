@@ -1,3 +1,5 @@
+import 'package:mentorship_project/features/signup/data/models/user_model.dart';
+
 import '../../../core/networking/api_error_model.dart';
 import '../data/models/products_model.dart';
 
@@ -32,6 +34,19 @@ final class ProductFailure extends HomeState {
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+class UserInitialState extends HomeState {}
+
+class UserLoadingState extends HomeState {}
+
+class UserSuccessState<T> extends HomeState {
+  final UserModel userModel;
+  UserSuccessState(this.userModel);
+}
+
+class UserErrorState extends HomeState {
+  final String UserError;
+  UserErrorState(this.UserError);
+}
 // class CategoriesLoaded extends HomeState {
 //   final List<String> categories;
 

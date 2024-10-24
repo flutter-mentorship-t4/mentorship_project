@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
+import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
 
 import '../models/user_model.dart';
 
@@ -14,6 +16,7 @@ class SignUpService {
         .then((value) => print("User Created"))
         .catchError((error) => print("Failed to Create user: $error"));
     final uid = FirebaseAuth.instance.currentUser!.uid;
+    await SharedPrefHelper.setData(SharedPrefKeys.userUid, uid);
     await FirebaseFirestore.instance.collection('Users').doc(uid).set(
       {
         'name': userData.name,

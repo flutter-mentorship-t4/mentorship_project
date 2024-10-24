@@ -12,21 +12,28 @@ class _CustomAppBar extends StatelessWidget {
           width: 32.w,
         ),
         horizontalSpace(8),
-        BlocProvider(
-          create: (context) => UserCubit(),
-          child: BlocBuilder<UserCubit, Map<String, String?>>(
-            builder: (context, state) {
-              if (state[SharedPrefKeys.userName] == null &&
-                  state[SharedPrefKeys.userEmail] == null) {
-                context.read<UserCubit>().loadUserData();
-                return Center(child: CircularProgressIndicator());
-              }
+        BlocBuilder<HomeCubit, HomeState>(
+          buildWhen: (previous, current) =>
+              current is UserLoadingState ||
+              current is UserSuccessState ||
+              current is UserErrorState,
+          builder: (context, state) {
+            if (state is UserSuccessState) {
               return Text(
-                'Welcome, ${state[SharedPrefKeys.userName]}',
+                'Welcome, ${state.userModel.name}',
                 style: TextStyles.font14BlackRegular,
               );
-            },
-          ),
+            } else if (state is UserErrorState) {
+              return Text('Error //${state.UserError}');
+            } else {
+              return Container(
+                width: 20.w,
+                height: 20.h,
+                child: CircularProgressIndicator(
+                    color: ColorsManager.primaryColor),
+              );
+            }
+          },
         ),
         const Spacer(),
         SvgPicture.asset(
@@ -34,8 +41,7 @@ class _CustomAppBar extends StatelessWidget {
         ).onTap(() {}),
         horizontalSpace(16),
         Icon(Icons.logout).onTap(() async {
-          await FirebaseAuth.instance.signOut();
-          await SharedPrefHelper.clearAllData();
+          context.read<HomeCubit>().signOut();
           context.pushNamed(Routes.loginScreen);
         })
       ],
