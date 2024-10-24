@@ -62,3 +62,20 @@ Future<void> checkIfLoggedInUser() async {
 
 /// USE THIS COMMAND FOR GENERATE (LocalizationKeys)
 // flutter pub run easy_localization:generate --source-dir ./assets/translations -f keys -o localization_keys.g.dart
+
+
+//TODOS: 
+//♦ add categories to filter in home , wishilist, categories 
+//♦ Search filter
+//♦ filter btn: pop up window select any 
+//--- add google map detection
+
+//♠ add shimmer 
+//♠ add logout btn 
+//♠ Welcome name 
+//chekout finish screen 
+
+//fix splash screen + animation
+//add localization 
+//profile screen  
+//Add animations 

@@ -1,27 +1,29 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
-import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
 
 import '../models/user_model.dart';
 
 class SignUpService {
-  Future<void> signUp(UserModel userData) async {
-    print('SignUp Services1');
-    await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(
-          email: userData.email,
-          password: userData.password,
-        )
-        .then((value) => print("User Created"))
-        .catchError((error) => print("Failed to Create user: $error"));
-    final uid = FirebaseAuth.instance.currentUser!.uid;
-    await SharedPrefHelper.setData(SharedPrefKeys.userUid, uid);
-    await FirebaseFirestore.instance.collection('Users').doc(uid).set(
-      {
-        'name': userData.name,
-        'email': userData.email,
-      },
-    );
+  Future<String?> signUp(UserModel userData) async {
+    print('SignUp Service - Authentication Started');
+
+    try {
+      final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: userData.email,
+        password: userData.password,
+      );
+
+      print("User Created Successfully");
+
+      // Return the UID of the newly created user
+      return userCredential.user?.uid;
+    } on FirebaseAuthException catch (e) {
+      // Handle Firebase-specific errors
+      print('Firebase Auth Exception: $e');
+      rethrow;
+    } catch (e) {
+      // Handle any other general exceptions
+      print('An error occurred during sign up: $e');
+      rethrow;
+    }
   }
 }
