@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:mentorship_project/features/home/logic/home_state.dart';
 
-import '../../../categories/logic/products_cubit/products_state.dart';
 import '../../../home/logic/home_cubit.dart';
 import 'search_state.dart';
 
@@ -17,10 +18,18 @@ class SearchCubit extends Cubit<SearchState> {
 
     emit(SearchLoading());
 
-    // Get products from HomeCubit
     final currentState = homeCubit.state;
-    if (currentState case ProductsLoaded(products: final products)) {
-      final searchResults = products.where((product) {
+    debugPrint('Current state type: ${currentState.runtimeType}');
+    debugPrint('Current state: $currentState');
+
+    // First let's check if we can access the state normally
+    if (currentState is ProductsLoaded) {
+      debugPrint('State is ProductsLoaded');
+      // Print available properties
+      debugPrint('Available properties: ${currentState.toString()}');
+
+      // Try to access products
+      final searchResults = currentState.allProducts.where((product) {
         final name = product.title.toLowerCase();
         final searchLower = query.toLowerCase();
         return name.contains(searchLower);
@@ -31,6 +40,8 @@ class SearchCubit extends Cubit<SearchState> {
       } else {
         emit(SearchSuccess(searchResults));
       }
+    } else {
+      debugPrint('State is not ProductsLoaded, it is: ${currentState.runtimeType}');
     }
   }
 }

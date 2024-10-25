@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mentorship_project/core/di/dependency_injection.dart';
+import 'package:mentorship_project/features/cart/logic/cart_cubit.dart';
+import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
 
 import '../../../../core/widgets/product_item.dart';
 import '../../logic/search_cubit/search_cubit.dart';
@@ -37,15 +40,10 @@ class _SearchTextField extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: 'Search products...',
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
         filled: true,
         fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
-        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
       onChanged: (query) {
         context.read<SearchCubit>().searchProducts(query);
@@ -65,20 +63,28 @@ class SearchResultsGrid extends StatelessWidget {
           SearchInitial() => const Center(
               child: Text('Start typing to search...'),
             ),
-          SearchLoading() => const Center(
-              child: CircularProgressIndicator(),
-            ),
-          SearchSuccess(products: final products) => GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.7,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
+          SearchLoading() => const Center(child: CircularProgressIndicator()),
+          SearchSuccess(products: final products) => MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: getIt<CartCubit>(),
+                ),
+                BlocProvider.value(
+                  value: getIt<WishlistCubit>(),
+                ),
+              ],
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.7,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                ),
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  return ProductItem(productModel: products[index]);
+                },
               ),
-              itemCount: products.length,
-              itemBuilder: (context, index) {
-                return ProductItem(productModel: products[index]);
-              },
             ),
           SearchEmpty() => const Center(
               child: Text('No products found'),
