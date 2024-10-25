@@ -14,9 +14,7 @@ class SearchScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => SearchCubit(
-            homeCubit: getIt<HomeCubit>(),
-          ),
+          create: (context) => SearchCubit(homeCubit: getIt<HomeCubit>()),
         ),
       ],
       child: const SearchScreenBody(),
