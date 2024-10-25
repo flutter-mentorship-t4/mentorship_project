@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
 import 'package:mentorship_project/features/signup/data/models/user_model.dart';
 import 'package:mentorship_project/features/signup/data/repos/sign_up_repo.dart';
 
@@ -29,9 +28,6 @@ class SignupCubit extends Cubit<SignupState> {
     data.fold((error) {
       emit(SignupErrorState(error));
     }, (data) {
-      SharedPrefHelper.setData('userName', nameController.text);
-      SharedPrefHelper.setData('userEmail', emailController.text);
-
       emit(SignupSuccessState());
     });
   }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mentorship_project/features/home/logic/cubit/user_cubit.dart';
 
 import '../../core/networking/dio_factory.dart';
 import '../../features/cart/data/repos/cart_repo.dart';
@@ -43,6 +44,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<WishlistRepo>(() => WishlistRepo());
 
   getIt.registerLazySingleton<HomeCubit>(() => HomeCubit(getIt(), getIt(), getIt())..getProducts());
+  getIt.registerLazySingleton<UserCubit>(() => UserCubit()..getUserData());
   getIt.registerLazySingleton<CartCubit>(() => CartCubit(getIt())..loadCart());
   getIt.registerLazySingleton<WishlistCubit>(() => WishlistCubit(getIt())..loadWishlist());
 

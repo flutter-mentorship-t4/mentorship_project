@@ -4,7 +4,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mentorship_project/core/helpers/bloc_observer.dart';
 
 import 'core/di/dependency_injection.dart' as di;
 import 'core/helpers/strings/shared_pref_keys.dart';
@@ -18,7 +20,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // Bloc.observer = MyBlocObserver();
+  Bloc.observer = MyBlocObserver();
 
   await EasyLocalization.ensureInitialized();
 
@@ -60,7 +62,6 @@ Future<void> checkIfLoggedInUser() async {
 
 /// USE THIS COMMAND FOR GENERATE (LocalizationKeys)
 // flutter pub run easy_localization:generate --source-dir ./assets/translations -f keys -o localization_keys.g.dart
-
 
 
 //TODOS: 

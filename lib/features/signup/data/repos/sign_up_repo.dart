@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -11,7 +12,19 @@ class SignupRepo {
 
   Future<Either> signUp(UserModel user) async {
     try {
-      await signUpService.signUp(user);
+      // First, authenticate the user and get the UID
+      final uid = await signUpService.signUp(user);
+
+      // If UID is null, handle it as an error
+      if (uid == null) {
+        throw Exception('Failed to get user UID after signup');
+      }
+
+      // Call the method to save the user data into Firestore
+      await saveUserToFirestore(uid, user);
+
+      // // Optionally save the UID in shared preferences
+      // await SharedPrefHelper.setData(SharedPrefKeys.userUid, uid);
 
       return Right('Sign Up Success');
     } on FirebaseAuthException catch (e) {
@@ -24,6 +37,22 @@ class SignupRepo {
     } catch (e) {
       print('catch $e');
       return Left(e);
+    }
+  }
+
+  Future<void> saveUserToFirestore(String uid, UserModel user) async {
+    try {
+      await FirebaseFirestore.instance.collection('Users').doc(uid).set(
+        {
+          'name': user.name,
+          'email': user.email,
+          'uid': uid,
+        },
+      );
+      print('User data saved to Firestore');
+    } catch (e) {
+      print('Failed to save user data to Firestore: $e');
+      throw Exception('Firestore save failed');
     }
   }
 }

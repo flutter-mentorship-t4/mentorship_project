@@ -9,15 +9,25 @@ class LoginRepository {
 
   LoginRepository(this._loginService);
 
-  Future<Either<Failure, Unit>> login({required String email, required String password}) async {
+  Future<Either<Failure, Unit>> loginWithEmailAndPassword(
+      {required String email, required String password}) async {
     final credentials = LoginCredentials(email: email, password: password);
 
-    final result = await _loginService.signIn(credentials);
+    final result = await _loginService.signInWithEmailAndPassword(credentials);
     if (result.success && result.user != null) {
       return Right(unit);
     } else {
       return Left(Failure(result.errorMessage ?? "Login failed"));
       // return Left(Failure(getMessageFromErrorCode(result.errorMessage ?? "unknown")));
+    }
+  }
+
+  Future<Either<Failure, Unit>> loginWithGoogle() async {
+    final result = await _loginService.signInWithGoogle();
+    if (result.success && result.user != null) {
+      return Right(unit);
+    } else {
+      return Left(Failure(result.errorMessage ?? "Login With Google failed"));
     }
   }
 

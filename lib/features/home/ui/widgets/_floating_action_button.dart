@@ -10,11 +10,9 @@ class _FloatingActionButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
       ),
       backgroundColor: ColorsManager.primaryColor,
-      child: Icon(Icons.add, color: Colors.white, size: 20.w),
+      child: Icon(Icons.dark_mode, color: Colors.white, size: 20.w),
       onPressed: () async {
-        await FirebaseAuth.instance.signOut();
-        await SharedPrefHelper.clearAllData();
-        context.pushNamed(Routes.loginScreen);
+        await context.read<ThemeCubit>().toggleTheme();
       },
     ).widthAndHeight(width: 40.w, height: 40.h);
   }

@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
 import 'package:mentorship_project/core/networking/api_result.dart';
 import 'package:mentorship_project/features/home/data/models/products_model.dart';
 import 'package:mentorship_project/features/home/data/repos/products_repo.dart';
@@ -16,6 +18,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._productsRepo, this._cartRepo, this._wishlistRepo) : super(HomeInitialState());
 
   Future<void> getProducts() async {
+    // getUserData();
     emit(HomeLoadingState());
     var response = await _productsRepo.getProducts();
     if (response is Success<List<ProductModel>>) {
@@ -66,4 +69,33 @@ class HomeCubit extends Cubit<HomeState> {
     print("Removed all items from cart ");
     _cartRepo.clearCart();
   }
+
+  Future<void> signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      await SharedPrefHelper.clearAllData();
+      print('User signed out successfully');
+    } catch (e) {
+      print('Error during sign-out: $e');
+    }
+  }
+
+  // Future<void> getUserData() async {
+  //   emit(UserLoadingState());
+  //   try {
+  //     // Get the current user's UID from FirebaseAuth
+  //     final user = FirebaseAuth.instance.currentUser;
+  //     if (user == null) {
+  //       throw Exception('No authenticated user found');
+  //     }
+
+  //     final uid = user.uid; // Get the UID from the authenticated user
+  //     DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+
+  //     final userData = UserModel.fromJson(userDoc.data() as Map<String, dynamic>); // Convert Firestore document data to UserModel
+  //     emit(UserSuccessState(userData));
+  //   } catch (e) {
+  //     emit(UserErrorState(e.toString()));
+  //   }
+  // }
 }

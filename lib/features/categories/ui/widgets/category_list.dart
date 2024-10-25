@@ -38,7 +38,7 @@ class _CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100.h,
+      height: 110.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround, // Spaces items evenly across the row
         children: widget.categories.map((category) {
@@ -75,7 +75,7 @@ class _CategoryListState extends State<CategoryList> {
                 // Category name text
                 Container(
                   width: 70.w,
-                  height: 30.h,
+                  height: 40.h,
                   alignment: Alignment.center,
                   child: Text(category.catName,
                       textAlign: TextAlign.center,

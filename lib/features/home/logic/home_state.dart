@@ -38,6 +38,19 @@ final class ProductFailure extends HomeState {
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// class UserInitialState extends HomeState {}
+
+// class UserLoadingState extends HomeState {}
+
+// class UserSuccessState<T> extends HomeState {
+//   final UserModel userModel;
+//   UserSuccessState(this.userModel);
+// }
+
+// class UserErrorState extends HomeState {
+//   final String UserError;
+//   UserErrorState(this.UserError);
+// }
 // class CategoriesLoaded extends HomeState {
 //   final List<String> categories;
 
