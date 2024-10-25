@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/config/theming/styles.dart';
 import '../../../../core/helpers/extensions/navigations_extensions.dart';
-import '../../../../core/routing/routes.dart';
 
 class AlreadyHaveAnAccount extends StatelessWidget {
   const AlreadyHaveAnAccount({super.key});
@@ -12,7 +11,8 @@ class AlreadyHaveAnAccount extends StatelessWidget {
     return Center(
       child: GestureDetector(
         onTap: () {
-          context.pushNamed(Routes.loginScreen);
+          // context.pushNamed(Routes.loginScreen);
+          context.pop();
         },
         child: RichText(
           text: TextSpan(

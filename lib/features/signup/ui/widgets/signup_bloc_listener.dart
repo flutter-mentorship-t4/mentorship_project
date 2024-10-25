@@ -40,7 +40,8 @@ class SignUpBlocListener extends StatelessWidget {
           Text('Congratulations, you have signed up successfully!', textAlign: TextAlign.center, style: TextStyles.font12BlackRegular),
           TextButton(
             onPressed: () {
-              context.pushNamed(Routes.navigationScreen);
+              context.pop();
+              context.pushReplacementNamed(Routes.navigationScreen);
             },
             child: const Text('Continue', style: TextStyle(color: ColorsManager.primaryColor)),
           )

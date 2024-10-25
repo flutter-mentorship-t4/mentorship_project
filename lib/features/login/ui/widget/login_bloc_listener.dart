@@ -5,7 +5,6 @@ import '../../../../core/config/theming/colors.dart';
 import '../../../../core/config/theming/styles.dart';
 import '../../../../core/helpers/extensions/context_extensions.dart';
 import '../../../../core/helpers/extensions/navigations_extensions.dart';
-import '../../../../core/routing/routes.dart';
 import '../../logic/login_cubit.dart';
 import '../../logic/login_state.dart';
 
@@ -40,7 +39,8 @@ class LoginBlocListener extends StatelessWidget {
           Text('Congratulations, you have Logged In successfully!', textAlign: TextAlign.center, style: TextStyles.font12BlackRegular),
           TextButton(
             onPressed: () {
-              context.pushNamed(Routes.navigationScreen); //untill making Home Page
+              context.pop();
+              // context.pushReplacementNamed(Routes.navigationScreen); //untill making Home Page
             },
             child: const Text('Continue', style: TextStyle(color: ColorsManager.primaryColor)),
           )

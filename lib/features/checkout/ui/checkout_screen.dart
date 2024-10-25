@@ -50,7 +50,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               verticalSpace(10),
               AppButton(
                 label: 'Place Order',
-                onTap: () {},
+                onTap: () {
+                  context.pop();
+                  context.pop();
+                },
                 textStyle: TextStyles.font20WhiteSemiBold,
                 width: double.infinity,
                 borderRadius: 30,

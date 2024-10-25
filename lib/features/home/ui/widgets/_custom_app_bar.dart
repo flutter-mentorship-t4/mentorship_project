@@ -48,7 +48,7 @@ class _CustomAppBar extends StatelessWidget {
       top: 14.h,
       bottom: 16.h,
       start: 24.w,
-      end: 24.w,
+      end: 18.w,
     );
   }
 }
@@ -64,8 +64,7 @@ class UserShimmerLoading extends StatelessWidget {
       child: Container(
         height: 16.h,
         width: 80.w,
-        decoration: BoxDecoration(
-            color: ColorsManager.grey, borderRadius: BorderRadius.circular(13)),
+        decoration: BoxDecoration(color: ColorsManager.grey, borderRadius: BorderRadius.circular(13)),
       ),
     );
   }
