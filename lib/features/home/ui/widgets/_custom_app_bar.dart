@@ -24,11 +24,12 @@ class _CustomAppBar extends StatelessWidget {
               } else if (state is UserErrorState) {
                 return Text('Error: ${state.errorMessage}');
               } else {
-                return Container(
-                  width: 20.w,
-                  height: 20.h,
-                  child: CircularProgressIndicator(color: ColorsManager.primaryColor),
-                );
+                return UserShimmerLoading();
+                // Container(
+                //   width: 20.w,
+                //   height: 20.h,
+                //   child: CircularProgressIndicator(color: ColorsManager.primaryColor),
+                // );
               }
             },
           ),
@@ -48,6 +49,24 @@ class _CustomAppBar extends StatelessWidget {
       bottom: 16.h,
       start: 24.w,
       end: 24.w,
+    );
+  }
+}
+
+class UserShimmerLoading extends StatelessWidget {
+  const UserShimmerLoading({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: ColorsManager.grey,
+      highlightColor: ColorsManager.white,
+      child: Container(
+        height: 16.h,
+        width: 80.w,
+        decoration: BoxDecoration(
+            color: ColorsManager.grey, borderRadius: BorderRadius.circular(13)),
+      ),
     );
   }
 }

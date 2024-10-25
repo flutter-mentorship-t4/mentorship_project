@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mentorship_project/core/widgets/product_shimmer_loading.dart';
 
 import '../../../../core/config/theming/styles.dart';
 import '../../../../core/di/dependency_injection.dart';
@@ -48,7 +49,7 @@ class CategoriesScreenBody extends StatelessWidget {
               child: BlocBuilder<ProductsCubit, ProductsState>(
                 builder: (context, state) {
                   if (state is ProductsLoading) {
-                    return Center(child: CircularProgressIndicator());
+                    return ProductShimmerLoading();
                   } else if (state is ProductsError) {
                     return Center(child: Text(state.errorMessage));
                   } else if (state is ProductsLoaded) {

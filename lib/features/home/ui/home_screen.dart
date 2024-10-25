@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mentorship_project/core/general_cubits/theme/theme_cubit.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../core/config/theming/colors.dart';
 import '../../../core/config/theming/styles.dart';
