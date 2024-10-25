@@ -1,13 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/core/helpers/shared_pref_helper.dart';
-import 'package:mentorship_project/core/helpers/strings/shared_pref_keys.dart';
 import 'package:mentorship_project/core/networking/api_result.dart';
 import 'package:mentorship_project/features/home/data/models/products_model.dart';
 import 'package:mentorship_project/features/home/data/repos/products_repo.dart';
-import 'package:mentorship_project/features/signup/data/models/user_model.dart';
 import 'package:mentorship_project/features/wishlist/data/repo/wishlist_repo.dart';
 
 import '../../cart/data/repos/cart_repo.dart';
@@ -18,11 +15,10 @@ class HomeCubit extends Cubit<HomeState> {
   final CartRepo _cartRepo;
   final WishlistRepo _wishlistRepo;
 
-  HomeCubit(this._productsRepo, this._cartRepo, this._wishlistRepo)
-      : super(HomeInitialState());
+  HomeCubit(this._productsRepo, this._cartRepo, this._wishlistRepo) : super(HomeInitialState());
 
   Future<void> getProducts() async {
-    getUserData();
+    // getUserData();
     emit(HomeLoadingState());
     var response = await _productsRepo.getProducts();
     if (response is Success<List<ProductModel>>) {
@@ -65,17 +61,22 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> getUserData() async {
-    emit(UserLoadingState());
-    try {
-      String? uid = await SharedPrefHelper.getString(SharedPrefKeys.userUid);
-      DocumentSnapshot userDoc =
-          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-      final userData =
-          UserModel.fromJson(userDoc.data() as Map<String, dynamic>);
-      emit(UserSuccessState(userData));
-    } catch (e) {
-      emit(UserErrorState(e.toString()));
-    }
-  }
+  // Future<void> getUserData() async {
+  //   emit(UserLoadingState());
+  //   try {
+  //     // Get the current user's UID from FirebaseAuth
+  //     final user = FirebaseAuth.instance.currentUser;
+  //     if (user == null) {
+  //       throw Exception('No authenticated user found');
+  //     }
+
+  //     final uid = user.uid; // Get the UID from the authenticated user
+  //     DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+
+  //     final userData = UserModel.fromJson(userDoc.data() as Map<String, dynamic>); // Convert Firestore document data to UserModel
+  //     emit(UserSuccessState(userData));
+  //   } catch (e) {
+  //     emit(UserErrorState(e.toString()));
+  //   }
+  // }
 }
