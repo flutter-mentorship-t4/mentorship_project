@@ -14,6 +14,7 @@ import '../../features/home/data/repos/products_repo.dart';
 import '../../features/home/logic/home_cubit.dart';
 import '../../features/login/data/apis/log_in_services.dart';
 import '../../features/login/data/repos/login_repository.dart';
+import '../../features/search/logic/search_cubit/search_cubit.dart';
 import '../../features/signup/data/apis/sign_up_services.dart';
 import '../../features/signup/data/repos/sign_up_repo.dart';
 import '../../features/wishlist/data/repo/wishlist_repo.dart';
@@ -47,6 +48,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<UserCubit>(() => UserCubit()..getUserData());
   getIt.registerLazySingleton<CartCubit>(() => CartCubit(getIt())..loadCart());
   getIt.registerLazySingleton<WishlistCubit>(() => WishlistCubit(getIt())..loadWishlist());
+  getIt.registerFactory(() => SearchCubit(homeCubit: getIt<HomeCubit>()));
 
   getIt.registerLazySingleton<CategoriesCubit>(() => CategoriesCubit(getIt()));
   getIt.registerLazySingleton<ProductsCubit>(() => ProductsCubit(getIt()));

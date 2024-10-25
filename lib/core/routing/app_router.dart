@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mentorship_project/features/checkout/ui/checkout_screen.dart';
+import 'package:mentorship_project/features/search/ui/search_screen.dart';
 
 import '../../features/cart/ui/cart_screen.dart';
 import '../../features/categories/ui/categories_screen.dart';
@@ -58,6 +59,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => CartScreen());
       case Routes.checkoutScreen:
         return MaterialPageRoute(builder: (_) => CheckoutScreen());
+      case Routes.searchScreen:
+        return MaterialPageRoute(builder: (_) => SearchScreen());
 
       case Routes.productDetailsScreen:
         return MaterialPageRoute(

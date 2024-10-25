@@ -9,4 +9,5 @@ class Routes {
   static const String categoriesScreen = '/categoriesScreen';
   static const String wishlistScreen = '/wishlistScreen';
   static const String checkoutScreen = '/checkoutScreen';
+  static const String searchScreen = '/searchScreen';
 }

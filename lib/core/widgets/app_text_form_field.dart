@@ -18,6 +18,7 @@ class AppTextFormField extends StatelessWidget {
   final Color? backgroundColor;
   final TextEditingController? controller;
   final Function(String?) validator;
+  final bool enabled;
   const AppTextFormField({
     super.key,
     this.contentPadding,
@@ -33,11 +34,13 @@ class AppTextFormField extends StatelessWidget {
     this.backgroundColor,
     this.controller,
     required this.validator,
+    this.enabled = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       controller: controller,
       onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
       decoration: InputDecoration(
@@ -52,6 +55,14 @@ class AppTextFormField extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
             ),
         enabledBorder: enabledBorder ??
+            OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: ColorsManager.greyD9,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(30),
+            ),
+        disabledBorder: enabledBorder ??
             OutlineInputBorder(
               borderSide: const BorderSide(
                 color: ColorsManager.greyD9,
