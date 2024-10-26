@@ -1,17 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mentorship_project/core/helpers/extensions/navigations_extensions.dart';
-import 'package:mentorship_project/core/routing/routes.dart';
-import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
 
 import '../../../../core/config/theming/colors.dart';
+import '../../../../core/helpers/extensions/navigations_extensions.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_icon_button.dart';
 import '../../../../generated/localization_keys.g.dart';
 import '../../../cart/logic/cart_cubit.dart';
 import '../../../home/data/models/products_model.dart';
+import '../../../wishlist/logic/cubit/wishlist_cubit.dart';
 
 class ProductActionButtons extends StatelessWidget {
   final ProductModel productModel;

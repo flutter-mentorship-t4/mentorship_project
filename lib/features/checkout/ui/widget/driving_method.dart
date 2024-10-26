@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mentorship_project/features/checkout/ui/widget/checkout_type_button.dart';
+
+import 'checkout_type_button.dart';
 
 class DrivingMethod extends StatelessWidget {
   const DrivingMethod({

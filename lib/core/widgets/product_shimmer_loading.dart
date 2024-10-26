@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/config/theming/colors.dart';
-import 'package:mentorship_project/core/helpers/extensions/widgets_extentions.dart';
-import 'package:mentorship_project/core/helpers/spacing.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../config/theming/colors.dart';
+import '../helpers/extensions/widgets_extentions.dart';
+import '../helpers/spacing.dart';
 
 class ProductShimmerLoading extends StatelessWidget {
   const ProductShimmerLoading({
@@ -32,9 +33,7 @@ class ProductShimmerLoading extends StatelessWidget {
               child: Container(
                 height: 204.h,
                 width: 156.w,
-                decoration: BoxDecoration(
-                    color: ColorsManager.grey,
-                    borderRadius: BorderRadius.circular(13)),
+                decoration: BoxDecoration(color: ColorsManager.grey, borderRadius: BorderRadius.circular(13)),
               ),
             ).expanded(),
             verticalSpace(10),
@@ -45,9 +44,7 @@ class ProductShimmerLoading extends StatelessWidget {
                 child: Container(
                   height: 15.h,
                   width: 150.w,
-                  decoration: BoxDecoration(
-                      color: ColorsManager.grey,
-                      borderRadius: BorderRadius.circular(13)),
+                  decoration: BoxDecoration(color: ColorsManager.grey, borderRadius: BorderRadius.circular(13)),
                 )),
 
             verticalSpace(5),
@@ -58,9 +55,7 @@ class ProductShimmerLoading extends StatelessWidget {
                 child: Container(
                   height: 15.h,
                   width: 60.w,
-                  decoration: BoxDecoration(
-                      color: ColorsManager.grey,
-                      borderRadius: BorderRadius.circular(13)),
+                  decoration: BoxDecoration(color: ColorsManager.grey, borderRadius: BorderRadius.circular(13)),
                 )),
           ],
         );

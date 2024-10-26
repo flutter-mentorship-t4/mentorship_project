@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mentorship_project/features/signup/data/models/user_model.dart';
-import 'package:mentorship_project/features/signup/data/repos/sign_up_repo.dart';
 
+import '../data/models/user_model.dart';
+import '../data/repos/sign_up_repo.dart';
 import 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {

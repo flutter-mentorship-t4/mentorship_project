@@ -36,7 +36,9 @@ class _CustomAppBar extends StatelessWidget {
           const Spacer(),
           SvgPicture.asset(
             AppIcons.notificationOutline,
-          ).onTap(() {}),
+          ).onTap(() {
+            context.pushNamed(Routes.notificationScreen); // Navigate to notifications screen
+          }),
           horizontalSpace(16),
           Icon(Icons.logout).onTap(() async {
             context.read<HomeCubit>().signOut();

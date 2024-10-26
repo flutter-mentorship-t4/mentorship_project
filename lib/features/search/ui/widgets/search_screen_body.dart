@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mentorship_project/core/di/dependency_injection.dart';
-import 'package:mentorship_project/features/cart/logic/cart_cubit.dart';
-import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
 
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/widgets/product_item.dart';
+import '../../../cart/logic/cart_cubit.dart';
+import '../../../wishlist/logic/cubit/wishlist_cubit.dart';
 import '../../logic/search_cubit/search_cubit.dart';
 import '../../logic/search_cubit/search_state.dart';
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mentorship_project/core/config/theming/colors.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
+
+import '../../../../core/config/theming/colors.dart';
+import '../../../../core/config/theming/styles.dart';
 
 class AddressAngGoogleMap extends StatelessWidget {
   const AddressAngGoogleMap({

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mentorship_project/features/home/logic/cubit/user_cubit.dart';
 
 import '../../core/networking/dio_factory.dart';
 import '../../features/cart/data/repos/cart_repo.dart';
@@ -11,6 +10,7 @@ import '../../features/categories/logic/categories_cubit/categories_cubit.dart';
 import '../../features/categories/logic/products_cubit/products_cubit.dart';
 import '../../features/home/data/apis/home_api_service.dart';
 import '../../features/home/data/repos/products_repo.dart';
+import '../../features/home/logic/cubit/user_cubit.dart';
 import '../../features/home/logic/home_cubit.dart';
 import '../../features/login/data/apis/log_in_services.dart';
 import '../../features/login/data/repos/login_repository.dart';

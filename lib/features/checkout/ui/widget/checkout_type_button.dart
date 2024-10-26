@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/config/theming/colors.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
-import 'package:mentorship_project/core/widgets/app_button.dart';
+
+import '../../../../core/config/theming/colors.dart';
+import '../../../../core/config/theming/styles.dart';
+import '../../../../core/widgets/app_button.dart';
 
 class CheckoutTypeButton extends StatelessWidget {
   const CheckoutTypeButton({
@@ -20,14 +21,11 @@ class CheckoutTypeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppButton(
       label: label,
-      textStyle: isSelected
-          ? TextStyles.font18WhiteRegular
-          : TextStyles.font18PrimaryRegular,
+      textStyle: isSelected ? TextStyles.font18WhiteRegular : TextStyles.font18PrimaryRegular,
       onTap: onTap,
       width: 150.w,
       borderRadius: 25,
-      backgroundColor:
-          isSelected ? ColorsManager.primaryColor : ColorsManager.white,
+      backgroundColor: isSelected ? ColorsManager.primaryColor : ColorsManager.white,
       borderColor: ColorsManager.primaryColor,
     );
   }

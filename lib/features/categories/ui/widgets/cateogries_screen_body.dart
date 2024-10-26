@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mentorship_project/core/widgets/product_shimmer_loading.dart';
 
 import '../../../../core/config/theming/styles.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../../core/widgets/product_shimmer_loading.dart';
 import '../../../../core/widgets/products_grid.dart';
 import '../../logic/categories_cubit/categories_cubit.dart';
 import '../../logic/categories_cubit/categories_state.dart';

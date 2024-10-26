@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:mentorship_project/features/home/logic/home_state.dart';
 
 import '../../../home/logic/home_cubit.dart';
+import '../../../home/logic/home_state.dart';
 import 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
