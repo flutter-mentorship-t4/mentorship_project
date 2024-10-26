@@ -49,6 +49,8 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.4.7
   flutter_launcher_icons: "^0.14.0"
+  rename: ^3.0.2 #For renaming the app => rename setAppName --targets ios,android --value "......"
+
 
 flutter_launcher_icons:
   android: "launcher_icon"
