@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mentorship_project/core/config/theming/colors.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
-import 'package:mentorship_project/core/helpers/spacing.dart';
-import 'package:mentorship_project/core/helpers/strings/app_icons.dart';
+
+import '../../../../core/config/theming/colors.dart';
+import '../../../../core/config/theming/styles.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/helpers/strings/app_icons.dart';
 
 class ChoosePayWith extends StatelessWidget {
   const ChoosePayWith({super.key});
@@ -16,19 +17,14 @@ class ChoosePayWith extends StatelessWidget {
       children: [
         Text("Pay with", style: TextStyles.font18blackBold),
         verticalSpace(8),
-        PaymentOption(
-            assetName: AppIcons.mastercard,
-            data: 'xxxx-1234',
-            isSelected: true),
+        PaymentOption(assetName: AppIcons.mastercard, data: 'xxxx-1234', isSelected: true),
         verticalSpace(8),
-        PaymentOption(
-            assetName: AppIcons.applePay, data: 'Apple Pay', assetsHeight: 20),
+        PaymentOption(assetName: AppIcons.applePay, data: 'Apple Pay', assetsHeight: 20),
         verticalSpace(8),
         PaymentOption(assetName: AppIcons.cash, data: "Cash"),
         TextButton(
           onPressed: () {},
-          child: Text("+ Add new payment method",
-              style: TextStyles.font14BlackRegular),
+          child: Text("+ Add new payment method", style: TextStyles.font14BlackRegular),
         ),
       ],
     );

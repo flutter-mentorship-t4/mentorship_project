@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mentorship_project/features/checkout/ui/checkout_screen.dart';
-import 'package:mentorship_project/features/search/ui/search_screen.dart';
 
 import '../../features/cart/ui/cart_screen.dart';
 import '../../features/categories/ui/categories_screen.dart';
+import '../../features/checkout/ui/checkout_screen.dart';
 import '../../features/home/data/models/products_model.dart';
 import '../../features/home/logic/home_cubit.dart';
 import '../../features/home/ui/home_screen.dart';
 import '../../features/login/logic/login_cubit.dart';
 import '../../features/login/ui/login_screen.dart';
 import '../../features/navigations/navigation_screen.dart';
+import '../../features/notification/ui/notification_screen.dart';
 import '../../features/product_details/data/models/dummy_product.dart';
 import '../../features/product_details/ui/product_details_screen.dart';
+import '../../features/search/ui/search_screen.dart';
 import '../../features/signup/logic/signup_cubit.dart';
 import '../../features/signup/ui/signup_screen.dart';
 import '../../features/wishlist/ui/wishlist_screen.dart';
@@ -61,6 +62,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => CheckoutScreen());
       case Routes.searchScreen:
         return MaterialPageRoute(builder: (_) => SearchScreen());
+      case Routes.notificationScreen:
+        return MaterialPageRoute(builder: (_) => NotificationScreen());
 
       case Routes.productDetailsScreen:
         return MaterialPageRoute(

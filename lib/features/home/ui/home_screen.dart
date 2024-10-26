@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mentorship_project/core/general_cubits/theme/theme_cubit.dart';
-import 'package:mentorship_project/core/helpers/extensions/string_extension.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/config/theming/colors.dart';
 import '../../../core/config/theming/styles.dart';
 import '../../../core/di/dependency_injection.dart';
+import '../../../core/general_cubits/theme/theme_cubit.dart';
 import '../../../core/helpers/extensions/navigations_extensions.dart';
+import '../../../core/helpers/extensions/string_extension.dart';
 import '../../../core/helpers/extensions/widgets_extentions.dart';
 import '../../../core/helpers/spacing.dart';
 import '../../../core/helpers/strings/app_icons.dart';

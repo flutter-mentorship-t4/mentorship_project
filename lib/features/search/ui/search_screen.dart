@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mentorship_project/core/di/dependency_injection.dart';
 
+import '../../../core/di/dependency_injection.dart';
 import '../../home/logic/home_cubit.dart';
 import '../logic/search_cubit/search_cubit.dart';
 import 'widgets/search_screen_body.dart';

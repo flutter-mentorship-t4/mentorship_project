@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mentorship_project/features/wishlist/logic/cubit/wishlist_cubit.dart';
 
 import '../../../core/di/dependency_injection.dart';
 import '../../../core/helpers/spacing.dart';
 import '../../cart/logic/cart_cubit.dart';
 import '../../home/data/models/products_model.dart';
+import '../../wishlist/logic/cubit/wishlist_cubit.dart';
 import 'widgets/product_action_button.dart';
 import 'widgets/product_color_selection.dart';
 import 'widgets/product_details_top_bar.dart';

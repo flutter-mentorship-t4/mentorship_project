@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/helpers/extensions/string_extension.dart';
 
+import '../../../../core/helpers/extensions/string_extension.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/widgets/category_button_item.dart';
 import '../../logic/cubit/wishlist_cubit.dart';
