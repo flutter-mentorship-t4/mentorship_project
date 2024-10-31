@@ -1,4 +1,5 @@
 import '../../../core/networking/api_error_model.dart';
+import '../data/models/products_model.dart';
 
 sealed class HomeState {}
 
@@ -16,3 +17,47 @@ class HomeErrorState extends HomeState {
   HomeErrorState(this.apiErrorModel);
 }
 
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class ProductsLoaded extends HomeState {
+  final List<ProductModel> allProducts;
+  final List<ProductModel> filteredProducts;
+  final String selectedCategory;
+
+  ProductsLoaded({
+    required this.allProducts,
+    required this.filteredProducts,
+    required this.selectedCategory,
+  });
+}
+
+final class ProductFailure extends HomeState {
+  final String errorMessage;
+  ProductFailure({required this.errorMessage});
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// class UserInitialState extends HomeState {}
+
+// class UserLoadingState extends HomeState {}
+
+// class UserSuccessState<T> extends HomeState {
+//   final UserModel userModel;
+//   UserSuccessState(this.userModel);
+// }
+
+// class UserErrorState extends HomeState {
+//   final String UserError;
+//   UserErrorState(this.UserError);
+// }
+// class CategoriesLoaded extends HomeState {
+//   final List<String> categories;
+
+//   CategoriesLoaded({required this.categories});
+// }
+
+// class CategoriesFailure extends HomeState {
+//   final String errorMessage;
+//   CategoriesFailure({required this.errorMessage});
+// }

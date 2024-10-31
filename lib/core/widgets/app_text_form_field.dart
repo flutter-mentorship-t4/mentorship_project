@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentorship_project/core/config/theming/colors.dart';
-import 'package:mentorship_project/core/config/theming/styles.dart';
+
+import '../config/theming/colors.dart';
+import '../config/theming/styles.dart';
 
 class AppTextFormField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
@@ -17,6 +18,7 @@ class AppTextFormField extends StatelessWidget {
   final Color? backgroundColor;
   final TextEditingController? controller;
   final Function(String?) validator;
+  final bool enabled;
   const AppTextFormField({
     super.key,
     this.contentPadding,
@@ -32,17 +34,18 @@ class AppTextFormField extends StatelessWidget {
     this.backgroundColor,
     this.controller,
     required this.validator,
+    this.enabled = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       controller: controller,
       onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
       decoration: InputDecoration(
         isDense: true,
-        contentPadding: contentPadding ??
-            EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+        contentPadding: contentPadding ?? EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
         focusedBorder: focusedBorder ??
             OutlineInputBorder(
               borderSide: const BorderSide(
@@ -52,6 +55,14 @@ class AppTextFormField extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
             ),
         enabledBorder: enabledBorder ??
+            OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: ColorsManager.greyD9,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(30),
+            ),
+        disabledBorder: enabledBorder ??
             OutlineInputBorder(
               borderSide: const BorderSide(
                 color: ColorsManager.greyD9,

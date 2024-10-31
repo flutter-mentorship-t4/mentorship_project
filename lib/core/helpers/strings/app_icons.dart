@@ -8,7 +8,9 @@ abstract class AppIcons {
   static const String cash = '$path/cash.svg';
   static const String categories = '$path/categories.svg';
   static const String filter = '$path/filter.svg';
+  static const String heart = '$path/heart.svg';
   static const String heartOutlined = '$path/heart_outlined.svg';
+  static const String wishlist = '$path/wishlist.svg';
   static const String home = '$path/home.svg';
   static const String informationOutline = '$path/information_outline.svg';
   static const String location = '$path/location.svg';
@@ -30,4 +32,10 @@ abstract class AppIcons {
   static const String switchAccounts = '$path/switch_accounts.svg';
   static const String termsConditions = '$path/terms_conditions.svg';
   static const String voucherOutline = '$path/voucher_outline.svg';
+
+  static const String catElectronics = '$path/cat_electronics.svg';
+  static const String catJewelry = '$path/cat_jewelry.svg';
+  static const String catMenClothes = '$path/cat_men_clothes.svg';
+  static const String catWomenClothes = '$path/cat_women_clothes.svg';
+  static const String defaultCategoryIcon = '$path/voucher_outline.svg';
 }

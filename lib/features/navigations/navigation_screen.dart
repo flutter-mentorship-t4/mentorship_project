@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mentorship_project/features/home/ui/home_screen.dart';
 
 import '../../../core/helpers/extensions/widgets_extentions.dart';
 import '../../../core/helpers/strings/app_icons.dart';
 import '../../core/config/theming/colors.dart';
 import '../../core/config/theming/styles.dart';
 import '../../core/helpers/spacing.dart';
+import '../cart/ui/cart_screen.dart';
+import '../categories/ui/categories_screen.dart';
+import '../home/ui/home_screen.dart';
+import '../wishlist/ui/wishlist_screen.dart';
 
 part 'widgets/_navigation_bar_item.dart';
 
@@ -36,9 +39,13 @@ class _NavigationScreenState extends State<NavigationScreen> {
           index: selectedIndex,
           children: [
             const HomeScreen(),
-            Text('Categories').center(),
-            Text('Cart').center(),
-            Text('Wishlist').center(),
+            CategoriesScreen(),
+            CartScreen(),
+            WishListScreen(),
+            // BlocProvider(
+            //   create: (context) => WishlistCubit(getIt())..loadWishlist(),
+            //   child: const WishListScreen(),
+            // ),
           ],
         ),
       ),
@@ -56,9 +63,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               assetName: value['assetName'],
               isSelected: selectedIndex == index,
               onTap: () {
-                setState(() {
-                  selectedIndex = index;
-                });
+                setState(() => selectedIndex = index);
               },
             );
           }).toList(),

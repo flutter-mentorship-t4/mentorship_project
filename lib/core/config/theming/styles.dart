@@ -50,6 +50,12 @@ class TextStyles {
     fontWeight: FontWeightHelper.bold,
     color: ColorsManager.primaryColor,
   );
+  static TextStyle font18blackBold = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: ColorsManager.black,
+  );
+ 
   static TextStyle font13BlackRegular = TextStyle(
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.regular,
@@ -72,6 +78,11 @@ class TextStyles {
   );
   static TextStyle font12RedRegular = TextStyle(
     fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.mainRed,
+  );
+  static TextStyle font14RedRegular = TextStyle(
+    fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.mainRed,
   );
@@ -220,4 +231,6 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: ColorsManager.primaryColor,
   );
+
+  static var font14WhiteRegular;
 }

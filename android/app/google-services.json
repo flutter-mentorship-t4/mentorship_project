@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "758980347184",
+    "project_id": "mentorshipproject-ead0b",
+    "storage_bucket": "mentorshipproject-ead0b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758980347184:android:7af3adf293fe18402134f5",
+        "android_client_info": {
+          "package_name": "com.example.mentorship_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758980347184-qo83sdfure7nth3gf4rkt3f74kak161r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyXpKQBYLVnsCT0dvKm6D2wtikRqZALP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758980347184-qo83sdfure7nth3gf4rkt3f74kak161r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "758980347184-v9f314p7o6p2ut24t31tnt5qj7dpk7b4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mentorshipProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

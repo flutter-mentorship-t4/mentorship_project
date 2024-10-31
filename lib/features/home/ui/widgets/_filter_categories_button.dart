@@ -8,20 +8,21 @@ class _FilterCategoriesButton extends StatefulWidget {
 }
 
 class _FilterCategoriesButtonState extends State<_FilterCategoriesButton> {
-  List _filterCategories = [
+  final List<String> _filterCategories = [
     "All",
-    "New in",
-    "Popular",
-    "Modest",
-    "Formal",
-    "Accessories",
-    // "Electronics",
-    // "Jewelery",
-    // "Men's clothing",
-    // "Women's clothing",
+    "electronics",
+    "jewelery",
+    "men's clothing",
+    "women's clothing",
   ];
 
   int selectedFilterIndex = 0;
+
+  String _formatCategoryTitle(String category) {
+    if (category == "All") return category;
+    return category.split("'")[0].capitalize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -30,62 +31,18 @@ class _FilterCategoriesButtonState extends State<_FilterCategoriesButton> {
       itemCount: _filterCategories.length,
       separatorBuilder: (context, index) => horizontalSpace(9),
       itemBuilder: (context, index) {
-        return _CategoryButtonItem(
-          title: _filterCategories[index],
+        final category = _filterCategories[index];
+        return CategoryButtonItem(
+          title: _formatCategoryTitle(category),
           isSelected: selectedFilterIndex == index,
           onTap: () {
             setState(() {
               selectedFilterIndex = index;
             });
+            context.read<HomeCubit>().filterProducts(category);
           },
         );
       },
     ).withHeight(70.h);
-  }
-}
-
-class _CategoryButtonItem extends StatelessWidget {
-  final String title;
-  final bool isSelected;
-  final Function() onTap;
-
-  const _CategoryButtonItem({
-    required this.title,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
-        decoration: BoxDecoration(
-          color: isSelected ? ColorsManager.primaryColor : ColorsManager.lightPrimary,
-          borderRadius: BorderRadius.circular(13.r),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              title,
-              style: isSelected ? TextStyles.font16LightPrimaryRegular : TextStyles.font12PrimaryRegular,
-            ),
-            isSelected
-                ? SizedBox(
-                    width: 22.w,
-                    height: 22.h,
-                    child: SvgPicture.asset(
-                      AppIcons.stars,
-                      color: ColorsManager.white,
-                      width: 22.w,
-                    ),
-                  )
-                : const SizedBox.shrink(),
-          ],
-        ),
-      ),
-    );
   }
 }

@@ -1,6 +1,8 @@
 import 'dart:async';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'internet_state.dart';
 
 class InternetCubit extends Cubit<InternetState> {
@@ -14,8 +16,7 @@ class InternetCubit extends Cubit<InternetState> {
   }
 
   void monitorInternetConnection() {
-    _connectivitySubscription =
-        _connectivity.onConnectivityChanged.listen((connectivityResult) {
+    _connectivitySubscription = _connectivity.onConnectivityChanged.listen((connectivityResult) {
       if (connectivityResult == ConnectivityResult.wifi) {
         emit(const InternetState.connected(ConnectionType.wifi));
       } else if (connectivityResult == ConnectivityResult.mobile) {
