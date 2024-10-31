@@ -18,9 +18,13 @@ Here’s a look at how the app is structured:
 
 ### Smooth Onboarding & Authentication
 - **Welcome Screens**: The onboarding screens guide you through what the app has to offer.
-- **Secure Login**: Sign up or log in to get personalized recommendations and manage your account.
 
 ![Onboarding Screens](https://github.com/user-attachments/assets/e4e16889-8e72-4376-ac58-fe9bd6992d6f)
+
+- **Secure Login**: Sign up or log in to get personalized recommendations and manage your account.
+
+![Screens](https://github.com/user-attachments/assets/a8eb82e0-edc5-4c69-8b38-2dadc36a424a)
+
 
 ---
 
@@ -48,20 +52,18 @@ Here’s a tour of the app’s main screens for a sneak peek at Diva Shopping Ap
 
 ---
 
-### Detailed Product View
-#### Home & Product Pages
-- **Browse Collections**: The homepage displays popular and recommended items.
-- **Product Details**: Each product page includes everything you need to know to make the right choice.
+## Detailed Product View 🛍️
+### Categories and Wishlist
+- **Explore Categories**: Easily navigate through various categories to find exactly what you’re looking for.
+- **Wishlist**: Save your favorite items for later, so you never miss out on what you love!
 
 ![Home and Product Screen](https://github.com/user-attachments/assets/c2b953ec-c1e9-4a09-a7ce-6d888a2f60c7)
 
 ---
 
-### Categories & Checkout Flow
-- **Organized Categories**: Quickly browse by category to find what you need.
+### Checkout Flow
 - **Checkout**: A fast, user-friendly checkout process for all orders.
 
-![Categories List Screen](https://github.com/user-attachments/assets/c2b953ec-c1e9-4a09-a7ce-6d888a2f60c7)
 ![Checkout Screen](https://github.com/user-attachments/assets/a7236565-83e0-46a6-94df-ab1e435345e6)
 
 ---
