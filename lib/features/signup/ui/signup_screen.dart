@@ -17,10 +17,10 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //ToDo Localization
-    return SafeArea(
-      child: Scaffold(
-          backgroundColor: Colors.white,
-          body: SingleChildScrollView(
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 24.w,
@@ -83,8 +83,8 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
             ),
-          )),
-    );
+          ),
+        ));
   }
 
   void finishingSignUpAndCreateAccount(BuildContext context) {

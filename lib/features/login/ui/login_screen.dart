@@ -34,10 +34,10 @@ class LoginScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-              backgroundColor: Colors.white,
-              body: SingleChildScrollView(
+        return Scaffold(
+            backgroundColor: Colors.white,
+            body: SafeArea(
+              child: SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 24.w,
@@ -132,8 +132,8 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              )),
-        );
+              ),
+            ));
       },
     );
   }

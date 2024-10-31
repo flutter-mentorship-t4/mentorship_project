@@ -35,7 +35,8 @@ class _ProductImagesCarouselState extends State<ProductImagesCarousel> {
         itemBuilder: (context, index) {
           return Image.network(
             widget.product.image,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
+
             loadingBuilder: (context, child, loadingProgress) {
               // Show a loading spinner while the image is being fetched
               if (loadingProgress == null) return child;

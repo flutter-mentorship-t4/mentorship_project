@@ -30,62 +30,64 @@ class ProductDetailsScreen extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        body: Stack(
-          children: [
-            // Main scrollable content
-            NestedScrollView(
-              headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-                return <Widget>[
-                  SliverToBoxAdapter(
-                    child: Stack(
-                      children: [
-                        ProductImagesCarousel(product: product),
-                        ProductDetailsTopBar(),
+        body: SafeArea(
+          child: Stack(
+            children: [
+              // Main scrollable content
+              NestedScrollView(
+                headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                  return <Widget>[
+                    SliverToBoxAdapter(
+                      child: Stack(
+                        children: [
+                          ProductImagesCarousel(product: product),
+                          ProductDetailsTopBar(),
+                        ],
+                      ),
+                    ),
+                  ];
+                },
+                body: ListView(
+                  // padding: EdgeInsets.only(bottom: 10), // Space for bottom sheet
+                  children: <Widget>[
+                    verticalSpace(24),
+                    ProductNameReviewPriceDesc(product: product),
+                    verticalSpace(24),
+                    ProductColorSelection(),
+                    verticalSpace(16),
+                    ProductSizeSelection(),
+                    verticalSpace(16),
+                    // Add more widgets as needed
+                  ],
+                ),
+              ),
+              // Draggable bottom sheet
+              DraggableScrollableSheet(
+                initialChildSize: 0.1, // Start with just the buy now button visible
+                minChildSize: 0.1,
+                maxChildSize: 0.88, // Adjust based on your needs
+                builder: (BuildContext context, ScrollController scrollController) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey.withOpacity(0.5), spreadRadius: 5, blurRadius: 7, offset: Offset(0, 3)),
                       ],
                     ),
-                  ),
-                ];
-              },
-              body: ListView(
-                // padding: EdgeInsets.only(bottom: 10), // Space for bottom sheet
-                children: <Widget>[
-                  verticalSpace(24),
-                  ProductNameReviewPriceDesc(product: product),
-                  verticalSpace(24),
-                  ProductColorSelection(),
-                  verticalSpace(16),
-                  ProductSizeSelection(),
-                  verticalSpace(16),
-                  // Add more widgets as needed
-                ],
+                    child: ListView(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      controller: scrollController,
+                      children: [
+                        ProductActionButtons(productModel: product),
+                        ProductGridView(),
+                      ],
+                    ),
+                  );
+                },
               ),
-            ),
-            // Draggable bottom sheet
-            DraggableScrollableSheet(
-              initialChildSize: 0.1, // Start with just the buy now button visible
-              minChildSize: 0.1,
-              maxChildSize: 0.88, // Adjust based on your needs
-              builder: (BuildContext context, ScrollController scrollController) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                    boxShadow: [
-                      BoxShadow(color: Colors.grey.withOpacity(0.5), spreadRadius: 5, blurRadius: 7, offset: Offset(0, 3)),
-                    ],
-                  ),
-                  child: ListView(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    controller: scrollController,
-                    children: [
-                      ProductActionButtons(productModel: product),
-                      ProductGridView(),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
